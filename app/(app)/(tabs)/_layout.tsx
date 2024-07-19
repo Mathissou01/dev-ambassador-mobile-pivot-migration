@@ -32,6 +32,33 @@ export default function TabLayout() {
                 }}
             />
             <Tabs.Screen
+                name="listForm"
+                options={{
+                    title: 'listForm',
+                    tabBarIcon: ({color, focused}) => (
+                        <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color}/>
+                    ),
+                }}
+            />
+            {/*<Tabs.Screen*/}
+            {/*    name="Archive"*/}
+            {/*    options={{*/}
+            {/*        title: 'Archive',*/}
+            {/*        tabBarIcon: ({color, focused}) => (*/}
+            {/*            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color}/>*/}
+            {/*        ),*/}
+            {/*    }}*/}
+            {/*/>*/}
+            {/*<Tabs.Screen*/}
+            {/*    name="Calendar"*/}
+            {/*    options={{*/}
+            {/*        title: 'Calendar',*/}
+            {/*        tabBarIcon: ({color, focused}) => (*/}
+            {/*            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color}/>*/}
+            {/*        ),*/}
+            {/*    }}*/}
+            {/*/>*/}
+            <Tabs.Screen
                 name="account"
                 options={{
                     title: 'Compte',

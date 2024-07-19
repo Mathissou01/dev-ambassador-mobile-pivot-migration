@@ -16,7 +16,7 @@ const toolTipsLabel = {
     AmbassadorStatsLabel: "Test2",
 };
 
-export default function HomeScreen(): React.JSX.Element {
+export default function Home(): React.JSX.Element {
     // SMALL SCREEN
     const [nbFuturEvent, setNbFuturEvent] = useState(0);
     const [myNextEvent, setMyNextEvent] = useState(false);

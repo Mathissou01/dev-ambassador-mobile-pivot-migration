@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
-import { Text, View } from ".@/components/Themed";
-import { Field } from "../hooks/API/ObjectTypes/Field";
-import { School } from "../hooks/API/ObjectTypes/School";
-import { ThemeContext } from "../hooks/useColorScheme";
+import { Text, View } from "@/components/Themed";
+import { Field } from "@/hooks/API/ObjectTypes/Field";
+import { School } from "@/hooks/API/ObjectTypes/School";
+import { ThemeContext } from "@/hooks/useColorScheme";
 
 export default function CardForm({
   idForm,
