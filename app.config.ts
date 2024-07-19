@@ -1,7 +1,7 @@
 /* eslint-disable */
-import { ExpoConfig, ConfigContext } from "expo/config";
+import {ConfigContext, ExpoConfig} from "expo/config";
 
-export default ({ config }: ConfigContext): ExpoConfig => ({
+export default ({config}: ConfigContext): ExpoConfig => ({
     ...config,
     name: "Dev-Ambassador-V2",
     description: "Sois un vrai Ambassador",
@@ -58,7 +58,13 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
                 color: "#ffffff",
             },
         ],
-        "expo-router"
+        "expo-router",
+        // [
+        //     "expo-calendar",
+        //     {
+        //         "calendarPermission": "The app needs to access your calendar."
+        //     }
+        // ]
     ],
     extra: {
         eas: {

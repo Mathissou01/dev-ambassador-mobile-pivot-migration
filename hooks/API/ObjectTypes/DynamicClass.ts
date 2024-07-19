@@ -11,6 +11,7 @@ import {Event} from "./Event";
 import {Notification} from "./Notification";
 import {Archive} from "./Archive";
 import {ArchivePost} from "./ArchivePost";
+import {HubspotForm} from "@/hooks/API/ObjectTypes/HubspotForm";
 
 export const Store: any = {
     ambassador: Ambassador,
@@ -20,6 +21,7 @@ export const Store: any = {
     fields: Field,
     files: File,
     forms: Form,
+    hubspotForms: HubspotForm,
     roles: Role,
     schools: School,
     typeFields: TypeField,

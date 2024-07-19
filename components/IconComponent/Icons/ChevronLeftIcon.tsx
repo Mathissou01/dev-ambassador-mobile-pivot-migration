@@ -4,7 +4,7 @@ import { type IconProps } from "../../../types";
 
 export default function ChevronLeftIcon({ color = "#000", size }: IconProps): React.JSX.Element {
   return (
-    <Svg fill="none" viewBox="0 0 48 48" height={size} width={size}>
+    <Svg fill="red" viewBox="0 0 48 48" height={size} width={size}>
       <Path
         fillRule="evenodd"
         stroke={color}

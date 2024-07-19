@@ -1,6 +1,6 @@
 import axios from "axios";
-import { store } from "../../redux/index";
-import { updateToken } from "../../redux/UserInfos/UserInfosSlice";
+import { store } from "@/redux/";
+import { updateToken } from "@/redux/UserInfos/UserInfosSlice";
 
 export async function fetchAPIwithToken(
   url,

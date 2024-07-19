@@ -1,5 +1,5 @@
 import {useFonts} from 'expo-font';
-import {Stack} from 'expo-router';
+import {Navigator} from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import {useEffect, useState} from 'react';
 import 'react-native-reanimated';
@@ -18,6 +18,7 @@ import {autoAuth} from "@/hooks/useDatabase";
 import {generateColors} from "@/utils/generateColors";
 import {Provider} from "react-redux";
 import {SafeAreaProvider} from "react-native-safe-area-context";
+import Slot = Navigator.Slot;
 
 // ===== NOTIFICATION PARAMETERS ===== //
 Notifications.setNotificationHandler({
@@ -153,12 +154,7 @@ export default function RootLayout() {
                             {/*<Navigation*/}
                             {/*    pageDefault={isAuth ? (isUserValid ? "Root" : "FirstLogStep1") : "LogIn"}*/}
                             {/*/>*/}
-                            <Stack>
-                                <Stack.Screen name="(auth)" options={{headerShown: false}}/>
-                                <Stack.Screen name="(app)/(tabs)" options={{headerShown: false}}/>
-                                <Stack.Screen name="(app)/(first-login)" options={{headerShown: false}}/>
-                                <Stack.Screen name="+not-found"/>
-                            </Stack>
+                            <Slot/>
                             <StatusBar
                                 animated={true}
                                 hidden={false}

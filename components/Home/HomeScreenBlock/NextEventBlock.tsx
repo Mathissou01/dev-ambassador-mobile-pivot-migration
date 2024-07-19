@@ -1,15 +1,15 @@
 import React, {ReactNode, useContext, useEffect, useState} from "react";
-import {Alert, Animated, Dimensions, Linking, Platform, TouchableOpacity} from "react-native";
-import * as Calendar from "expo-calendar";
+import {Animated, Dimensions, Linking, TouchableOpacity} from "react-native";
+// import * as Calendar from "expo-calendar";
 import {useNavigation} from "@react-navigation/native";
 import {startBlinkAnimation} from "@/utils/AnimationLib";
 import useColorScheme, {ThemeContext} from "@/hooks/useColorScheme";
-import {type Event as Evenement} from "@/hooks/API/ObjectTypes/Event";
 import {hexToRgbA} from "@/utils/hexToRgbA";
 import {colors} from "@/config/styles/01-settings/_colors";
 import {Text, View} from "@/components/Themed";
 import {CalendarIcon, InterogationPointIcon, LocationPinIcon} from "@/components/IconComponent";
 import styles from "./NextEventBlockStyle";
+import {router} from "expo-router";
 
 export default function NextEventBlock({
                                            nbFuturEvent,
@@ -32,7 +32,8 @@ export default function NextEventBlock({
 
     const handleNavigationPress = (): void => {
         if (!eventInfo) {
-            navigation.navigate("Calendrier");
+            router.push("/(app)/(tabs)/calendar");
+            // navigation.navigate("Calendrier");
         } else {
             const url = `https://www.google.com/maps/search/?api=1&query=${eventInfo.rdv_address}`;
 
@@ -89,7 +90,7 @@ export default function NextEventBlock({
                         {backgroundColor: isDark ? colors.gray500 : colors.white},
                     ]}
                     onPress={() => {
-                        void createEvent(eventInfo);
+                        // void createEvent(eventInfo);
                     }}
                 >
                     {/* Rectangle rouge / haut du calendrier */}
@@ -200,81 +201,81 @@ export default function NextEventBlock({
     );
 }
 
-async function getDefaultCalendarSource(): Promise<string> {
-    const calendars = await Calendar.getCalendarsAsync();
-    const ambassadorCalendar = calendars.find((cal) => cal.title === "Ambassador");
-    if (ambassadorCalendar) {
-        return ambassadorCalendar.id;
-    }
-    return await createCalendar();
-}
+// async function getDefaultCalendarSource(): Promise<string> {
+//     const calendars = await Calendar.getCalendarsAsync();
+//     const ambassadorCalendar = calendars.find((cal) => cal.title === "Ambassador");
+//     if (ambassadorCalendar) {
+//         return ambassadorCalendar.id;
+//     }
+//     return await createCalendar();
+// }
 
-async function createCalendar(): Promise<string> {
-    const defaultCalendarSource =
-        Platform.OS === "ios"
-            ? (await Calendar.getDefaultCalendarAsync())?.source.id
-            : {
-                isLocalAccount: true,
-                name: "Ambassador",
-            };
-    return await Calendar.createCalendarAsync({
-        title: "Ambassador",
-        color: "#1d85c7",
-        entityType: Calendar.EntityTypes.EVENT,
-        sourceId: defaultCalendarSource.id,
-        source: defaultCalendarSource,
-        name: "internalCalendarName",
-        ownerAccount: "personal",
-        accessLevel: Calendar.CalendarAccessLevel.OWNER,
-    });
-}
+// async function createCalendar(): Promise<string> {
+//     const defaultCalendarSource =
+//         Platform.OS === "ios"
+//             ? (await Calendar.getDefaultCalendarAsync())?.source.id
+//             : {
+//                 isLocalAccount: true,
+//                 name: "Ambassador",
+//             };
+//     return await Calendar.createCalendarAsync({
+//         title: "Ambassador",
+//         color: "#1d85c7",
+//         entityType: Calendar.EntityTypes.EVENT,
+//         sourceId: defaultCalendarSource.id,
+//         source: defaultCalendarSource,
+//         name: "internalCalendarName",
+//         ownerAccount: "personal",
+//         accessLevel: Calendar.CalendarAccessLevel.OWNER,
+//     });
+// }
 
-async function createEvent(eventInfos: Evenement): Promise<void> {
-    const {status} = await Calendar.requestCalendarPermissionsAsync();
-    if (status === "granted") {
-        const calendarId = await getDefaultCalendarSource();
-        if (calendarId) {
-            if (eventInfos.start_date && eventInfos.end_date) {
-                const diff = Math.abs(
-                    new Date(eventInfos.start_date).getTime() - new Date(eventInfos.end_date).getTime()
-                );
-                const eventObj = {
-                    title: eventInfos.name ?? "Evènement ambassador",
-                    startDate: new Date(eventInfos.start_date),
-                    endDate: new Date(eventInfos.end_date),
-                    location: eventInfos.rdv_address,
-                    alarms: [{relativeOffset: -Math.floor(diff / 1000 / 60)}],
-                    status: Calendar.EventStatus.CONFIRMED,
-                    accessLevel: Calendar.CalendarAccessLevel.OWNER,
-                    notes:
-                        "RDV : " +
-                        eventInfos.rdv_date?.toLocaleDateString() +
-                        " à " +
-                        eventInfos.rdv_date?.toLocaleTimeString(),
-                };
-                const newevent = await Calendar.createEventAsync(calendarId, eventObj);
-                if (newevent) {
-                    Alert.alert(
-                        "Evenement ajouté au calendrier",
-                        "L'évènement a bien été ajouté au calendrier."
-                    );
-                } else {
-                    Alert.alert(
-                        "Erreur d'enregistrement",
-                        "Une erreur est survenue lors de l'ajout de l'évènement à votre calendrier."
-                    );
-                }
-            } else {
-                Alert.alert(
-                    "Erreur d'enregistrement",
-                    "Une erreur est survenue lors de l'ajout de l'évènement à votre calendrier."
-                );
-            }
-        }
-    } else {
-        Alert.alert(
-            "Accès refusé",
-            "L'application n'a pas accès à votre calendrier. Veuillez modifier l'accès au calendrier de l'application dans les réglages de votre appareil."
-        );
-    }
-}
+// async function createEvent(eventInfos: Evenement): Promise<void> {
+//     const {status} = await Calendar.requestCalendarPermissionsAsync();
+//     if (status === "granted") {
+//         const calendarId = await getDefaultCalendarSource();
+//         if (calendarId) {
+//             if (eventInfos.start_date && eventInfos.end_date) {
+//                 const diff = Math.abs(
+//                     new Date(eventInfos.start_date).getTime() - new Date(eventInfos.end_date).getTime()
+//                 );
+//                 const eventObj = {
+//                     title: eventInfos.name ?? "Evènement ambassador",
+//                     startDate: new Date(eventInfos.start_date),
+//                     endDate: new Date(eventInfos.end_date),
+//                     location: eventInfos.rdv_address,
+//                     alarms: [{relativeOffset: -Math.floor(diff / 1000 / 60)}],
+//                     status: Calendar.EventStatus.CONFIRMED,
+//                     accessLevel: Calendar.CalendarAccessLevel.OWNER,
+//                     notes:
+//                         "RDV : " +
+//                         eventInfos.rdv_date?.toLocaleDateString() +
+//                         " à " +
+//                         eventInfos.rdv_date?.toLocaleTimeString(),
+//                 };
+//                 const newevent = await Calendar.createEventAsync(calendarId, eventObj);
+//                 if (newevent) {
+//                     Alert.alert(
+//                         "Evenement ajouté au calendrier",
+//                         "L'évènement a bien été ajouté au calendrier."
+//                     );
+//                 } else {
+//                     Alert.alert(
+//                         "Erreur d'enregistrement",
+//                         "Une erreur est survenue lors de l'ajout de l'évènement à votre calendrier."
+//                     );
+//                 }
+//             } else {
+//                 Alert.alert(
+//                     "Erreur d'enregistrement",
+//                     "Une erreur est survenue lors de l'ajout de l'évènement à votre calendrier."
+//                 );
+//             }
+//         }
+//     } else {
+//         Alert.alert(
+//             "Accès refusé",
+//             "L'application n'a pas accès à votre calendrier. Veuillez modifier l'accès au calendrier de l'application dans les réglages de votre appareil."
+//         );
+//     }
+// }

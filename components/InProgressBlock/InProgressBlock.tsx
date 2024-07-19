@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { Dimensions } from "react-native";
 import Svg, { Defs, RadialGradient, Rect, Stop } from "react-native-svg";
-import { ThemeContext } from "../../hooks/useColorScheme";
+import { ThemeContext } from "@/hooks/useColorScheme";
 import LottieView from "lottie-react-native";
 import { Text, View } from "../Themed";
 import styles from "./InProgressBlockStyle.js";
-import { colors } from "../../config/styles/01-settings/_colors";
+import { colors } from "@/config/styles/01-settings/_colors";
 
 export default function InProgressBlock(): React.JSX.Element {
   const { width, height } = Dimensions.get("screen");
