@@ -1,5 +1,6 @@
-const ASSET_PATH_PREFIX = "@/assets/models/OBJ/GLASS/";
-const SUBASSET_PATH_PREFIX = "@/assets/models/OBJ/EARINGS/";
+const ASSET_PATH_PREFIX = "../../../../assets/models/OBJ/GLASS/";
+const SUBASSET_PATH_PREFIX = "../../../../assets/models/OBJ/EARINGS/";
+
 
 const resourceMappingGlass = {
   glass0: {

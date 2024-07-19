@@ -1,4 +1,4 @@
-const ASSET_PATH_PREFIX = "@/assets/models/OBJ/CLOTHE/";
+const ASSET_PATH_PREFIX = "../../../../assets/models/OBJ/CLOTHE/";
 
 const resourceMappingClothe = {
   clothe0: {

@@ -1,5 +1,5 @@
-const ASSET_PATH_PREFIX = "@/assets/models/OBJ/NECK/";
-const SUBASSET_PATH_PREFIX = "@/assets/models/OBJ/HEAD/";
+const ASSET_PATH_PREFIX = "../../../../assets/models/OBJ/NECK/";
+const SUBASSET_PATH_PREFIX = "../../../../assets/models/OBJ/HEAD/";
 
 const resourceMappingNeck = {
   neck1: {
