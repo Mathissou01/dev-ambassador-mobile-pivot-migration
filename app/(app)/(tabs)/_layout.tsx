@@ -20,13 +20,13 @@ export default function TabLayout() {
     return (
         <Tabs
             screenOptions={{
-                tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-                // headerShown: false,
+                tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint
             }}>
             <Tabs.Screen
                 name="home"
                 options={{
-                    title: 'Home',
+                    title: 'Accueil',
+                    headerTitleAlign: 'center',
                     headerShown: true,
                     tabBarIcon: ({color, focused}) => (
                         <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color}/>
@@ -71,28 +71,65 @@ export default function TabLayout() {
             <Tabs.Screen
                 name="list-form"
                 options={{
-                    title: 'Formulaires',
+                    title: 'Formulaire',
+                    headerTitleAlign: 'center',
+                    headerShown: true,
                     tabBarIcon: ({color, focused}) => (
                         <TabBarIcon name={focused ? 'clipboard' : 'clipboard-outline'} color={color}/>
                     ),
+                    headerStyle: {
+                        backgroundColor:
+                            (themeContext?.isDark
+                                ? themeContext?.colors.primarySemiDark
+                                : themeContext?.colors.primarySemiLight) ?? "red",
+                    },
+                    headerTitleStyle: {
+                        fontSize: 17,
+                        fontFamily: "Raleway-Bold",
+                        color: themeContext?.isDark ? colors.textDark : colors.textLight,
+                    },
                 }}
             />
             <Tabs.Screen
                 name="archive"
                 options={{
                     title: 'Archive',
+                    headerTitleAlign: 'center',
                     tabBarIcon: ({color, focused}) => (
                         <TabBarIcon name={focused ? 'archive' : 'archive-outline'} color={color}/>
                     ),
+                    headerStyle: {
+                        backgroundColor:
+                            (themeContext?.isDark
+                                ? themeContext?.colors.primarySemiDark
+                                : themeContext?.colors.primarySemiLight) ?? "red",
+                    },
+                    headerTitleStyle: {
+                        fontSize: 17,
+                        fontFamily: "Raleway-Bold",
+                        color: themeContext?.isDark ? colors.textDark : colors.textLight,
+                    },
                 }}
             />
             <Tabs.Screen
                 name="[calendar]"
                 options={{
-                    title: 'Calendar',
+                    title: 'Calendrier',
+                    headerTitleAlign: 'center',
                     tabBarIcon: ({color, focused}) => (
                         <TabBarIcon name={focused ? 'calendar' : 'calendar-outline'} color={color}/>
                     ),
+                    headerStyle: {
+                        backgroundColor:
+                            (themeContext?.isDark
+                                ? themeContext?.colors.primarySemiDark
+                                : themeContext?.colors.primarySemiLight) ?? "red",
+                    },
+                    headerTitleStyle: {
+                        fontSize: 17,
+                        fontFamily: "Raleway-Bold",
+                        color: themeContext?.isDark ? colors.textDark : colors.textLight,
+                    },
                     // Allows to call the route with default parameter 'undefined'
                     href: {
                         pathname: '/[calendar]',
@@ -106,6 +143,7 @@ export default function TabLayout() {
                 name="account"
                 options={{
                     title: 'Compte',
+                    headerTitleAlign: 'center',
                     tabBarIcon: ({color, focused}) => (
                         <TabBarIcon name={"body"} color={color}/>
                     ),

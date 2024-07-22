@@ -50,6 +50,7 @@ const styles = EStyleSheet.create({
     headerBtnContainer: {
         marginRight: 20,
         marginLeft: 20,
+
     },
     text: {
         fontSize: 10,
