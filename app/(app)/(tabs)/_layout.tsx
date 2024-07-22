@@ -9,7 +9,7 @@ import {selectUserInfos} from "@/redux/UserInfos/UserInfosSlice";
 
 // TODO - remove TMP
 import {TouchableOpacity} from "react-native";
-import {AwardIcon, BellIcon} from "@/components/IconComponent";
+import {AwardIcon, BellIcon, BurgerMenuIcon} from "@/components/IconComponent";
 import {colors} from "@/config/styles/01-settings/_colors";
 import styles from "@/styles/Navigation";
 
@@ -109,6 +109,29 @@ export default function TabLayout() {
                     tabBarIcon: ({color, focused}) => (
                         <TabBarIcon name={"body"} color={color}/>
                     ),
+                    headerRight: () => (
+                        <TouchableOpacity
+                            style={[styles.headerBtnContainer]}
+                            onPress={() => router.navigate("/(app)/(screens)/parameters")}
+                            hitSlop={{top: 25, bottom: 25, left: 25, right: 25}}
+                        >
+                            <BurgerMenuIcon
+                                size={20}
+                                color={themeContext?.isDark ?? false ? "white" : "black"}
+                            />
+                        </TouchableOpacity>
+                    ),
+                    headerStyle: {
+                        backgroundColor:
+                            (themeContext?.isDark
+                                ? themeContext?.colors.primarySemiDark
+                                : themeContext?.colors.primarySemiLight) ?? "red",
+                    },
+                    headerTitleStyle: {
+                        fontSize: 17,
+                        fontFamily: "Raleway-Bold",
+                        color: themeContext?.isDark ? colors.textDark : colors.textLight,
+                    },
                 }}
             />
         </Tabs>

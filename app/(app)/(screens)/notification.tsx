@@ -11,7 +11,7 @@ import notifScene from "@/assets/images/robot-scene/notifications-scene.png";
 import {colors} from "@/config/styles/01-settings/_colors";
 import {startBounceAnimation} from "@/utils/AnimationLib";
 
-import styles from "@/styles/screens/NotificationScreen";
+import styles from "@/styles/screens/NotificationStyle";
 
 const RepoNotifications = new Notifications();
 

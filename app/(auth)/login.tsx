@@ -9,8 +9,8 @@ import useColorScheme from "@/hooks/useColorScheme";
 import {useAppSelector} from "@/hooks/store";
 import {putAPI} from "@/hooks/API/requestsManager";
 import {type RootState} from "@/redux";
-import styles from "@/styles/auth/LoginScreenStyle";
 import {router} from "expo-router";
+import styles from "@/styles/auth/LoginStyle";
 
 const updateDeviceToken = async (idUser: string, pushToken: string | null): Promise<unknown> => {
     return await new Promise((resolve, reject) => {

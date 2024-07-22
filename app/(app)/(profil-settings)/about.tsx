@@ -3,11 +3,11 @@ import {FlatList, TouchableOpacity} from "react-native";
 import {SafeAreaView} from "react-native-safe-area-context";
 import {Text, View} from "@/components/Themed";
 import {type ContentItem, type ContentType, type Props} from "@/types";
-import styles from "@/styles/profil-settings/AboutStyle";
 import {ThemeContext} from "@/hooks/useColorScheme";
 import {hexToRgbA} from "@/utils/hexToRgbA";
 import {colors} from "@/config/styles/01-settings/_colors";
 import {ChevronRightIcon} from "@/components/IconComponent";
+import styles from "@/styles/profil-settings/AboutStyle";
 
 export default function About({navigation}: Props): React.JSX.Element {
     const themeColor = useContext(ThemeContext);

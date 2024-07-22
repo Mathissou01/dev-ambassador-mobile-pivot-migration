@@ -16,7 +16,7 @@ import {dateDiffInHoursAndMinutes} from "@/components/CommonArchives/utils/DateD
 import {selectUserInfos} from "@/redux/UserInfos/UserInfosSlice";
 import {useAppSelector} from "@/hooks/store";
 import {User} from "@/hooks/API/ObjectTypes/User";
-import {Camera} from "react-native-vision-camera";
+// import {Camera} from "react-native-vision-camera";
 import styles from "@/styles/tabs/ArchiveStyle";
 
 const EVENEMENTS_ACTUELS_LABEL = "Événements actuels";
@@ -99,8 +99,8 @@ export default function ArchiveScreen(): ReactNode {
     const navigation = useNavigation<NavigationProp<any>>();
 
     // ===== CAMERA PERMISSION ===== //
-    const cameraPermission = Camera.getCameraPermissionStatus();
-    const showPermissionsPage = cameraPermission !== "granted";
+    // const cameraPermission = Camera.getCameraPermissionStatus();
+    // const showPermissionsPage = cameraPermission !== "granted";
 
     const addStory = (): void => {
         if (showPermissionsPage) {

@@ -40,6 +40,64 @@ export default function StacksLayout() {
                     },
                 }}
             />
+            <Stack.Screen
+                name="notification"
+                options={{
+                    title: "Notifications",
+                    headerShown: true,
+                    headerLeft: () => {
+                        return <TouchableOpacity
+                            onPress={() => router.back()}
+                            hitSlop={{top: 25, bottom: 25, left: 25, right: 25}}
+                        >
+                            <ChevronLeftIcon
+                                size={20}
+                                color={themeContext?.isDark ?? false ? "white" : "black"}
+                            />
+                        </TouchableOpacity>
+                    },
+                    headerStyle: {
+                        backgroundColor:
+                            (themeContext?.isDark
+                                ? themeContext?.colors.primarySemiDark
+                                : themeContext?.colors.primarySemiLight) ?? "red",
+                    },
+                    headerTitleStyle: {
+                        fontSize: 17,
+                        fontFamily: "Raleway-Bold",
+                        color: themeContext?.isDark ? colors.textDark : colors.textLight,
+                    },
+                }}
+            />
+            <Stack.Screen
+                name="parameters"
+                options={{
+                    title: "Paramètres",
+                    headerShown: true,
+                    headerLeft: () => {
+                        return <TouchableOpacity
+                            onPress={() => router.back()}
+                            hitSlop={{top: 25, bottom: 25, left: 25, right: 25}}
+                        >
+                            <ChevronLeftIcon
+                                size={20}
+                                color={themeContext?.isDark ?? false ? "white" : "black"}
+                            />
+                        </TouchableOpacity>
+                    },
+                    headerStyle: {
+                        backgroundColor:
+                            (themeContext?.isDark
+                                ? themeContext?.colors.primarySemiDark
+                                : themeContext?.colors.primarySemiLight) ?? "red",
+                    },
+                    headerTitleStyle: {
+                        fontSize: 17,
+                        fontFamily: "Raleway-Bold",
+                        color: themeContext?.isDark ? colors.textDark : colors.textLight,
+                    },
+                }}
+            />
         </Stack>
     );
 }
