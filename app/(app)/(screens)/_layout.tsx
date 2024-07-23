@@ -30,8 +30,8 @@ export default function StacksLayout() {
                     headerStyle: {
                         backgroundColor:
                             (themeContext?.isDark
-                                ? themeContext?.colors.primarySemiDark
-                                : themeContext?.colors.primarySemiLight) ?? "red",
+                                ? themeContext?.colors.primaryDark
+                                : themeContext?.colors.primaryLight),
                     },
                     headerTitleStyle: {
                         fontSize: 17,
@@ -59,8 +59,8 @@ export default function StacksLayout() {
                     headerStyle: {
                         backgroundColor:
                             (themeContext?.isDark
-                                ? themeContext?.colors.primarySemiDark
-                                : themeContext?.colors.primarySemiLight) ?? "red",
+                                ? themeContext?.colors.primaryDark
+                                : themeContext?.colors.primaryLight),
                     },
                     headerTitleStyle: {
                         fontSize: 17,

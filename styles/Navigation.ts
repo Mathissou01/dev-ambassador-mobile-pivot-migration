@@ -33,12 +33,12 @@ const styles = EStyleSheet.create({
             height: 45,
         },
     },
-
     schoolLogo: {
         margin: 0,
         width: 80,
         height: 80,
         objectFit: "contain",
+        alignSelf: 'center',
     },
     circle: {
         ...StyleSheet.absoluteFillObject,
@@ -46,11 +46,11 @@ const styles = EStyleSheet.create({
         justifyContent: "center",
         borderRadius: 25,
     },
-
     headerBtnContainer: {
         marginRight: 20,
         marginLeft: 20,
-
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     text: {
         fontSize: 10,

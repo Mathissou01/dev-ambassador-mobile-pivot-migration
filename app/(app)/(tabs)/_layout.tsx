@@ -1,15 +1,28 @@
 import {Redirect, router, Tabs} from 'expo-router';
 import React, {useContext, useRef} from 'react';
-
 import {TabBarIcon} from '@/components/navigation/TabBarIcon';
 import {Colors} from '@/constants/Colors';
 import useColorScheme, {ThemeContext} from '@/hooks/useColorScheme';
 import {useAppSelector} from "@/hooks/store";
-import {selectUserInfos} from "@/redux/UserInfos/UserInfosSlice";
-import * as Animatable from "react-native-animatable";
-import LottieView from "lottie-react-native";
-import { useThemeColor, View } from "@/components/Themed";
-
+import {
+    type RootStackParamList,
+    type RootTabParamList,
+    type RootTabScreenProps,
+    type SchoolIconColors,
+    type UserState,
+} from "@/types";
+// Import light school logo
+import Webtech_light from "@/assets/images/school/light/Webtech_logo-min_light.png";
+import Escen_light from "@/assets/images/school/light/Escen_logo-min_light.png";
+import Magnum_light from "@/assets/images/school/light/Magnum_logo-min_light.png";
+import Bachelor_light from "@/assets/images/school/light/Bachelor_logo-min_light.png";
+import Atlas_light from "@/assets/images/school/light/Atlas_logo-min_light.png";
+// Import dark school logo
+import Webtech_dark from "@/assets/images/school/dark/Webtech_logo-min_dark.png";
+import Escen_dark from "@/assets/images/school/dark/Escen_logo-min_dark.png";
+import Magnum_dark from "@/assets/images/school/dark/Magnum_logo-min_dark.png";
+import Bachelor_dark from "@/assets/images/school/dark/Bachelor_logo-min_dark.png";
+import Atlas_dark from "@/assets/images/school/dark/Atlas_logo-min_dark.png";
 // TODO - remove TMP
 import { Animated, Dimensions, Image, Platform, Pressable, TouchableOpacity } from "react-native";
 import {AwardIcon, BellIcon, BurgerMenuIcon} from "@/components/IconComponent";
@@ -19,6 +32,15 @@ import styles from "@/styles/Navigation";
 export default function TabLayout() {
     const themeContext = useContext(ThemeContext);
     const colorScheme = useColorScheme();
+    const isDark = colorScheme === "dark";
+    const userInfos: UserState = useAppSelector((state) => state.userInfos);
+    const logoToDisplay = {
+        "WebTech Institute": isDark ? Webtech_dark : Webtech_light,
+        "ATLAS Institute": isDark ? Atlas_dark : Atlas_light,
+        "Magnum Institute": isDark ? Magnum_dark : Magnum_light,
+        "Bachelor Institute": isDark ? Bachelor_dark : Bachelor_light,
+        "ESCEN": isDark ? Escen_dark : Escen_light
+    };
 
     return (
         <Tabs
@@ -28,17 +50,22 @@ export default function TabLayout() {
             <Tabs.Screen
                 name="home"
                 options={{
-                    title: 'Accueil',
                     headerTitleAlign: 'center',
                     headerShown: true,
-                    tabBarIcon: ({color, focused}) => (
-                        <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color}/>
+                    tabBarIcon: ({ color, focused }) => (
+                        <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+                    ),
+                    headerTitle: () => (
+                        <Image
+                            source={logoToDisplay[userInfos?.school?.name ?? "ESCEN"]} // School Icon from the user
+                            style={styles.schoolLogo}
+                        />
                     ),
                     headerLeft: () => (
                         <TouchableOpacity
                             style={[styles.headerBtnContainer]}
                             onPress={() => router.navigate("/(app)/(screens)/leaderboard")}
-                            hitSlop={{top: 25, bottom: 25, left: 25, right: 25}}
+                            hitSlop={{ top: 25, bottom: 25, left: 25, right: 25 }}
                         >
                             <AwardIcon
                                 size={20}
@@ -50,7 +77,7 @@ export default function TabLayout() {
                         <TouchableOpacity
                             style={[styles.headerBtnContainer]}
                             onPress={() => router.navigate("/(app)/(screens)/notification")}
-                            hitSlop={{top: 25, bottom: 25, left: 25, right: 25}}
+                            hitSlop={{ top: 25, bottom: 25, left: 25, right: 25 }}
                         >
                             <BellIcon
                                 size={20}
@@ -59,15 +86,9 @@ export default function TabLayout() {
                         </TouchableOpacity>
                     ),
                     headerStyle: {
-                        backgroundColor:
-                            (themeContext?.isDark
-                                ? themeContext?.colors.primarySemiDark
-                                : themeContext?.colors.primarySemiLight) ?? "red",
-                    },
-                    headerTitleStyle: {
-                        fontSize: 17,
-                        fontFamily: "Raleway-Bold",
-                        color: themeContext?.isDark ? colors.textDark : colors.textLight,
+                        backgroundColor: (themeContext?.isDark
+                            ? themeContext?.colors.primarySemiDark
+                            : themeContext?.colors.primarySemiLight) ?? "red",
                     },
                 }}
             />
