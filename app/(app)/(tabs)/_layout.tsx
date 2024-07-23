@@ -1,14 +1,17 @@
 import {Redirect, router, Tabs} from 'expo-router';
-import React, {useContext} from 'react';
+import React, {useContext, useRef} from 'react';
 
 import {TabBarIcon} from '@/components/navigation/TabBarIcon';
 import {Colors} from '@/constants/Colors';
 import useColorScheme, {ThemeContext} from '@/hooks/useColorScheme';
 import {useAppSelector} from "@/hooks/store";
 import {selectUserInfos} from "@/redux/UserInfos/UserInfosSlice";
+import * as Animatable from "react-native-animatable";
+import LottieView from "lottie-react-native";
+import { useThemeColor, View } from "@/components/Themed";
 
 // TODO - remove TMP
-import {TouchableOpacity} from "react-native";
+import { Animated, Dimensions, Image, Platform, Pressable, TouchableOpacity } from "react-native";
 import {AwardIcon, BellIcon, BurgerMenuIcon} from "@/components/IconComponent";
 import {colors} from "@/config/styles/01-settings/_colors";
 import styles from "@/styles/Navigation";
