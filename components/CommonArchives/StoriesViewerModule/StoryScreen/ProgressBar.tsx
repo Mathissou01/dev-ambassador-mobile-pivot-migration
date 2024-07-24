@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { View } from "@components/Themed";
-import { ThemeContext } from "@hooks/useColorScheme";
+import { View } from "@/components/Themed";
+import { ThemeContext } from "@/hooks/useColorScheme";
 import styles from "./ProgressBarStyle";
 
 type ProgressBarProps = { userStories: Story[]; progresses: number[] | null };

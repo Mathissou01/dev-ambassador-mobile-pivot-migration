@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "Politique de confidentialité",
+    "contentType": "confidentialityPolicy"
+  },
+  {
+    "id": 2,
+    "name": "Conditions d'utilisation",
+    "contentType": "thermOfUsePolicy"
+  },
+  {
+    "id": 3,
+    "name": "Mentions légales",
+    "contentType": "legalMentionPolicy"
+  },
+  {
+    "id": 4,
+    "name": "Règlement FR & UE",
+    "contentType": "EuropeanReglementationPolicy"
+  }
+]

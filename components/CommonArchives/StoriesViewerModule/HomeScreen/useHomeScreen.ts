@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
-import { type ArchivePost } from "@hooks/API/ObjectTypes/ArchivePost";
-import { type User } from "@hooks/API/ObjectTypes/User";
+import { type ArchivePost } from "@/hooks/API/ObjectTypes/ArchivePost";
+import { type User } from "@/hooks/API/ObjectTypes/User";
 
 type GroupedStories = Record<
   number,

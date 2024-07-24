@@ -1,42 +1,23 @@
-import React, {useContext} from "react";
+import React, {ReactNode, useContext} from "react";
 import {FlatList, TouchableOpacity} from "react-native";
 import {SafeAreaView} from "react-native-safe-area-context";
 import {Text, View} from "@/components/Themed";
-import {type ContentItem, type ContentType, type Props} from "@/types";
+import {type ContentItem, type ContentType} from "@/types";
 import {ThemeContext} from "@/hooks/useColorScheme";
 import {hexToRgbA} from "@/utils/hexToRgbA";
 import {colors} from "@/config/styles/01-settings/_colors";
 import {ChevronRightIcon} from "@/components/IconComponent";
 import styles from "@/styles/profil-settings/AboutStyle";
+import {router} from "expo-router";
+import aboutData from "@/constants/AboutData.json"
 
-export default function About({navigation}: Props): React.JSX.Element {
+export default function About(): ReactNode {
     const themeColor = useContext(ThemeContext);
 
-    const contentTypes: ContentItem[] = [
-        {
-            id: 1,
-            name: "Politique de confidentialité",
-            contentType: "confidentialityPolicy",
-        },
-        {
-            id: 2,
-            name: "Conditions d'utilisation",
-            contentType: "thermOfUsePolicy",
-        },
-        {
-            id: 3,
-            name: "Mentions légales",
-            contentType: "legalMentionPolicy",
-        },
-        {
-            id: 4,
-            name: "Règlement FR & UE",
-            contentType: "EuropeanReglementationPolicy",
-        },
-    ];
+    const contentTypes: ContentItem[] = aboutData as ContentItem[];
 
     const navigateToContent = (contentType: ContentType): void => {
-        navigation.navigate("ContentPolicyScreen", {contentType});
+        router.navigate(`/(app)/profil-settings/about-details/${contentType}`);
     };
 
     const renderCategoryList = (item: ContentItem): React.JSX.Element => {
@@ -93,9 +74,11 @@ export default function About({navigation}: Props): React.JSX.Element {
 
     return (
         <SafeAreaView
+            edges={["bottom","left", "right"]}
             style={[
                 styles.container,
                 {
+                    paddingTop: 20,
                     backgroundColor:
                         themeColor?.isDark ?? false ? colors.backgroundDark : colors.backgroundDefault,
                 },

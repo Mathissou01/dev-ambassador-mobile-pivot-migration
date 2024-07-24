@@ -90,7 +90,7 @@ export default function SecurityScreen(): React.JSX.Element {
                 <View
                     style={{
                         backgroundColor: "transparent",
-                        marginHorizontal: Platform.OS === "ios" ? 40 : 30,
+                        marginHorizontal: 25,
                     }}
                 >
                     <Controller

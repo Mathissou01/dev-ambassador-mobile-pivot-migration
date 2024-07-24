@@ -148,7 +148,7 @@ export default function NotificationTemplate({
         <GestureHandlerRootView>
             <TouchableOpacity
                 onPress={() => {
-                    router.push(`/(app)/(tabs)/${idEvent}`);
+                    router.navigate(`/(app)/(tabs)/${idEvent}`);
                 }}
             >
                 <Swipeable

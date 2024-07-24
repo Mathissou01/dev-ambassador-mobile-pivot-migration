@@ -32,7 +32,7 @@ export default function NextEventBlock({
 
     const handleNavigationPress = (): void => {
         if (!eventInfo) {
-            router.push("/(app)/(tabs)/calendar");
+            router.navigate("/(app)/(tabs)/calendar");
             // navigation.navigate("Calendrier");
         } else {
             const url = `https://www.google.com/maps/search/?api=1&query=${eventInfo.rdv_address}`;

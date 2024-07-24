@@ -3,7 +3,7 @@ import { Platform, TouchableOpacity, View } from "react-native";
 import { TextInput } from "../Themed";
 import { type InputData } from "../../types";
 import { ThemeContext } from "../../hooks/useColorScheme";
-import { colors } from "../../config/styles/01-settings/_colors";
+import { colors } from "@/config/styles/01-settings/_colors";
 import {
     EyeOnIcon,
     EyeOffIcon,

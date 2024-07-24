@@ -1,7 +1,7 @@
 import React, { type ReactNode, useContext } from "react";
 import { Text, View } from "../.@/components/Themed";
 import styles from "./CardStyle.js";
-import { colors } from "../../config/styles/01-settings/_colors";
+import { colors } from "@/config/styles/01-settings/_colors";
 import { ThemeContext } from "../../hooks/useColorScheme";
 
 export default function Card(): React.JSX.Element {

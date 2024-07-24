@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { Animated, StyleSheet, useWindowDimensions, View, type ViewStyle } from "react-native";
 import { Line, Svg } from "react-native-svg";
-import { type Archive } from "@hooks/API/ObjectTypes/Archive";
+import { type Archive } from "@/hooks/API/ObjectTypes/Archive";
 
 export interface LiquidLikeProps {
   data: Archive[][];

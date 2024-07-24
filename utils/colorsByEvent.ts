@@ -1,6 +1,6 @@
 // Need the name of the event, and the themeContext of the user
-import { type ThemeContextType } from "@hooks/useColorScheme";
-import { colors } from "../config/styles/01-settings/_colors";
+import { type ThemeContextType } from "@/hooks/useColorScheme";
+import { colors } from "@/config/styles/01-settings/_colors";
 
 export const getColorForEvent = (
   eventName: string,

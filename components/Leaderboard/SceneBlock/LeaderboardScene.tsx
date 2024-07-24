@@ -1,6 +1,6 @@
 import { useAppSelector } from "../hooks/store";
 import React from "react";
-import { colors } from "../../../config/styles/01-settings/_colors";
+import { colors } from "@/config/styles/01-settings/_colors";
 import EStyleSheet from "react-native-extended-stylesheet";
 import { hexToRgbA } from "../../../utils/hexToRgbA.js";
 import { Appearance, View, Dimensions } from "react-native";

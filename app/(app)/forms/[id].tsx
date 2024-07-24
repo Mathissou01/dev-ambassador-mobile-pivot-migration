@@ -116,7 +116,7 @@ export default function FormScreen(): ReactNode {
                             },
                         })
                     );
-                    router.push("/(app)/(tabs)/list-form")
+                    router.navigate("/(app)/(tabs)/list-form")
                     // navigation.navigate("Formulaires");
                 });
                 setShowPopup(true);

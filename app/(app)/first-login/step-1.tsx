@@ -115,7 +115,7 @@ export default function Step1(): ReactNode {
                         style={styles.button}
                         percentage={20}
                         navigateTo={() => {
-                            router.push(slide.page);
+                            router.navigate(slide.page);
                         }}
                         timer={false}
                     />

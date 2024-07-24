@@ -22,7 +22,7 @@ export default function Step5(): ReactNode {
             "Attention ! Pour pouvoir accéder à l'application et l'ensemble de ses fonctionnalités, tu dois rester appuyé sur le bouton durant une seconde. \nEssaye pour voir !",
         picture: require("../../../assets/json/acces-robot/welldone.json"),
         picture2: require("../../../assets/json/acces-robot/splash.json"),
-        page: "/(app)/(tabs)/index",
+        page: "/(app)/(tabs)/home",
     };
 
     // --

@@ -1,26 +1,26 @@
-import React, { useContext, useState } from "react";
-import { FlatList, TouchableOpacity } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { ScrollView, Text, View } from "@/components/Themed";
-import { type elementCategory, type itemNavigation } from "@/types";
-import { colors } from "@/config/styles/01-settings/_colors";
-import { ThemeContext } from "@/hooks/useColorScheme";
+import React, {useContext, useState} from "react";
+import {FlatList, TouchableOpacity} from "react-native";
+import {SafeAreaView} from "react-native-safe-area-context";
+import {ScrollView, Text, View} from "@/components/Themed";
+import {type elementCategory, type itemNavigation} from "@/types";
+import {colors} from "@/config/styles/01-settings/_colors";
+import {ThemeContext} from "@/hooks/useColorScheme";
 import {
-    EditIcon,
-    LockIcon,
+    AboutIcon,
     BellIcon,
     BubbleIcon,
-    AboutIcon,
-    LogoutIcon,
     ChevronRightIcon,
+    EditIcon,
+    LockIcon,
+    LogoutIcon,
 } from "@/components/IconComponent";
-import { hexToRgbA } from "@/utils/hexToRgbA";
+import {hexToRgbA} from "@/utils/hexToRgbA";
 import styles from "@/styles/screens/ParametersStyle";
-import { useRouter } from 'expo-router';
+import {router, useNavigation} from 'expo-router';
 
 export default function ParametersScreen(): React.JSX.Element {
+    const navigation = useNavigation();
     const themeColor = useContext(ThemeContext);
-    const router = useRouter();
 
     const iconComponents = {
         EditIcon,
@@ -35,63 +35,63 @@ export default function ParametersScreen(): React.JSX.Element {
         {
             id: 1,
             name: "Modifier mes informations",
-            url: "/user-edit",
+            url: "/(app)/profil-settings/user-edit",
             category: "contenu",
             nameIcon: "EditIcon",
         },
         {
             id: 2,
             name: "Notifications",
-            url: "/notification",
+            url: "/(app)/profil-settings/notification-edit",
             category: "préférences",
             nameIcon: "BellIcon",
         },
         {
             id: 3,
             name: "Sécurité",
-            url: "/security-edit",
+            url: "/(app)/profil-settings/security-edit",
             category: "contenu",
             nameIcon: "LockIcon",
         },
         {
             id: 4,
             name: "Aide",
-            url: "/help",
+            url: "/(app)/profil-settings/help",
             category: "informations",
             nameIcon: "BubbleIcon",
         },
         {
             id: 5,
             name: "A propos",
-            url: "/about",
+            url: "/(app)/profil-settings/about",
             category: "informations",
             nameIcon: "AboutIcon",
         },
         {
             id: 6,
             name: "Déconnexion",
-            url: "/logout",
+            url: "/(auth)/logout",
             category: "autre",
             nameIcon: "LogoutIcon",
         },
     ]);
 
     function renderCategoryList(item: itemNavigation, _index: number): React.JSX.Element {
-        const IconComponent = iconComponents[item.nameIcon];
+        const IconComponent = iconComponents[item.nameIcon!];
         return (
             <TouchableOpacity
                 onPress={() => {
-                    if (item.url === "/logout") {
-                        router.replace(item.url);
+                    if (item.url === "/(auth)/logout") {
+                        router.navigate(item.url);
                     } else {
-                        router.push(item.url);
+                        router.navigate(item.url);
                     }
                 }}
             >
                 <View
                     style={[
                         styles.blockParameter,
-                        { borderColor: themeColor?.isDark ?? false ? "transparent" : colors.gray200 },
+                        {borderColor: themeColor?.isDark ?? false ? "transparent" : colors.gray200},
                     ]}
                     darkColor={"rgba(255, 255, 255, 0.07)"}
                     lightColor={colors.white}
@@ -103,7 +103,7 @@ export default function ParametersScreen(): React.JSX.Element {
                     <Text
                         lightColor={colors.textLight}
                         darkColor={colors.textDark}
-                        style={[{ marginLeft: 10 }, styles.subCategory]}
+                        style={[{marginLeft: 10}, styles.subCategory]}
                     >
                         {item.name}
                     </Text>
@@ -164,7 +164,7 @@ export default function ParametersScreen(): React.JSX.Element {
             >
                 {Object.keys(categories).map((category, index) => {
                     return (
-                        <View key={index} style={{ backgroundColor: "transparent" }}>
+                        <View key={index} style={{backgroundColor: "transparent"}}>
                             <View style={styles.titleCategory}>
                                 <Text
                                     bold
@@ -179,7 +179,7 @@ export default function ParametersScreen(): React.JSX.Element {
                                 scrollEnabled={false}
                                 data={categories[category]}
                                 keyExtractor={(item) => item.id.toString()}
-                                renderItem={({ item, index }) => renderCategoryList(item, index)}
+                                renderItem={({item, index}) => renderCategoryList(item, index)}
                             />
                         </View>
                     );

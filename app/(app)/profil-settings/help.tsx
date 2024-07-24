@@ -108,7 +108,7 @@ export default function HelpScreen(): React.JSX.Element {
                     <View
                         style={{
                             backgroundColor: "transparent",
-                            marginHorizontal: Platform.OS === "ios" ? 40 : 30,
+                            marginHorizontal: 25,
                             paddingBottom: width <= 380 ? 20 : 0,
                         }}
                     >

@@ -203,7 +203,7 @@ export default function Step4(): ReactNode {
                                                         tShirtSize: shirtSizeSelected,
                                                     })
                                                 );
-                                                router.push(slide.page);
+                                                router.navigate(slide.page);
                                             } else {
                                                 setSlide({
                                                     ...slide,

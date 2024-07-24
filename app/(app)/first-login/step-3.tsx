@@ -175,7 +175,7 @@ export default function Step3(): ReactNode {
                                         .then((res) => {
                                             if (res) {
                                                 dispatch(updateUserWithLocalStorage({computerPorts: portSelected}));
-                                                router.push(slide.page);
+                                                router.navigate(slide.page);
                                             } else {
                                                 setSlide({
                                                     ...slide,

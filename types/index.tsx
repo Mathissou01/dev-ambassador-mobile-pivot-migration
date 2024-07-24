@@ -360,7 +360,12 @@ export interface itemNavigation {
     name: string;
     url: string;
     category?: string;
-    nameIcon?: string;
+    nameIcon?: "EditIcon" |
+        "LockIcon" |
+        "BellIcon" |
+        "BubbleIcon" |
+        "AboutIcon" |
+        "LogoutIcon";
 }
 
 export type elementCategory = Record<string, itemNavigation[]>;
@@ -550,7 +555,7 @@ export interface FirstLogStep {
     descriptionOut?: string;
     picture: string;
     picture2?: string;
-    page: "/(app)/(tabs)/index" | "/(app)/(first-login)/step-2" | "/(app)/(first-login)/step-3" | "/(app)/(first-login)/step-4" | "/(app)/(first-login)/step-5";
+    page: "/(app)/(tabs)/home" | "/(app)/(first-login)/step-2" | "/(app)/(first-login)/step-3" | "/(app)/(first-login)/step-4" | "/(app)/(first-login)/step-5";
 }
 
 export interface ProgressButtonProps {

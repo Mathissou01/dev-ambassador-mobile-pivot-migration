@@ -227,7 +227,7 @@ export default function Step2(): ReactNode {
                                             dataToTransfert: {newPassword: fields.newPassword},
                                         })
                                             .then(() => {
-                                                router.push(slide.page)
+                                                router.navigate(slide.page)
                                             })
                                             .catch((err) => {
                                                 console.error("FirstLogStep2 error postAPI", err);

@@ -1,6 +1,6 @@
 import {useContext} from "react";
 import {Platform} from "react-native";
-import {colors} from "../../../config/styles/01-settings/_colors";
+import {colors} from "@/config/styles/01-settings/_colors";
 import {hexToRgbA} from "../../../utils/hexToRgbA";
 import {ThemeContext} from "../../../hooks/useColorScheme";
 

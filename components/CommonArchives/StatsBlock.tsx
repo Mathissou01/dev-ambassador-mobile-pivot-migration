@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { Text, View } from "../.@/components/Themed";
+import { Text, View } from "@/components/Themed";
 import styles from "./StatsBlockStyle";
-import { colors } from "../../config/styles/01-settings/_colors";
-import { ThemeContext } from "../../hooks/useColorScheme";
+import { colors } from "@/config/styles/01-settings/_colors";
+import { ThemeContext } from "@/hooks/useColorScheme";
 import { ClockIcon, RibbonAwardIcon, ClipboardIcon } from "../IconComponent";
 import { blocks as dblocks } from "./stats-mocks-data";
 

@@ -52,10 +52,10 @@ export default function LogInScreen(): React.JSX.Element {
                 await updateDeviceToken(isLoggedIn?.currentUser?._id, pushToken.token);
             if (isLoggedIn?.currentUser?.isValid) {
                 // TODO - Change route
-                router.push("(app)/(tabs)/home");
+                router.navigate("(app)/(tabs)/home");
             } else {
                 // TODO - Change route
-                router.push("(app)/(first-login)/step-1");
+                router.navigate("(app)/(first-login)/step-1");
             }
         } else {
             Alert.alert(
@@ -75,12 +75,12 @@ export default function LogInScreen(): React.JSX.Element {
 
     const forgotPassword = (): void => {
         // TODO - Change route
-        router.push("ForgotPassword");
+        router.navigate("ForgotPassword");
     };
 
     const onBoard = (): void => {
         // TODO - Change route
-        router.push("OnBoard");
+        router.navigate("OnBoard");
     };
 
     return (

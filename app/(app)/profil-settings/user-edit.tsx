@@ -142,7 +142,7 @@ export default function UserEditScreen(): React.JSX.Element {
     useLayoutEffect(() => {
         navigation.setOptions({
             headerRight: () => (
-                <GestureHandlerRootView>
+                <GestureHandlerRootView style={{backgroundColor: "transparent"}}>
                     <ButtonTemplate
                         isFormValid={isFormValid && isFormDirty}
                         handleSubmit={handleSubmit(onSubmit)}
@@ -168,7 +168,7 @@ export default function UserEditScreen(): React.JSX.Element {
                     style={{
                         backgroundColor: "transparent",
                         paddingBottom: 25,
-                        marginHorizontal: Platform.OS === "ios" ? 40 : 30,
+                        marginHorizontal: 25,
                     }}
                 >
                     <Controller

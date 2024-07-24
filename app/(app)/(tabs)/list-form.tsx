@@ -40,7 +40,7 @@ export default function ListFormScreen(): ReactNode {
     });
 
     function redirection(guidForm: string): void {
-        router.push(`/(app)/forms/${guidForm}`)
+        router.navigate(`/(app)/forms/${guidForm}`)
     }
 
     const [forms, setForms] = useState<Form[]>([]);

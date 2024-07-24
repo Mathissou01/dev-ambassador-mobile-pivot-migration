@@ -1,10 +1,11 @@
 import React, {useMemo} from "react";
 import {FlatList, TouchableOpacity} from "react-native";
 import {Text, View} from "@/components/Themed";
-import {type NavigationProp, useNavigation} from "@react-navigation/native";
+import {type NavigationProp} from "@react-navigation/native";
 import {Archive} from "@/hooks/API/ObjectTypes/Archive";
 import {LinearGradient} from "expo-linear-gradient";
 import styles from "./PastEventBlockStyle";
+import {router, useNavigation} from "expo-router";
 
 interface PastEventBlockProps {
     archive: Archive[];
@@ -17,10 +18,8 @@ const PastEventBlock: React.FC<PastEventBlockProps> = ({
                                                            color,
                                                            width,
                                                        }: PastEventBlockProps) => {
-    const navigation = useNavigation<NavigationProp<any>>();
-
     const handlePress = (id: string): void => {
-        navigation.navigate("EventViewer", {archiveId: id});
+        router.navigate(`/(app)/archives/${id}`);
     };
 
     const [x1, x2, y1, y2] = useMemo(() => {

@@ -1,8 +1,8 @@
 import React from "react";
 import { Image, type ImageSourcePropType, SafeAreaView, TouchableOpacity } from "react-native";
-import { CloseIcon } from "@components/IconComponent";
-import { colors } from "../../../../config/styles/01-settings/_colors";
-import { Text, View } from "@components/Themed";
+import { CloseIcon } from "@/components/IconComponent";
+import { colors } from "@/config/styles/01-settings/_colors";
+import { Text, View } from "@/components/Themed";
 import Svg, { Defs, RadialGradient, Rect, Stop } from "react-native-svg";
 import styles from "./ImageDefaultHeaderStyle";
 

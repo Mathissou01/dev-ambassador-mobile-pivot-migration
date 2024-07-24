@@ -181,7 +181,7 @@ export default function NotificationScreen(): React.JSX.Element {
                                     Horaires évènement
                                 </Text>
 
-                                <Text style={styles.subtitle} lightColor={colors.gray500} darkColor={colors.gray0}>
+                                <Text style={styles.subtitle} lightColor={colors.gray600} darkColor={colors.gray0}>
                                     Notifie des informations relatives aux horaires d&apos;évènements
                                 </Text>
                             </View>
@@ -209,7 +209,7 @@ export default function NotificationScreen(): React.JSX.Element {
                                     Nouveaux évènements
                                 </Text>
 
-                                <Text style={styles.subtitle} lightColor={colors.gray500} darkColor={colors.gray0}>
+                                <Text style={styles.subtitle} lightColor={colors.gray600} darkColor={colors.gray0}>
                                     Notifie des annonces de nouveaux évènements dans l&apos;agenda
                                 </Text>
                             </View>
@@ -237,7 +237,7 @@ export default function NotificationScreen(): React.JSX.Element {
                                     Niveau Ambassador
                                 </Text>
 
-                                <Text style={styles.subtitle} lightColor={colors.gray500} darkColor={colors.gray0}>
+                                <Text style={styles.subtitle} lightColor={colors.gray600} darkColor={colors.gray0}>
                                     Notifie des alertes de passage de niveau et du classement
                                 </Text>
                             </View>
@@ -258,7 +258,6 @@ export default function NotificationScreen(): React.JSX.Element {
                     <View
                         style={[
                             styles.horizontalSection,
-                            { marginHorizontal: Platform.OS === "android" ? 15 : 35 },
                         ]}
                     >
                         <View style={styles.contentSection}>
@@ -270,7 +269,7 @@ export default function NotificationScreen(): React.JSX.Element {
                                     Seuil formulaire
                                 </Text>
 
-                                <Text style={styles.subtitle} lightColor={colors.gray500} darkColor={colors.gray0}>
+                                <Text style={styles.subtitle} lightColor={colors.gray600} darkColor={colors.gray0}>
                                     Notifie des alertes de paliers de formulaires remplis
                                 </Text>
                             </View>
@@ -291,7 +290,6 @@ export default function NotificationScreen(): React.JSX.Element {
                     <View
                         style={[
                             styles.horizontalSection,
-                            { marginHorizontal: Platform.OS === "android" ? 15 : 35 },
                         ]}
                     >
                         <View style={styles.contentSection}>
@@ -303,7 +301,7 @@ export default function NotificationScreen(): React.JSX.Element {
                                     Inscriptions aux évènements
                                 </Text>
 
-                                <Text style={styles.subtitle} lightColor={colors.gray500} darkColor={colors.gray0}>
+                                <Text style={styles.subtitle} lightColor={colors.gray600} darkColor={colors.gray0}>
                                     Notifie des alertes de status d&apos;inscription à un évènement
                                 </Text>
                             </View>

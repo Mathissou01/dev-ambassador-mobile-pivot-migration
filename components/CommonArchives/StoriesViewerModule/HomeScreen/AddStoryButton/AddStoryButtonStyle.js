@@ -1,6 +1,6 @@
 import { Appearance } from "react-native";
 import EStyleSheet from "react-native-extended-stylesheet";
-import { colors } from "../../../../../config/styles/01-settings/_colors";
+import { colors } from "@/config/styles/01-settings/_colors";
 
 const colorScheme = Appearance.getColorScheme();
 const isDark = colorScheme === "dark";

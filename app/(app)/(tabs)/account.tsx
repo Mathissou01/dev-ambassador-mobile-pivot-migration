@@ -58,7 +58,7 @@ const loadAvatarImage = async (): Promise<string | null> => {
 
 export default function Account(): React.JSX.Element {
     const navigateToEditCharacterScreen = (): void => {
-        router.navigate("/(app)/(profil-settings)/character-edit");
+        router.navigate("/(app)/profil-settings/character-edit");
     };
     const themeColor = useContext(ThemeContext);
     const userInfos: UserState = useAppSelector(selectUserInfos);
@@ -140,7 +140,7 @@ export default function Account(): React.JSX.Element {
                                 },
                             ]}
                             onPress={() => {
-                                router.push('(app)/(profil-settings)/character-edit');
+                                router.navigate('(app)/profil-settings/character-edit');
                                 // navigation.navigate("CharacterEditScreen");
                             }}
                         >
@@ -159,7 +159,7 @@ export default function Account(): React.JSX.Element {
                                 },
                             ]}
                             onPress={() => {
-                                router.push('(app)/(profil-settings)/music-edit');
+                                router.navigate('(app)/profil-settings/music-edit');
                             }}
                         >
                             <MusicNoteIcon

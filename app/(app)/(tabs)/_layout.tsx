@@ -1,16 +1,10 @@
-import {Redirect, router, Tabs} from 'expo-router';
-import React, {useContext, useRef} from 'react';
+import {router, Tabs} from 'expo-router';
+import React, {useContext} from 'react';
 import {TabBarIcon} from '@/components/navigation/TabBarIcon';
 import {Colors} from '@/constants/Colors';
 import useColorScheme, {ThemeContext} from '@/hooks/useColorScheme';
 import {useAppSelector} from "@/hooks/store";
-import {
-    type RootStackParamList,
-    type RootTabParamList,
-    type RootTabScreenProps,
-    type SchoolIconColors,
-    type UserState,
-} from "@/types";
+import {type UserState,} from "@/types";
 // Import light school logo
 import Webtech_light from "@/assets/images/school/light/Webtech_logo-min_light.png";
 import Escen_light from "@/assets/images/school/light/Escen_logo-min_light.png";
@@ -24,8 +18,8 @@ import Magnum_dark from "@/assets/images/school/dark/Magnum_logo-min_dark.png";
 import Bachelor_dark from "@/assets/images/school/dark/Bachelor_logo-min_dark.png";
 import Atlas_dark from "@/assets/images/school/dark/Atlas_logo-min_dark.png";
 // TODO - remove TMP
-import { Animated, Dimensions, Image, Platform, Pressable, TouchableOpacity } from "react-native";
-import {AwardIcon, BellIcon, BurgerMenuIcon} from "@/components/IconComponent";
+import {Image, TouchableOpacity} from "react-native";
+import {AwardIcon, BellIcon, BookIcon, BurgerMenuIcon} from "@/components/IconComponent";
 import {colors} from "@/config/styles/01-settings/_colors";
 import styles from "@/styles/Navigation";
 
@@ -39,7 +33,8 @@ export default function TabLayout() {
         "ATLAS Institute": isDark ? Atlas_dark : Atlas_light,
         "Magnum Institute": isDark ? Magnum_dark : Magnum_light,
         "Bachelor Institute": isDark ? Bachelor_dark : Bachelor_light,
-        "ESCEN": isDark ? Escen_dark : Escen_light
+        "ESCEN": isDark ? Escen_dark : Escen_light,
+        "NEXT-U": isDark ? Escen_dark : Escen_light
     };
 
     return (
@@ -52,8 +47,8 @@ export default function TabLayout() {
                 options={{
                     headerTitleAlign: 'center',
                     headerShown: true,
-                    tabBarIcon: ({ color, focused }) => (
-                        <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+                    tabBarIcon: ({color, focused}) => (
+                        <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color}/>
                     ),
                     headerTitle: () => (
                         <Image
@@ -65,7 +60,7 @@ export default function TabLayout() {
                         <TouchableOpacity
                             style={[styles.headerBtnContainer]}
                             onPress={() => router.navigate("/(app)/(screens)/leaderboard")}
-                            hitSlop={{ top: 25, bottom: 25, left: 25, right: 25 }}
+                            hitSlop={{top: 25, bottom: 25, left: 25, right: 25}}
                         >
                             <AwardIcon
                                 size={20}
@@ -77,7 +72,7 @@ export default function TabLayout() {
                         <TouchableOpacity
                             style={[styles.headerBtnContainer]}
                             onPress={() => router.navigate("/(app)/(screens)/notification")}
-                            hitSlop={{ top: 25, bottom: 25, left: 25, right: 25 }}
+                            hitSlop={{top: 25, bottom: 25, left: 25, right: 25}}
                         >
                             <BellIcon
                                 size={20}
@@ -101,6 +96,18 @@ export default function TabLayout() {
                     tabBarIcon: ({color, focused}) => (
                         <TabBarIcon name={focused ? 'clipboard' : 'clipboard-outline'} color={color}/>
                     ),
+                    headerRight: () => {
+                        return <TouchableOpacity
+                            style={[styles.headerBtnContainer]}
+                            onPress={() => router.navigate("/(app)/forms/info-school")}
+                            hitSlop={{top: 25, bottom: 25, left: 25, right: 25}}
+                        >
+                            <BookIcon
+                                size={20}
+                                color={themeContext?.isDark ?? false ? "white" : "black"}
+                            />
+                        </TouchableOpacity>
+                    },
                     headerStyle: {
                         backgroundColor:
                             (themeContext?.isDark

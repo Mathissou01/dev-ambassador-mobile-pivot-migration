@@ -1,4 +1,4 @@
-import { generateColors, colors } from "../../../config/colorConfig";
+import { generateColors, colors } from "@/config/colorConfig";
 import { School } from "./School";
 import { User, UserType } from "./User";
 

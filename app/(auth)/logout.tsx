@@ -1,29 +1,14 @@
-import React, { useEffect } from "react";
+import React, {ReactNode, useEffect} from "react";
 import LottieView from "lottie-react-native";
-import { Text, View } from "@/components/Themed";
-import { type RootTabScreenProps } from "@/types";
-import { useAppDispatch } from "@/hooks/store";
-import { logoutUser } from "@/redux/UserInfos/UserInfosSlice";
-import { colors } from "@/config/styles/01-settings/_colors";
-import styles from "@/styles/profil-settings/LogOutStyle";
+import {Text, View} from "@/components/Themed";
+import {useAppDispatch} from "@/hooks/store";
+import {colors} from "@/config/styles/01-settings/_colors";
+import styles from "@/styles/auth/LogOutStyle";
+import {logoutUser} from "@/redux/UserInfos/UserInfosSlice";
+import {router} from "expo-router";
 
-export default function LogOutScreen({
-                                         route,
-                                         navigation,
-                                     }: RootTabScreenProps<"LogOut">): React.JSX.Element {
-    // PREVENT BACK WHEN LOGGED OUT
-    useEffect(() => {
-        if (!(route.params != null ? route.params?.isLoggedOut : false)) {
-            // RESET HISTORY IN NAVIGATION STACK
-            navigation.reset({
-                index: 0,
-                routes: [{ name: "LogOut", params: { isLoggedOut: true } }],
-            });
-        }
-    }, []);
-
+export default function LogOutScreen(): ReactNode {
     const dispatch = useAppDispatch();
-    dispatch(logoutUser());
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -38,9 +23,8 @@ export default function LogOutScreen({
     }, []);
 
     const goToLogin = (): void => {
-        navigation.navigate("LogIn", {
-            hasLoggedOut: true,
-        });
+        dispatch(logoutUser());
+        router.replace("/(auth)/login");
     };
 
     return (
@@ -53,7 +37,7 @@ export default function LogOutScreen({
                 <Text bold style={[styles.title, styles.textColor]}>
                     &#192; bientôt !
                 </Text>
-                <View style={styles.separator} />
+                <View style={styles.separator}/>
                 <Text darkColor={colors.gray300} lightColor={colors.black}>
                     Tu es déconnecté !
                 </Text>

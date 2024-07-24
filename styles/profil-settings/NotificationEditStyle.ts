@@ -18,16 +18,15 @@ const styles = EStyleSheet.create({
         justifyContent: "space-between",
         alignItems: "center",
         flexWrap: "nowrap",
-        marginTop: 20,
-        marginBottom: 20,
-        marginLeft: 25,
-        marginRight: 45,
+        marginVertical: 20,
+        marginHorizontal: 25,
         backgroundColor: "transparent",
     },
     contentSection: {
         flexDirection: "row",
         alignItems: "center",
         backgroundColor: "transparent",
+        flex:1
     },
     textSection: {
         width: "75%",
