@@ -1,47 +1,48 @@
-import { useNavigation } from "@react-navigation/native";
-import { useState } from "react";
-import { type ArchivePost } from "@/hooks/API/ObjectTypes/ArchivePost";
-import { type User } from "@/hooks/API/ObjectTypes/User";
+import {type ArchivePost} from "@/hooks/API/ObjectTypes/ArchivePost";
+import {type User} from "@/hooks/API/ObjectTypes/User";
+import {router} from "expo-router";
+import {useAppDispatch, useAppSelector} from "@/hooks/store";
+import {selectStories, setCurrentStoryIndex} from "@/redux/Archive/ArchiveSlice";
 
 type GroupedStories = Record<
-  number,
-  {
-    user: User;
-    stories: ArchivePost[];
-  }
+    number,
+    {
+        user: User;
+        stories: ArchivePost[];
+    }
 >;
 
 export const useHomeScreen = () => {
-  const navigation = useNavigation();
+    const stories = useAppSelector(selectStories);
+    const dispatch = useAppDispatch();
 
-  const [stories, setStories] = useState<ArchivePost[]>([]);
+    const openStory = (userIndex: number) => {
+        const userStories = users[userIndex].stories;
+        const firstUserStoryIndex = stories.findIndex((story) => story._id === userStories[0]._id);
+        // Set to store
+        dispatch(setCurrentStoryIndex(firstUserStoryIndex));
 
-  const openStory = (userIndex: number) => {
-    const userStories = users[userIndex].stories;
-    const firstUserStoryIndex = stories.findIndex((story) => story._id === userStories[0]._id);
-    navigation.navigate("StoryViewerScreen", {
-      stories,
-      currentStoryIndex: firstUserStoryIndex,
-    });
-  };
+        router.navigate("/(app)/archives/story/viewer/published");
+    };
 
-  const groupedStories = stories.reduce((acc: GroupedStories, story) => {
-    if (!acc[story.user._id]) {
-      acc[story.user._id] = {
-        user: story.user,
-        stories: [],
-      };
-    }
-    acc[story.user._id].stories.push(story);
-    return acc;
-  }, {} as GroupedStories);
+    const groupedStories = stories.reduce((acc: GroupedStories, story) => {
+        if (story.user !== null) {
+            if (!acc[story.user._id as unknown as number]) {
+                acc[story.user._id as unknown as number] = {
+                    user: story.user,
+                    stories: [],
+                };
+            }
+            acc[story.user._id as unknown as number].stories.push(story);
+        }
+        return acc;
+    }, {} as GroupedStories);
 
-  const users = Object.values(groupedStories);
+    const users = Object.values(groupedStories);
 
-  return {
-    users,
-    openStory,
-    stories,
-    setStories,
-  };
+    return {
+        users,
+        openStory,
+        stories,
+    };
 };

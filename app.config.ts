@@ -65,6 +65,14 @@ export default ({config}: ConfigContext): ExpoConfig => ({
         //         "calendarPermission": "The app needs to access your calendar."
         //     }
         // ]
+        [
+            "expo-camera",
+            {
+                "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera",
+                "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone",
+                "recordAudioAndroid": true
+            }
+        ]
     ],
     extra: {
         eas: {

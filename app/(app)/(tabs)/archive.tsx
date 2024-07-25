@@ -10,24 +10,33 @@ import {StoryButton} from "@/components/CommonArchives/StoriesViewerModule/HomeS
 import {useHomeScreen} from "@/components/CommonArchives/StoriesViewerModule/HomeScreen/useHomeScreen";
 import {AddStoryButton} from "@/components/CommonArchives/StoriesViewerModule/HomeScreen/AddStoryButton/AddStoryButton";
 import LiquidPaginationDot from "@/components/CommonArchives/StoriesViewerModule/LiquidPaginationDot";
-import {type NavigationProp, useFocusEffect, useNavigation} from "@react-navigation/native";
+import {useFocusEffect} from "@react-navigation/native";
 import {useGetArchivesQuery} from "@/services/archives";
 import {dateDiffInHoursAndMinutes} from "@/components/CommonArchives/utils/DateDiff";
 import {selectUserInfos} from "@/redux/UserInfos/UserInfosSlice";
-import {useAppSelector} from "@/hooks/store";
+import {useAppDispatch, useAppSelector} from "@/hooks/store";
 import {User} from "@/hooks/API/ObjectTypes/User";
 // import {Camera} from "react-native-vision-camera";
+import {useCameraPermissions} from 'expo-camera';
 import styles from "@/styles/tabs/ArchiveStyle";
+import {router} from "expo-router";
+import {setStories} from "@/redux/Archive/ArchiveSlice";
 
 const EVENEMENTS_ACTUELS_LABEL = "Événements actuels";
 const EVENEMENTS_PASSES_LABEL = "Événements passés";
 
 export default function ArchiveScreen(): ReactNode {
+    const dispatch = useAppDispatch();
+
+    // Camera things
+    const [permission, requestPermission] = useCameraPermissions();
+
     // État pour stocker la liste d'événements
     const {data: archives, refetch} = useGetArchivesQuery();
     const [events, setEvents] = useState<Archive[]>([]);
     const [currentArchive, setCurrentArchive] = useState<Archive | null>(null);
     const [userCanPublish, setUserCanPublish] = useState(false);
+
     // FlatList scroll with Dots
     const {width} = useWindowDimensions();
     const scrollX = useRef(new Animated.Value(0)).current;
@@ -39,7 +48,7 @@ export default function ArchiveScreen(): ReactNode {
     });
     const viewConfigRef = useRef({viewAreaCoveragePercentThreshold: 50});
     // Story Mock
-    const {openStory, setStories} = useHomeScreen();
+    const {openStory} = useHomeScreen();
     // Story Mock
     const colorTheme = useContext(ThemeContext);
 
@@ -60,15 +69,17 @@ export default function ArchiveScreen(): ReactNode {
                 archive.evenement?.start_date! < new Date() &&
                 archive.evenement?.end_date! > new Date()
             ) {
-                setStories(
-                    archive.archive_posts.sort((a, b) => {
-                        // Sort by user story first and then creation date
-                        if (a?.user?._id === userInfos._id) return -1;
-                        if (a.createdAt > b.createdAt) {
+                dispatch(
+                    setStories(
+                        archive.archive_posts.sort((a, b) => {
+                            // Sort by user story first and then creation date
+                            if (a?.user?._id === userInfos._id) return -1;
+                            if (a.createdAt > b.createdAt) {
+                                return 1;
+                            }
                             return 1;
-                        }
-                        return 1;
-                    })
+                        })
+                    )
                 );
                 setCurrentArchive(archive);
 
@@ -96,19 +107,15 @@ export default function ArchiveScreen(): ReactNode {
         );
     };
 
-    const navigation = useNavigation<NavigationProp<any>>();
 
     // ===== CAMERA PERMISSION ===== //
-    // const cameraPermission = Camera.getCameraPermissionStatus();
-    // const showPermissionsPage = cameraPermission !== "granted";
-
     const addStory = (): void => {
-        if (showPermissionsPage) {
-            navigation.navigate("PermissionPage");
+        if (!permission?.granted) {
             // Rediriger vers la page de permission si la permission n'est pas accordée
+            router.navigate("/(app)/archives/permission");
         } else {
             // Sinon, accédez à la page de création d'histoire
-            navigation.navigate("InfoArchiveScreen");
+            router.navigate("/(app)/archives/story/info-archive");
         }
     };
 
@@ -130,8 +137,6 @@ export default function ArchiveScreen(): ReactNode {
 
         return tmp;
     };
-
-    console.log(currentArchive);
 
     return (
         <View style={styles.inScrollContainer}>

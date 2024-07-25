@@ -102,8 +102,7 @@ export default function EventViewer(): React.JSX.Element {
                     </View>
                     <View style={styles.rightTextContainer}>
                         <Text style={styles.dateEventLabel}>
-                            {/* {archiveEvent?.start_date?.toLocaleDateString("fr-FR", { dateStyle: "medium" })} */}
-                            23 décembre 2024
+                             {archiveEvent?.start_date?.toLocaleDateString("fr-FR", { dateStyle: "medium" })}
                         </Text>
                     </View>
                 </View>

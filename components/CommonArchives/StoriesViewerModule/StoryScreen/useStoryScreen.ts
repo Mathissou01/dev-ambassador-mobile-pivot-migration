@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {ArchivePost} from "@/hooks/API/ObjectTypes/ArchivePost";
-import {useNavigation} from "expo-router";
+import {router} from "expo-router";
 
 interface StoryScreenHookProps {
     stories: ArchivePost[];
@@ -8,7 +8,6 @@ interface StoryScreenHookProps {
 }
 
 export const useStoryScreen = ({stories, currentStoryIndex}: StoryScreenHookProps) => {
-    const navigation = useNavigation();
     const [currentIndex, setCurrentIndex] = useState(currentStoryIndex);
     const [liked, setLiked] = useState(false);
 
@@ -27,7 +26,7 @@ export const useStoryScreen = ({stories, currentStoryIndex}: StoryScreenHookProp
                 return updatedProgresses;
             });
         } else {
-            navigation.navigate("/(app)/(tabs)/archive");
+            router.navigate("/(app)/(tabs)/archive");
         }
     };
 
@@ -41,7 +40,7 @@ export const useStoryScreen = ({stories, currentStoryIndex}: StoryScreenHookProp
             setCurrentIndex(currentIndex + 1);
         } else {
             if (!isAutomatic) {
-                navigation.navigate("/(app)/(tabs)/archive");
+                router.navigate("/(app)/(tabs)/archive");
             }
         }
     };
@@ -59,7 +58,7 @@ export const useStoryScreen = ({stories, currentStoryIndex}: StoryScreenHookProp
         );
 
         const timer = setInterval(() => {
-            setProgresses((prevProgresses) => {
+            setProgresses((prevProgresses: number[] | null) => {
                 const updatedProgresses = [...prevProgresses];
                 const newProgress = updatedProgresses[userStoryIndex] + 0.01;
 
@@ -73,6 +72,8 @@ export const useStoryScreen = ({stories, currentStoryIndex}: StoryScreenHookProp
 
                     return updatedProgresses;
                 }
+
+                return updatedProgresses;
             });
         }, 50);
 

@@ -1,19 +1,21 @@
-import { configureStore } from "@reduxjs/toolkit";
+import {configureStore} from "@reduxjs/toolkit";
 // ...
 import UserInfosSlice from "./UserInfos/UserInfosSlice";
 import PushTokenSlice from "./PushToken/PushTokenSlice";
-import { ambassadorApi } from "./API/ambassadorApi";
+import {ambassadorApi} from "./API/ambassadorApi";
+import ArchiveSlice from "@/redux/Archive/ArchiveSlice";
 
 export const store = configureStore({
-  reducer: {
-    userInfos: UserInfosSlice,
-    pushToken: PushTokenSlice,
-    api: ambassadorApi.reducer,
-  },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: false,
-    }).concat(ambassadorApi.middleware),
+    reducer: {
+        archive: ArchiveSlice,
+        userInfos: UserInfosSlice,
+        pushToken: PushTokenSlice,
+        api: ambassadorApi.reducer,
+    },
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: false,
+        }).concat(ambassadorApi.middleware),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

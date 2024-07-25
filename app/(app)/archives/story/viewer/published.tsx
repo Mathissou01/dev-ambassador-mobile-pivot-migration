@@ -12,12 +12,23 @@ import * as ImageManipulator from "expo-image-manipulator";
 import {AboutIcon, CheckIcon, CloseIcon, DownloadIcon, ShareIcon,} from "@/components/IconComponent";
 import {useHeaders} from "@/hooks/useHeaders";
 import {router} from "expo-router";
+import {useAppSelector} from "@/hooks/store";
+import {selectArchive} from "@/redux/Archive/ArchiveSlice";
 
 export default function StoryViewerScreen(): ReactNode {
+    const {stories: storiesStore, currentStoryIndex} = useAppSelector(selectArchive);
     const headers = useHeaders();
 
     // TODO - Send good parameters to the hook
-    const {userStories, progresses, stories, currentIndex, goBack, goForward, setLoaded} = useStoryScreen({});
+    const {
+        userStories,
+        progresses,
+        stories,
+        currentIndex,
+        goBack,
+        goForward,
+        setLoaded
+    } = useStoryScreen({stories: storiesStore, currentStoryIndex});
 
     const [sharingState, setSharingState] = useState("none");
     const [savingState, setSavingState] = useState("none");
