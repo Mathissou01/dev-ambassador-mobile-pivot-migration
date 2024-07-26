@@ -28,7 +28,7 @@ const AgendaItem = (props: ItemProps): React.JSX.Element => {
         );
     }
 
-    useEffect(()=> {
+    useEffect(() => {
         setModalVisible(isSelected ?? false);
     }, [isSelected]);
 
@@ -131,16 +131,16 @@ const AgendaItem = (props: ItemProps): React.JSX.Element => {
                     style={{
                         ...styles.blinkingContainer,
                         backgroundColor: borderColor,
-                        paddingRight: 1,
+                        paddingRight: 0,
                     }}
                 >
                     <LinearGradient
                         style={{
-                            borderRadius: 15,
                             justifyContent: "center",
                             alignItems: "center",
                             padding: 1,
                             paddingLeft: 6,
+                            width: '100%'
                         }}
                         start={{x: 0.3, y: 0.5}}
                         end={{x: 0.7, y: 0.5}}

@@ -19,8 +19,10 @@ export default function StoriesMaker(): ReactNode {
             const photo: CameraCapturedPicture | undefined = await camera.current?.takePictureAsync({
                 skipProcessing: false,
                 exif: true,
-                imageType: "png"
+                imageType: "jpg",
+                quality: 0.7
             });
+
             if (photo !== undefined) {
                 // Redirect to route that will process the image
                 router.navigate(`/(app)/archives/story/viewer/${encodeURIComponent(photo.uri)}`);
