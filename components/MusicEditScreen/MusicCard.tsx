@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { TouchableOpacity, View, Text } from "react-native";
 import { BlurView } from "expo-blur";
-import { ThemeContext } from "../../hooks/useColorScheme";
+import { ThemeContext } from "@/hooks/useColorScheme";
 import { PauseIcon, PlayIcon } from "../IconComponent";
 import Vinyle from "./Vinyle";
 import WaveForm from "./WaveForm";

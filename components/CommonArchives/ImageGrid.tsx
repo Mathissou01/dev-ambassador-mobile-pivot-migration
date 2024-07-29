@@ -18,7 +18,6 @@ const ImageItem = (props: {
   index: number;
   onPress: OnPressFunction;
 }): React.JSX.Element => {
-  console.log("props.img", props);
   return props.image !== null ? (
     <TouchableOpacity
       style={styles.image_view}

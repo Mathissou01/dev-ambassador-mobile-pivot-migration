@@ -31,8 +31,8 @@ export default function StacksLayout() {
             headerStyle: {
                 backgroundColor:
                     (themeContext?.isDark
-                        ? themeContext?.colors.primaryDark
-                        : themeContext?.colors.primaryLight),
+                        ? themeContext?.colors.primarySemiDark
+                        : themeContext?.colors.primarySemiLight),
             },
             headerTitleStyle: {
                 fontSize: 17,
@@ -80,6 +80,12 @@ export default function StacksLayout() {
                 name="about-details"
                 options={{
                     title: contentItem?.name ?? "Infos"
+                }}
+            />
+            <Stack.Screen
+                name="music-edit"
+                options={{
+                    title: "Musique"
                 }}
             />
         </Stack>

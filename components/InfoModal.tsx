@@ -71,7 +71,7 @@ export default function InfoModal({
               {subtitle != null &&
                 subtitle?.length > 0 &&
                 subtitle.map((subTitle, index) => (
-                  <>
+                  <React.Fragment key={"subtitle_" + index}>
                     <Text
                       key={index}
                       style={styles.subtitle}
@@ -90,7 +90,7 @@ export default function InfoModal({
                         {p}
                       </Text>
                     ))}
-                  </>
+                  </React.Fragment>
                 ))}
             </View>
           </View>

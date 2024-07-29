@@ -88,7 +88,6 @@ export default function Account(): React.JSX.Element {
     }, [userInfos]);
 
     const handleLocalImageLoadingError = (): void => {
-        console.log("CACA", new User(userInfos).avatarUri);
         if (userInfos.email !== null) setAvatarImage(new User(userInfos).avatarUri);
     };
 
