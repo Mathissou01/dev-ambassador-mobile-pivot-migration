@@ -1,10 +1,17 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Animated, Dimensions, Image, View, PanResponder } from "react-native";
+import {
+  Animated,
+  Dimensions,
+  Image,
+  PanResponder,
+  ImageSourcePropType,
+} from "react-native";
 import Svg, { Circle } from "react-native-svg";
 import Escen_light from "@/assets/images/school-letter/light/ESCEN_Letter.png";
 import Bachelor_light from "@/assets/images/school-letter/light/BACHELOR_Letter.png";
 import Webtech_dark from "@/assets/images/school-letter/dark/WEBTECH_Letter.png";
 import Magnum_dark from "@/assets/images/school-letter/dark/MAGNUM_Letter.png";
+import NEXT_U_Light from "@/assets/images/school/light/Next_U_logo-min_light.png";
 import Atlas_dark from "@/assets/images/school-letter/dark/ATLAS_Letter.png";
 import Star from "@/components/SvgIllustration/Star";
 import { type LogoSchools, type StampWidgetData } from "@/types";
@@ -37,7 +44,8 @@ const schoolLogo: LogoSchools = {
   "ATLAS Institute": Atlas_dark,
   "Magnum Institute": Magnum_dark,
   "Bachelor Institute": Bachelor_light,
-  ESCEN: Escen_light,
+  "ESCEN": Escen_light,
+  "NEXT-U": NEXT_U_Light,
 };
 
 const StampWidget = ({
