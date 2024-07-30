@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Animated, Dimensions, Image, type ImageSourcePropType, View } from "react-native";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { Animated, Dimensions, Image, View, PanResponder } from "react-native";
 import Svg, { Circle } from "react-native-svg";
 import Escen_light from "@/assets/images/school-letter/light/ESCEN_Letter.png";
 import Bachelor_light from "@/assets/images/school-letter/light/BACHELOR_Letter.png";
@@ -32,20 +32,43 @@ const starCoordinates = Array.from({ length: numStars }, (_, index) => {
 const logoWidth = 10;
 const logoHeight = 10;
 
-// prettier-ignore
 const schoolLogo: LogoSchools = {
   "WebTech Institute": Webtech_dark,
   "ATLAS Institute": Atlas_dark,
   "Magnum Institute": Magnum_dark,
   "Bachelor Institute": Bachelor_light,
-  "ESCEN": Escen_light,
+  ESCEN: Escen_light,
 };
-const StampWidget = ({ logo, schoolYear }: StampWidgetData): React.JSX.Element => {
-  // LIGHT MODE SCHOOL LOGO
+
+const StampWidget = ({
+  logo,
+  schoolYear,
+}: StampWidgetData): React.JSX.Element => {
   const colorTheme = useContext(ThemeContext);
   const [glowAnimations] = useState(
     Array.from({ length: numStars }, () => new Animated.Value(0.0))
   );
+
+  // Rotation interaction widget
+  const rotateValue = useRef(new Animated.Value(0)).current;
+
+  const panResponder = useRef(
+    PanResponder.create({
+      onStartShouldSetPanResponder: () => true,
+      onMoveShouldSetPanResponder: () => true,
+      onPanResponderMove: (_, gestureState) => {
+        const rotate = gestureState.dx / 2; // Adjust the divisor to control sensitivity
+        rotateValue.setValue(rotate);
+      },
+      onPanResponderRelease: () => {
+        Animated.timing(rotateValue, {
+          toValue: 0,
+          duration: 300,
+          useNativeDriver: true,
+        }).start();
+      },
+    })
+  ).current;
 
   useEffect(() => {
     glowAnimations.forEach((glowAnimation) => {
@@ -53,11 +76,29 @@ const StampWidget = ({ logo, schoolYear }: StampWidgetData): React.JSX.Element =
     });
   }, []);
 
+  const rotateInterpolate = rotateValue.interpolate({
+    inputRange: [-360, 360],
+    outputRange: ["-360deg", "360deg"],
+  });
+
   return (
-    <View style={styles.container}>
+    <Animated.View
+      style={[styles.container, { transform: [{ rotate: rotateInterpolate }] }]}
+      {...panResponder.panHandlers}
+    >
       <Svg height={outerCircle * 2} width={outerCircle * 2}>
-        <Circle cx={outerCircle} cy={outerCircle} r={outerCircle / 2} fill={colors.gray300} />
-        <Circle cx={outerCircle} cy={outerCircle} r={innerCircle / 2} fill={colors.gray200} />
+        <Circle
+          cx={outerCircle}
+          cy={outerCircle}
+          r={outerCircle / 2}
+          fill={colors.gray300}
+        />
+        <Circle
+          cx={outerCircle}
+          cy={outerCircle}
+          r={innerCircle / 2}
+          fill={colors.gray200}
+        />
         {starCoordinates.map((coord, index) => {
           if (index !== 3 && index !== numStars - 3) {
             return (
@@ -93,8 +134,11 @@ const StampWidget = ({ logo, schoolYear }: StampWidgetData): React.JSX.Element =
       <Text bold style={styles.schoolYearTextBottom}>
         N{schoolYear}
       </Text>
-      <Image source={schoolLogo[logo] as ImageSourcePropType} style={styles.schoolLogo} />
-    </View>
+      <Image
+        source={schoolLogo[logo] as ImageSourcePropType}
+        style={styles.schoolLogo}
+      />
+    </Animated.View>
   );
 };
 
