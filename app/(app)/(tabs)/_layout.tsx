@@ -22,6 +22,7 @@ import {Image, TouchableOpacity} from "react-native";
 import {AwardIcon, BellIcon, BookIcon, BurgerMenuIcon} from "@/components/IconComponent";
 import {colors} from "@/config/styles/01-settings/_colors";
 import styles from "@/styles/Navigation";
+import TabBar from "@/components/TabBar/TabBar";
 
 export default function TabLayout() {
     const themeContext = useContext(ThemeContext);
@@ -41,14 +42,19 @@ export default function TabLayout() {
         <Tabs
             screenOptions={{
                 tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint
-            }}>
+            }}
+            sceneContainerStyle={{
+                backgroundColor: !themeContext?.isDark ? colors.white : colors.backgroundNavDark,
+            }}
+            tabBar={TabBar}
+        >
             <Tabs.Screen
                 name="home"
                 options={{
                     headerTitleAlign: 'center',
                     headerShown: true,
                     tabBarIcon: ({color, focused}) => (
-                        <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color}/>
+                        <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} focused={focused}/>
                     ),
                     headerTitle: () => (
                         <Image
@@ -94,7 +100,7 @@ export default function TabLayout() {
                     headerTitleAlign: 'center',
                     headerShown: true,
                     tabBarIcon: ({color, focused}) => (
-                        <TabBarIcon name={focused ? 'clipboard' : 'clipboard-outline'} color={color}/>
+                        <TabBarIcon name={focused ? 'clipboard' : 'clipboard-outline'} color={color} focused={focused}/>
                     ),
                     headerRight: () => {
                         return <TouchableOpacity
@@ -127,7 +133,7 @@ export default function TabLayout() {
                     title: 'Archive',
                     headerTitleAlign: 'center',
                     tabBarIcon: ({color, focused}) => (
-                        <TabBarIcon name={focused ? 'archive' : 'archive-outline'} color={color}/>
+                        <TabBarIcon name={focused ? 'archive' : 'archive-outline'} color={color} focused={focused}/>
                     ),
                     headerStyle: {
                         backgroundColor:
@@ -148,7 +154,7 @@ export default function TabLayout() {
                     title: 'Calendrier',
                     headerTitleAlign: 'center',
                     tabBarIcon: ({color, focused}) => (
-                        <TabBarIcon name={focused ? 'calendar' : 'calendar-outline'} color={color}/>
+                        <TabBarIcon name={focused ? 'calendar' : 'calendar-outline'} color={color} focused={focused}/>
                     ),
                     headerStyle: {
                         backgroundColor:
@@ -176,7 +182,7 @@ export default function TabLayout() {
                     title: 'Compte',
                     headerTitleAlign: 'center',
                     tabBarIcon: ({color, focused}) => (
-                        <TabBarIcon name={"body"} color={color}/>
+                        <TabBarIcon name={"body"} color={color} focused={focused}/>
                     ),
                     headerRight: () => (
                         <TouchableOpacity
