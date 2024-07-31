@@ -3,7 +3,8 @@ import {createSlice} from "@reduxjs/toolkit";
 import type {RootState} from "@/redux";
 
 import {SchoolState, UserState, UserStatistics} from "@/types";
-import AsyncStorage from "@react-native-async-storage/async-storage"; // Define the initial state using that type
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import {Music, MusicType} from "@/hooks/API/ObjectTypes/Music"; // Define the initial state using that type
 
 // Define the initial state using that type
 const initialState: UserState = {
@@ -52,6 +53,9 @@ export const userInfosSlice = createSlice({
         setAvatarImageChanged: (state) => {
             return {...state, hasAvatarChanged: !state.hasAvatarChanged};
         },
+        updateUserMusic: (state, action: PayloadAction<MusicType>) => {
+            return {...state, music: new Music(action.payload)};
+        }
     },
 });
 
@@ -78,10 +82,12 @@ export const {
     updateUserWithLocalStorage,
     logoutUser,
     setAvatarImageChanged,
+    updateUserMusic
 } = userInfosSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectUserInfos = (state: RootState): UserState => state.userInfos;
+export const selectUserMusic = (state: RootState): Music | null => state.userInfos.music;
 export const selectAccessToken = (state: RootState): string | null => state.userInfos.accessToken;
 
 export default userInfosSlice.reducer;

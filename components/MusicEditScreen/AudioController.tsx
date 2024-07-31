@@ -7,6 +7,10 @@ import {colors} from "@/config/styles/01-settings/_colors";
 import {type AudioControllerProp} from "@/types";
 import {NextIcon, PauseIcon, PlayIcon, PreviousIcon, StarIcon} from "../IconComponent";
 import styles from "./AudioControllerStyle";
+import {useAppDispatch, useAppSelector} from "@/hooks/store";
+import {selectUserMusic, updateUserMusic} from "@/redux/UserInfos/UserInfosSlice";
+import {putAPI} from "@/hooks/API/requestsManager";
+import {MusicType} from "@/hooks/API/ObjectTypes/Music";
 
 export default function AudioController({
                                             mp3File,
@@ -21,6 +25,8 @@ export default function AudioController({
                                             isPlaying,
                                             setIsPlaying,
                                         }: AudioControllerProp): React.JSX.Element {
+    const userMusic = useAppSelector(selectUserMusic);
+    const dispatch = useAppDispatch();
     const colorTheme = useContext(ThemeContext);
     const width = Dimensions.get("window").width;
     const sound = useRef(null);
@@ -29,10 +35,22 @@ export default function AudioController({
     const [position, setPosition] = useState(0);
     const [lastPosition, setLastPosition] = useState(0);
     const [isSeeking, setIsSeeking] = useState(false);
-    const [isStarred, setIsStarred] = useState(false);
+    const isStarred = userMusic?.name == musicTitle;
 
     const handleStarPress = () => {
-        setIsStarred(!isStarred); // Toggle star icon state
+        // Update user music
+        putAPI({
+            objectType: "user-ambassador",
+            idToModify: "/update-music",
+            dataToTransfert: {
+                music: musicTitle
+            }
+        }).then(res => {
+            if (!res.error) {
+                // Update in the local state if no error without calling the api once again
+                dispatch(updateUserMusic(res as MusicType));
+            }
+        });
     };
 
     useEffect(() => {
