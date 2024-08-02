@@ -11,7 +11,6 @@ interface RNAnimatedBorderProps {
   margin?: number;
   padding?: number;
   totalDuration: number;
-  borderIncreaseDuration: number;
 }
 
 const RNAnimatedBorder: React.FC<RNAnimatedBorderProps> = (props) => {
@@ -24,7 +23,6 @@ const RNAnimatedBorder: React.FC<RNAnimatedBorderProps> = (props) => {
     margin,
     padding,
     totalDuration,
-    borderIncreaseDuration,
   } = props;
 
   const anim = useAnimation(totalDuration);
@@ -50,7 +48,5 @@ const RNAnimatedBorder: React.FC<RNAnimatedBorderProps> = (props) => {
 
   return <Animated.View style={animatedStyle}>{props.children}</Animated.View>;
 };
-
-const styles = StyleSheet.create({});
 
 export default RNAnimatedBorder;

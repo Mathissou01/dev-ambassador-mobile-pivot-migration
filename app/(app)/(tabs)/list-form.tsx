@@ -45,8 +45,12 @@ export default function ListFormScreen(): ReactNode {
     NOTHING_TO_SHOW: "Aucun formulaire n'est actuellement disponible",
   });
 
-  function redirection(guidForm: string): void {
-    router.navigate(`/(app)/forms/${guidForm}`);
+  function redirection(guidForm: string, title: string): void {
+    console.log("title", title);
+    router.push({
+      pathname: `/(app)/forms/${guidForm}`,
+      params: { title },
+    });
   }
 
   const [forms, setForms] = useState<Form[]>([]);
@@ -207,7 +211,7 @@ export default function ListFormScreen(): ReactNode {
                     nameForm={item.name}
                     nameEvent={item?.evenement?.name}
                     guidForm={item.hubspot_form?._id}
-                    redirection={redirection}
+                    redirection={(guidForm) => redirection(guidForm, item.name)}
                   />
                 ) : null
               )

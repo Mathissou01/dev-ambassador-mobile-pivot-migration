@@ -60,75 +60,87 @@ const PopupConfirm: React.FC<PopupConfirmProps> = ({
       onRequestClose={() => {}}
       hardwareAccelerated={true}
     >
-      <View style={styles.darkBlurContainer}>
-        <BlurView
-          style={styles.blurContainer}
-          intensity={5}
-          tint={colorTheme?.isDark ? "dark" : "light"}
-        >
-          <Animated.View style={[styles.modalContainer, { opacity: fadeAnim }]}>
-            <RNAnimatedBorder
-              firstColor={!isError ? colors.success : colors.error}
-              secondColor={!isError ? colors.successLight : colors.errorLight}
-              borderWidth={5}
-              borderRadius={15}
-              elevation={5}
-              totalDuration={10000} // Durée totale de l'animation
-              borderIncreaseDuration={10000} // Augmentation de la bordure sur 10 secondes
+      <BlurView
+        style={styles.blurContainer}
+        intensity={5}
+        tint={colorTheme?.isDark ? "dark" : "light"}
+      >
+        <Animated.View style={[styles.modalContainer, { opacity: fadeAnim }]}>
+          <RNAnimatedBorder
+            firstColor={!isError ? colors.success : colors.error}
+            secondColor={!isError ? colors.successLight : colors.errorDark}
+            borderWidth={5}
+            borderRadius={20}
+            elevation={5}
+            totalDuration={10000} // Durée totale de l'animation
+            borderIncreaseDuration={10000} // Augmentation de la bordure sur 10 secondes
+          >
+            <View
+              style={styles.modalContent}
+              darkColor={colors.gray800}
+              lightColor={colors.backgroundDefault}
             >
-              <View
-                style={styles.modalContent}
-                darkColor={colors.gray800}
-                lightColor={colors.backgroundDefault}
+              <Text
+                style={styles.messageText}
+                darkColor={colors.gray200}
+                lightColor={colors.gray800}
               >
-                <Text
-                  style={styles.messageText}
-                  darkColor={colors.gray200}
-                  lightColor={colors.gray800}
-                >
-                  {message}
-                </Text>
-                <TouchableOpacity onPress={handleClose} style={[styles.okButton]}>
-                  {!isError ? (
-                    <LottieView
-                      style={styles.loaderContent}
-                      source={require("../../assets/json/acces-logo/check.json")}
-                      autoPlay
-                      loop={false}
-                      colorFilters={[
-                        {
-                          keypath: "Shape Layer 1",
-                          color:
-                            themeColor?.isDark === false ? colors.success : colors.successLight,
-                        },
-                        {
-                          keypath: "Shape Layer 5",
-                          color: themeColor?.isDark === false ? colors.successDark : colors.success,
-                        },
-                        { keypath: "Comp 2", color: colors.white },
-                      ]}
-                    />
-                  ) : (
-                    <LottieView
-                      style={styles.loaderContent}
-                      source={require("../../assets/json/acces-logo/error.json")}
-                      autoPlay
-                      loop={false}
-                      colorFilters={[
-                        { keypath: "circle", color: themeColor?.colors?.primaryLight },
-                        { keypath: "circle 2", color: themeColor?.colors?.primaryLight },
-                        { keypath: "1", color: "white" },
-                        { keypath: "2", color: "white" },
-                        { keypath: "line1", color: themeColor?.colors?.primaryLight },
-                      ]}
-                    />
-                  )}
-                </TouchableOpacity>
-              </View>
-            </RNAnimatedBorder>
-          </Animated.View>
-        </BlurView>
-      </View>
+                {message}
+              </Text>
+              <TouchableOpacity onPress={handleClose} style={[styles.okButton]}>
+                {!isError ? (
+                  <LottieView
+                    style={styles.loaderContent}
+                    source={require("../../assets/json/acces-logo/check.json")}
+                    autoPlay
+                    loop={false}
+                    colorFilters={[
+                      {
+                        keypath: "Shape Layer 1",
+                        color:
+                          themeColor?.isDark === false
+                            ? colors.success
+                            : colors.successLight,
+                      },
+                      {
+                        keypath: "Shape Layer 5",
+                        color:
+                          themeColor?.isDark === false
+                            ? colors.successDark
+                            : colors.success,
+                      },
+                      { keypath: "Comp 2", color: colors.white },
+                    ]}
+                  />
+                ) : (
+                  <LottieView
+                    style={styles.loaderContent}
+                    source={require("../../assets/json/acces-logo/error.json")}
+                    autoPlay
+                    loop={false}
+                    colorFilters={[
+                      {
+                        keypath: "circle",
+                        color: themeColor?.colors?.primaryLight,
+                      },
+                      {
+                        keypath: "circle 2",
+                        color: themeColor?.colors?.primaryLight,
+                      },
+                      { keypath: "1", color: "white" },
+                      { keypath: "2", color: "white" },
+                      {
+                        keypath: "line1",
+                        color: themeColor?.colors?.primaryLight,
+                      },
+                    ]}
+                  />
+                )}
+              </TouchableOpacity>
+            </View>
+          </RNAnimatedBorder>
+        </Animated.View>
+      </BlurView>
     </Modal>
   );
 };

@@ -6,15 +6,8 @@ const styles = EStyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  darkBlurContainer: {
-    backgroundColor: "rgba(0, 0, 0, 0.9)",
-    flex: 1,
-    height: "100%",
-    width: "100%",
-  },
   modalContent: {
     padding: 20,
-    borderRadius: 10,
     alignItems: "center",
     display: "flex",
     height: 300,
@@ -26,7 +19,6 @@ const styles = EStyleSheet.create({
   },
   okButton: {
     padding: 5,
-    borderRadius: 5,
   },
   okButtonText: {
     color: "white",
@@ -44,7 +36,7 @@ const styles = EStyleSheet.create({
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.9)",
+    backgroundColor: "rgba(0, 0, 0, 0.4)",
   },
 });
 
