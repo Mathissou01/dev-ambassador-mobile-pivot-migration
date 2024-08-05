@@ -21,7 +21,6 @@ const styles = EStyleSheet.create({
         backgroundColor: isDark ? colors.backgroundDark : "",
         color: isDark ? colors.gray300 : colors.black,
     },
-
     title: {
         fontSize: "1.5rem",
         textAlign: "center",

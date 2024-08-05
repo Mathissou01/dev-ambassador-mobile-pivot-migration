@@ -11,7 +11,7 @@ export default function Vie({
   ...props
 }: MusicBackgroundProps & SvgProps): React.JSX.Element {
   return (
-    <Svg id="visual" x="0px" y="0px" viewBox="0 0 900 900" style={style} {...props}>
+    <Svg id="visual" x="0px" y="0px" viewBox="0 0 900 900" preserveAspectRatio="xMidYMid slice" style={style} {...props}>
       <Rect width={900} height={900} fill={mainColor} />
       <G fill="white">
         <Path d="M75,477.2l19.5,60h63.1l-51.1,37l19.5,60l-51-37l-51,37l19.5-60l-51.1-37h63.1L75,477.2z" />

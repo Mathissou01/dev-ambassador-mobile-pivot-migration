@@ -160,14 +160,14 @@ export default function NotificationTemplate({
                                 style={[
                                     styles.backgroundSwipeable,
                                     {
-                                        width: width - width * 0.1,
+                                        width: width * 0.9,
                                         marginHorizontal: width * 0.05,
                                         marginTop: 15,
                                     },
                                 ]}
                             ></View>
                             <View style={styles.deleteIcon}>
-                                <DeleteIcon size={50} color={hexToRgbA(colors.errorLight, 0.7)}/>
+                                <DeleteIcon size={30} color={hexToRgbA(colors.errorLight, 0.7)}/>
                             </View>
                         </>
                     )}

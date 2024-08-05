@@ -49,11 +49,11 @@ export default function AmbassadorStatsBlock({
 }: AmbassadorStatsBlockData): React.JSX.Element {
   const themeContext = useContext(ThemeContext);
 
-  const pluralFuction = (value: number, name: string): string => (value > 1 ? `${name}s` : name);
+  const pluralFunction = (value: number, name: string): string => (value > 1 ? `${name}s` : name);
 
   const blocEventDone = {
     key: 1,
-    name: `${pluralFuction(eventDone || 0, "Evènement")}${pluralFuction(
+    name: `${pluralFunction(eventDone || 0, "Evènement")}${pluralFunction(
       eventDone || 0,
       "\nréalisé"
     )}`,
@@ -63,14 +63,14 @@ export default function AmbassadorStatsBlock({
 
   const blocNextEvent = {
     key: 2,
-    name: `${pluralFuction(nextEvent || 0, "Evènement")}\nà venir`,
+    name: `${pluralFunction(nextEvent || 0, "Evènement")}\nà venir`,
     number: nextEvent || 0,
     background: themeContext?.colors?.secondary,
   };
 
   const blocFormSend = {
     key: 3,
-    name: `${pluralFuction(formSend || 0, "Formulaire")}${pluralFuction(
+    name: `${pluralFunction(formSend || 0, "Formulaire")}${pluralFunction(
       formSend || 0,
       "\nenvoyé"
     )}`,
@@ -81,7 +81,7 @@ export default function AmbassadorStatsBlock({
 
   const blocLevel = {
     key: 4,
-    name: `${pluralFuction(level || 0, "Niveau\nAmbassador")}`,
+    name: `${pluralFunction(level || 0, "Niveau\nAmbassador")}`,
     number: level || 0,
     background: themeContext?.colors?.primary,
   };

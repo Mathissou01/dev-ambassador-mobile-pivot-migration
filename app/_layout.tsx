@@ -17,7 +17,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { autoAuth } from "@/hooks/useDatabase";
 import { generateColors } from "@/utils/generateColors";
 import { Provider } from "react-redux";
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import {SafeAreaProvider, useSafeAreaInsets} from "react-native-safe-area-context";
 import Slot = Navigator.Slot;
 
 // ===== NOTIFICATION PARAMETERS ===== //

@@ -40,7 +40,7 @@ export async function fetchAPIwithToken(
       }
       return null;
     } else {
-      console.error("(index.js->fetchAPIwithToken():40)Error:", error);
+      console.error(error.message);
       return null;
     }
   }

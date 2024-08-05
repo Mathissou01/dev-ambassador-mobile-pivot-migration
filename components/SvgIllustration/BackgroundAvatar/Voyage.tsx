@@ -13,10 +13,11 @@ export default function Voyage({
     return (
         <Svg
             id="Calque_1"
-            x="0px"
-            y="0px"
+            // x="0px"
+            // y="0px"
             viewBox="0 0 700 700"
-            // enableBackground="new 0 0 700 700"
+            preserveAspectRatio="xMidYMid slice"
+            // enableBackground="0 0 700 700"
             style={style}
             {...props}
         >

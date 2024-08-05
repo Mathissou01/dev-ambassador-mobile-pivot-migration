@@ -67,7 +67,7 @@ const ImageItem = ({
     ({ nativeEvent }: NativeSyntheticEvent<NativeScrollEvent>) => {
       const velocityY = nativeEvent?.velocity?.y ?? 0;
       const scaled = nativeEvent?.zoomScale > 1;
-
+      
       onZoom(scaled);
       setScaled(scaled);
 

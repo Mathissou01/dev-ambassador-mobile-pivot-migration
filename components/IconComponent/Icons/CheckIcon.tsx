@@ -2,9 +2,9 @@ import * as React from "react";
 import Svg, { Path } from "react-native-svg";
 import { type IconProps } from "../../../types";
 
-export default function CheckIcon({ color = "#000", size }: IconProps): React.JSX.Element {
+export default function CheckIcon({ color = "#000", size, style }: IconProps): React.JSX.Element {
   return (
-    <Svg fill="none" viewBox="0 0 48 48" height={size} width={size}>
+    <Svg fill="none" viewBox="0 0 48 48" height={size} width={size} style={style}>
       <Path
         fillRule="evenodd"
         stroke={color}

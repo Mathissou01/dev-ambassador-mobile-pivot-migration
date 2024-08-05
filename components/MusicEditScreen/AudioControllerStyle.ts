@@ -26,6 +26,7 @@ const styles = EStyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    marginBottom: 45,
   },
   timeTraveler: {
     width: width * 0.8,

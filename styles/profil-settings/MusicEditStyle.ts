@@ -19,6 +19,12 @@ const styles = EStyleSheet.create({
         borderBottomLeftRadius: 80,
         overflow: "hidden",
         aspectRatio: 1,
+        "@media (max-height: 670)": {
+            aspectRatio: 1.3,
+        },
+        "@media (max-height: 600)": {
+            aspectRatio: 1.4,
+        },
     },
     overlay: {
         ...StyleSheet.absoluteFillObject,
@@ -59,10 +65,11 @@ const styles = EStyleSheet.create({
     backgroundStyle: {
         width: "100%",
         height: "100%",
+        backgroundColor: "blue",
     },
     playerContainer: {
         flex: 1,
-        alignItems: "center",
+        // alignItems: "center",
         backgroundColor: "transparent",
     },
     controllerContainer: {

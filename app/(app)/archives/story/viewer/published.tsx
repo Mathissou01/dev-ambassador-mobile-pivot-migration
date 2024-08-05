@@ -1,5 +1,5 @@
 import React, {ReactNode, useState} from "react";
-import {ActivityIndicator, Platform, Pressable, SafeAreaView, TouchableOpacity,} from "react-native";
+import {ActivityIndicator, Dimensions, Platform, Pressable, SafeAreaView, TouchableOpacity,} from "react-native";
 import {Text, View} from "@/components/Themed";
 import {useStoryScreen} from "@/components/CommonArchives/StoriesViewerModule/StoryScreen/useStoryScreen";
 import {ProgressBar} from "@/components/CommonArchives/StoriesViewerModule/StoryScreen/ProgressBar";
@@ -14,6 +14,7 @@ import {useHeaders} from "@/hooks/useHeaders";
 import {router} from "expo-router";
 import {useAppSelector} from "@/hooks/store";
 import {selectArchive} from "@/redux/Archive/ArchiveSlice";
+import {useSafeAreaInsets} from "react-native-safe-area-context";
 
 export default function StoryViewerScreen(): ReactNode {
     const {stories: storiesStore, currentStoryIndex} = useAppSelector(selectArchive);
@@ -152,9 +153,17 @@ export default function StoryViewerScreen(): ReactNode {
         }
     }
 
+    const { height, width } = Dimensions.get("window");
+    const {top, bottom} = useSafeAreaInsets();
+    const maxHeight = height - bottom - top - 50;
+    const maxControlsHeight = maxHeight - 70;
+
+    const aspectRatio = width / maxHeight;
+
+
     return (
-        <SafeAreaView style={styles.safeArea}>
-            <View style={styles.storyContainer}>
+        <SafeAreaView style={[styles.safeArea]}>
+            <View style={[styles.storyContainer, {paddingTop: top + 15}]}>
                 <ProgressBar userStories={userStories} progresses={progresses}/>
                 <View style={styles.header}>
                     <Text style={styles.userName}>{stories[currentIndex]?.user?.firstname}</Text>
@@ -168,10 +177,10 @@ export default function StoryViewerScreen(): ReactNode {
                     setLoaded(true);
                 }}
                 source={{uri: stories[currentIndex]?.image}}
-                style={styles.image}
+                style={[styles.image, {aspectRatio}]}
             />
-            <Pressable style={styles.backButton} onPress={goBack}/>
-            <Pressable style={styles.forwardButton} onPress={goForward}/>
+            <Pressable style={[styles.backButton, {top: top + 70, height:maxControlsHeight}]} onPress={goBack}/>
+            <Pressable style={[styles.forwardButton, {top: top + 70, height:maxControlsHeight}]} onPress={goForward}/>
             <View style={styles.bottomTab}>
                 <TouchableOpacity
                     style={styles.socialBtn}

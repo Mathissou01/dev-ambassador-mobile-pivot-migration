@@ -11,6 +11,7 @@ import {useAppDispatch, useAppSelector} from "@/hooks/store";
 import {selectUserMusic, updateUserMusic} from "@/redux/UserInfos/UserInfosSlice";
 import {putAPI} from "@/hooks/API/requestsManager";
 import {MusicType} from "@/hooks/API/ObjectTypes/Music";
+import {Sound} from "expo-av/build/Audio/Sound";
 
 export default function AudioController({
                                             mp3File,
@@ -29,7 +30,7 @@ export default function AudioController({
     const dispatch = useAppDispatch();
     const colorTheme = useContext(ThemeContext);
     const width = Dimensions.get("window").width;
-    const sound = useRef(null);
+    const sound = useRef<Sound | null>(null);
 
     const [duration, setDuration] = useState(0);
     const [position, setPosition] = useState(0);
@@ -64,7 +65,7 @@ export default function AudioController({
                     {},
                     (playbackStatus) => {
                         if (playbackStatus.isLoaded) {
-                            setDuration(playbackStatus.durationMillis);
+                            setDuration(playbackStatus.durationMillis!);
                         }
                     }
                 );
@@ -194,7 +195,7 @@ export default function AudioController({
             <View
                 style={{
                     marginBottom: 25,
-                    alignSelf: "flex-start",
+                    alignSelf: "center",
                     flexDirection: "row",
                     justifyContent: "space-between",
                     alignItems: "center",

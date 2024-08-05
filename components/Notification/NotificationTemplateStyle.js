@@ -53,7 +53,7 @@ const styles = EStyleSheet.create({
   deleteIcon: {
     backgroundColor: "transparent",
     marginTop: 15,
-    marginRight: 20,
+    // marginRight: 20,
     borderTopRightRadius: 12,
     borderBottomRightRadius: 12,
     width: 80,

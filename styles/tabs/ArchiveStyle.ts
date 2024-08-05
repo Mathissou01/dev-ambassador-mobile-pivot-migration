@@ -10,6 +10,7 @@ const styles = EStyleSheet.create({
         flex: 1,
         display: "flex",
         gap: 10,
+        marginBottom: 120
     },
     flatListStyle: {},
     scrollView: {},

@@ -11,7 +11,7 @@ export default function Street({
   ...props
 }: MusicBackgroundProps & SvgProps): React.JSX.Element {
   return (
-    <Svg viewBox="0 0 900 900" style={style} {...props}>
+    <Svg viewBox="0 0 900 900" preserveAspectRatio="xMidYMid slice" style={style} {...props}>
       <Path
         d="M0 406l64-279 65 252 64 45 64-315 64 36 65 54 64 54 64-63h65l64 144 64-99 64 36 65-117 64-27V0H0z"
         fill={mainColor}

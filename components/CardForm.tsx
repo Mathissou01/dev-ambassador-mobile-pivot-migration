@@ -16,7 +16,7 @@ export default function CardForm({
     guidForm?: string | null;
     nameForm?: string;
     nameEvent?: string;
-    redirection?: (guid: string) => void;
+    redirection?: (idForm: string, guid: string) => void;
     fields?: Field[];
     school?: School;
 }) {
@@ -56,7 +56,7 @@ export default function CardForm({
         <TouchableOpacity
             key={idForm}
             onPress={() => {
-                if (redirection) redirection(guidForm!);
+                if (redirection) redirection(idForm!, guidForm!);
             }}
         >
             <View

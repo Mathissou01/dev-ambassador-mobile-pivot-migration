@@ -148,105 +148,107 @@ export default function ArchiveScreen(): ReactNode {
   };
 
   return (
-    <View style={styles.inScrollContainer}>
-      {/* DailyStories View */}
-      <View style={styles.storiesContainer}>
-        <ScrollView
-          horizontal
-          style={styles.scrollView}
-          showsHorizontalScrollIndicator={false}
-        >
-          {/* Add a picture to an event - Only available when no story already published */}
-          {userCanPublish && (
-            <AddStoryButton
-              canPublish={userCanPublish}
-              addStory={addStory}
-              user={new User(userInfos)}
-              userIndex={0}
+    <ScrollView alwaysBounceVertical={false}>
+      <View style={styles.inScrollContainer}>
+        {/* DailyStories View */}
+        <View style={styles.storiesContainer}>
+          <ScrollView
+            horizontal
+            style={styles.scrollView}
+            showsHorizontalScrollIndicator={false}
+          >
+            {/* Add a picture to an event - Only available when no story already published */}
+            {userCanPublish && (
+              <AddStoryButton
+                canPublish={userCanPublish}
+                addStory={addStory}
+                user={new User(userInfos)}
+                userIndex={0}
+              />
+            )}
+            {/* View the picture of an event */}
+            {currentArchive?.archive_posts?.map((story, userIndex) => (
+              <StoryButton
+                key={story._id}
+                story={story}
+                userIndex={userIndex}
+                openStory={openStory}
+              />
+            ))}
+          </ScrollView>
+        </View>
+        {currentArchive !== null && currentArchive?.evenement !== null && (
+          <>
+            <Text bold style={styles.infoLabel}>
+              {EVENEMENTS_ACTUELS_LABEL}
+            </Text>
+            <ActualEventBlock
+              key={currentArchive?.evenement._id}
+              eventForms={(1).toString()}
+              eventName={currentArchive?.evenement?.name}
+              eventDate={currentArchive?.evenement?.start_date?.toLocaleDateString(
+                "fr-FR",
+                {
+                  dateStyle: "medium",
+                }
+              )}
+              eventTime={dateDiffInHoursAndMinutes(
+                currentArchive.evenement?.start_date!,
+                currentArchive.evenement?.end_date!
+              )}
+              creditWon={currentArchive.evenement.credits.toString()}
+              eventAmbassadors={currentArchive.users ?? []}
             />
-          )}
-          {/* View the picture of an event */}
-          {currentArchive?.archive_posts?.map((story, userIndex) => (
-            <StoryButton
-              key={story._id}
-              story={story}
-              userIndex={userIndex}
-              openStory={openStory}
-            />
-          ))}
-        </ScrollView>
-      </View>
-      {currentArchive !== null && currentArchive?.evenement !== null && (
-        <>
-          <Text bold style={styles.infoLabel}>
-            {EVENEMENTS_ACTUELS_LABEL}
-          </Text>
-          <ActualEventBlock
-            key={currentArchive?.evenement._id}
-            eventForms={(1).toString()}
-            eventName={currentArchive?.evenement?.name}
-            eventDate={currentArchive?.evenement?.start_date?.toLocaleDateString(
-              "fr-FR",
+          </>
+        )}
+        <Text bold style={styles.infoLabel}>
+          {EVENEMENTS_PASSES_LABEL}
+        </Text>
+        {/* Afficher les EventBlocks en grille */}
+        <View style={styles.flatlistContainer}>
+          <Animated.FlatList
+            ref={flatListRef}
+            onViewableItemsChanged={onViewRef.current}
+            viewabilityConfig={viewConfigRef.current}
+            data={formatted()}
+            renderItem={renderItem}
+            contentContainerStyle={styles.flatListContentContainer}
+            decelerationRate={"normal"}
+            scrollEventThrottle={16}
+            showsHorizontalScrollIndicator={false}
+            pagingEnabled
+            horizontal
+            onScroll={Animated.event(
+              [{ nativeEvent: { contentOffset: { x: scrollX } } }],
               {
-                dateStyle: "medium",
+                useNativeDriver: false,
               }
             )}
-            eventTime={dateDiffInHoursAndMinutes(
-              currentArchive.evenement?.start_date!,
-              currentArchive.evenement?.end_date!
+            onMomentumScrollEnd={Animated.event(
+              [{ nativeEvent: { contentOffset: { x: scrollOffset } } }],
+              {
+                useNativeDriver: false,
+              }
             )}
-            creditWon={currentArchive.evenement.credits.toString()}
-            eventAmbassadors={currentArchive.users ?? []}
           />
-        </>
-      )}
-      <Text bold style={styles.infoLabel}>
-        {EVENEMENTS_PASSES_LABEL}
-      </Text>
-      {/* Afficher les EventBlocks en grille */}
-      <View style={styles.flatlistContainer}>
-        <Animated.FlatList
-          ref={flatListRef}
-          onViewableItemsChanged={onViewRef.current}
-          viewabilityConfig={viewConfigRef.current}
-          data={formatted()}
-          renderItem={renderItem}
-          contentContainerStyle={styles.flatListContentContainer}
-          decelerationRate={"normal"}
-          scrollEventThrottle={16}
-          showsHorizontalScrollIndicator={false}
-          pagingEnabled
-          horizontal
-          onScroll={Animated.event(
-            [{ nativeEvent: { contentOffset: { x: scrollX } } }],
-            {
-              useNativeDriver: false,
-            }
-          )}
-          onMomentumScrollEnd={Animated.event(
-            [{ nativeEvent: { contentOffset: { x: scrollOffset } } }],
-            {
-              useNativeDriver: false,
-            }
-          )}
-        />
+        </View>
+        {/* Génener une pagination pour naviguer entre les grilles */}
+        <View style={styles.paginationContainer}>
+          <LiquidPaginationDot
+            data={formatted()}
+            scrollX={scrollX}
+            scrollOffset={scrollOffset}
+            strokeWidth={10}
+            dotSize={16}
+            marginHorizontal={8}
+            activeDotColor={"#fff"}
+            containerStyle={styles.containerStyles}
+            bigHead={true}
+            bigHeadScale={1.2}
+            inActiveDotOpacity={0.3}
+          />
+        </View>
       </View>
-      {/* Génener une pagination pour naviguer entre les grilles */}
-      <View style={styles.paginationContainer}>
-        <LiquidPaginationDot
-          data={formatted()}
-          scrollX={scrollX}
-          scrollOffset={scrollOffset}
-          strokeWidth={10}
-          dotSize={16}
-          marginHorizontal={8}
-          activeDotColor={"#fff"}
-          containerStyle={styles.containerStyles}
-          bigHead={true}
-          bigHeadScale={1.2}
-          inActiveDotOpacity={0.3}
-        />
-      </View>
-    </View>
+    </ScrollView>
   );
 }

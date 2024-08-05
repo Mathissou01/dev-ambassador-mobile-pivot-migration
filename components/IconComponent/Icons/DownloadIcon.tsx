@@ -2,9 +2,9 @@ import * as React from "react";
 import Svg, { G, Path } from "react-native-svg";
 import { type IconProps } from "../../../types";
 
-export default function DownloadIcon({ color = "#000", size }: IconProps): React.JSX.Element {
+export default function DownloadIcon({ color = "#000", size, style }: IconProps): React.JSX.Element {
   return (
-    <Svg viewBox="0 0 48 48" width={size} height={size} fill="none">
+    <Svg viewBox="0 0 48 48" width={size} height={size} style={style} fill="none">
       <G
         transform="translate(0.000000,48.000000) scale(0.100000,-0.100000)"
         fill={color}

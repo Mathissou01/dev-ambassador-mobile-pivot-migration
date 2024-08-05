@@ -61,7 +61,7 @@ const styles = EStyleSheet.create({
     flexDirection: "row",
     display: "flex",
     alignItems: "center",
-    justfyContent: "center",
+    justifyContent: "center",
     gap: 10,
   },
   footer: {

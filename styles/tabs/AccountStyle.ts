@@ -1,8 +1,5 @@
-import {Dimensions} from "react-native";
 import {colors} from "@/config/styles/01-settings/_colors";
 import EStyleSheet from "react-native-extended-stylesheet";
-
-const screenWidth = Dimensions.get("window").width;
 
 const styles = EStyleSheet.create({
     main_container: {
@@ -13,13 +10,13 @@ const styles = EStyleSheet.create({
         marginBottom: 50,
         flex: 1,
         "@media (max-height: 670)": {
-            marginBottom: 30,
+            marginBottom: 60,
         },
     },
     avatarImage: {
         position: "absolute",
-        width: 270,
-        height: 290,
+        width: '100%',
+        height: '100%',
         resizeMode: "contain",
         zIndex: 2,
         top: 0,

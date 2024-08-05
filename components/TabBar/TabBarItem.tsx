@@ -145,6 +145,7 @@ export default function TabBarItem({
                     <Animatable.View
                         useNativeDriver={true}
                         ref={circleRef}
+                        duration={500}
                         style={[
                             styles.circle,
                             {
@@ -176,6 +177,7 @@ export default function TabBarItem({
                 <Animatable.Text
                     useNativeDriver={true}
                     ref={textRef}
+                    duration={500}
                     style={[styles.text, {color: color}]}
                 >
                     {typeof label === "function" ? label({

@@ -12,7 +12,7 @@ export default function Ailleurs({
                                    ...props
 }: MusicBackgroundProps & SvgProps): React.JSX.Element {
   return (
-    <Svg viewBox="0 0 900 900" style={style} {...props}>
+    <Svg viewBox="0 0 900 900" preserveAspectRatio="xMidYMid slice" style={style} {...props}>
       <G strokeLinejoin="bevel">
         <Path
           d="M484 415l38.5 37L485 342.5z"
