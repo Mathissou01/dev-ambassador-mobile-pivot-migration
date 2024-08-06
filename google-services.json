@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1030836132245",
+    "project_id": "ambassador-app-400118",
+    "storage_bucket": "ambassador-app-400118.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1030836132245:android:823031ce443e6256273e9c",
+        "android_client_info": {
+          "package_name": "ambassador.nextu.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLJsDINsFUCpBeI3ZgmzEfe3r2R44MmYQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

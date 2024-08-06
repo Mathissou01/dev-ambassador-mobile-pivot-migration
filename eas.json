@@ -1,0 +1,29 @@
+{
+  "cli": {
+    "version": ">= 10.2.2"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "distribution": "internal",
+      "node": "18.16.0",
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://ambassador-api.lab-rey.fr/",
+        "GOOGLE_SERVICES_JSON": "./google-services-json",
+        "EAS_BUILD_DISABLE_NPM_CACHE": "1",
+        "EAS_BUILD_DISABLE_MAVEN_CACHE": "1"
+      },
+      "android": {
+        "buildType": "apk",
+        "gradleCommand": ":app:assembleRelease"
+      }
+    },
+    "production": {}
+  },
+  "submit": {
+    "production": {}
+  }
+}
