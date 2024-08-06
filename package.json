@@ -72,6 +72,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
     "@types/chroma-js": "^2.4.4",
     "@types/jest": "^29.5.12",
     "@types/lodash": "^4.17.7",
