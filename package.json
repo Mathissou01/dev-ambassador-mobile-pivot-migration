@@ -9,7 +9,8 @@
     "ios": "expo run:ios",
     "web": "expo start --web",
     "test": "jest --watchAll",
-    "lint": "expo lint"
+    "lint": "expo lint",
+    "prepare": "husky"
   },
   "jest": {
     "preset": "jest-expo"
@@ -44,6 +45,8 @@
     "expo-system-ui": "~3.0.7",
     "expo-three": "^7.0.1",
     "expo-web-browser": "~13.0.3",
+    "husky": "^9.1.4",
+    "lint-staged": "^15.2.8",
     "lottie-react-native": "^6.7.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
