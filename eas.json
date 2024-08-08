@@ -9,7 +9,6 @@
     },
     "preview": {
       "distribution": "internal",
-      "node": "18.16.0",
       "env": {
         "EXPO_PUBLIC_API_URL": "https://ambassador-api.lab-rey.fr/",
         "GOOGLE_SERVICES_JSON": "./google-services-json",
