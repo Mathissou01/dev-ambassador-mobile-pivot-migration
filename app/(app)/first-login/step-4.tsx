@@ -48,7 +48,7 @@ export default function Step4(): ReactNode {
         description:
             "Parfait ! Il me manques quelques informations sur toi. Peux-tu me les fournir s’il te plait ?",
         picture: require("../../../assets/json/acces-robot/work.json"),
-        page: "/(app)/(first-login)/step-5",
+        page: "/(app)/first-login/step-5",
     });
 
     const [shakeAnimation] = useState(new Animated.Value(0.0));

@@ -90,12 +90,7 @@ export default function Step5(): ReactNode {
         }).start();
         // Démarrez un délai de 3 secondes pour changer d'écran
         setTimeout(() => {
-            // TODO - Check if correct
-            router.dismissAll()
-            // navigation.reset({
-            //     index: 0,
-            //     routes: [{name: slide.page}],
-            // });
+            router.replace("/(app)/(tabs)/home");
         }, 1750);
         lottieViewRef2.current?.play();
     };

@@ -55,7 +55,7 @@ export default function LogInScreen(): React.JSX.Element {
                 router.navigate("(app)/(tabs)/home");
             } else {
                 // TODO - Change route
-                router.navigate("(app)/(first-login)/step-1");
+                router.navigate("(app)/first-login/step-1");
             }
         } else {
             Alert.alert(

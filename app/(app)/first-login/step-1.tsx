@@ -19,7 +19,7 @@ export default function Step1(): ReactNode {
         description:
             "Hello petit Ambassador ! Bienvenue sur l’application dédiée aux ambassadors de NEXT-U. \nAvant de commencer, j’aurai besoin de quelques informations sur toi. Allons\u2011y !",
         picture: require("@/assets/json/acces-robot/hello.json"),
-        page: "/(app)/(first-login)/step-2",
+        page: "/(app)/first-login/step-2",
     };
 
     // TODO - Redo with router

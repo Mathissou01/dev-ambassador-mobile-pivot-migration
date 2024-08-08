@@ -34,7 +34,7 @@ export default function Step3(): ReactNode {
             userInfos.firstname +
             ", tu n’es plus une simple variable à mes yeux. Maintenant, pour des soucis d’organisation, j’aurais besoin de savoir de quels ports dispose ton ordinateur ?",
         picture: require("../../../assets/json/acces-robot/cable.json"),
-        page: "/(app)/(first-login)/step-4",
+        page: "/(app)/first-login/step-4",
     });
 
     const [shakeAnimation] = useState(new Animated.Value(0.0));

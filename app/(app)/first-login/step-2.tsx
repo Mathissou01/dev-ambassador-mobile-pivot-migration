@@ -22,7 +22,7 @@ export default function Step2(): ReactNode {
     const [slide, setSlide] = useState<FirstLogStep>({
         description: "",
         picture: require("../../../assets/json/acces-robot/work.json"),
-        page: "/(app)/(first-login)/step-3",
+        page: "/(app)/first-login/step-3",
     });
 
     const placeholder = {

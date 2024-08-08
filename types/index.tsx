@@ -562,10 +562,10 @@ export interface FirstLogStep {
     picture2?: string;
     page:
         | "/(app)/(tabs)/home"
-        | "/(app)/(first-login)/step-2"
-        | "/(app)/(first-login)/step-3"
-        | "/(app)/(first-login)/step-4"
-        | "/(app)/(first-login)/step-5";
+        | "/(app)/first-login/step-2"
+        | "/(app)/first-login/step-3"
+        | "/(app)/first-login/step-4"
+        | "/(app)/first-login/step-5";
 }
 
 export interface ProgressButtonProps {
