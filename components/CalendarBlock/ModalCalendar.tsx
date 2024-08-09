@@ -21,17 +21,21 @@ const ModalCalendar = ({ open, onClose, data, hourOptions }: Modaltype): React.J
   // 2 : REFUSED
   // 3 : CANCELED BY USER
   const [participationStatus, setParticipationStatus] = useState("not_valid");
-  const listStatus = ["pending", "valid", "not_valid", "not_valid"];
+  const listStatus = ["pending", "valid", "not_valid"];
 
   const colorScheme = Appearance.getColorScheme();
   const isDark = colorScheme === "dark";
 
+
   useEffect(() => {
+    const isSchoolRepresented = data?.represented_school?.includes(userInfos.school._id);
+
     const status: number = parseInt(
       data.participationStatus
         .filter((participant) => participant[0] === userInfos._id)
         .map((part) => part[1])?.[0]
     );
+    const isEventFull = data?.actual_seat >= data?.max_seat && !listStatus[isNaN(status) ? 3 : status];
     const statusStr =
       status === 1
         ? "valid"
@@ -42,7 +46,22 @@ const ModalCalendar = ({ open, onClose, data, hourOptions }: Modaltype): React.J
         ? "participate"
         : listStatus[isNaN(status) ? 3 : status];
     setParticipationStatus(statusStr);
+
+    if (!isSchoolRepresented) {
+      setParticipationStatus("school_not_represented");
+    } else if (isEventFull) {
+      setParticipationStatus("event_full");
+    }
   }, [data]);
+
+  console.log("Ouverture evenement", data.title)
+  console.log("data?.actual_seat", data?.actual_seat)
+  console.log("data?.represented_school?.includes(userInfos.school._id)", data?.represented_school?.includes(userInfos.school._id))
+  console.log("data.participationStatus", parseInt(
+      data.participationStatus
+          .filter((participant) => participant[0] === userInfos._id)
+          .map((part) => part[1])?.[0]
+  ));
 
   const handleParticipation = async (): Promise<void> => {
     if (participationStatus === "participate") {
@@ -70,7 +89,18 @@ const ModalCalendar = ({ open, onClose, data, hourOptions }: Modaltype): React.J
 
   let buttonTextColor, buttonColor, renderIcon, buttonText;
 
-  if (participationStatus === "participate") {
+
+  if (participationStatus === "school_not_represented") {
+    buttonTextColor = "grey";
+    buttonColor = "lightgrey";
+    buttonText = "École non représentée";
+    renderIcon = false;
+  } else if (participationStatus === "event_full") {
+    buttonTextColor = "white";
+    buttonColor = "red";
+    buttonText = "Événement plein";
+    renderIcon = false;
+  } else if (participationStatus === "participate") {
     buttonTextColor = "white";
     buttonColor = "#4BBEFF";
     buttonText = "Je participe";
@@ -150,9 +180,9 @@ const ModalCalendar = ({ open, onClose, data, hourOptions }: Modaltype): React.J
             Places prises : {data.actual_seat} / {data.max_seat}
           </Text>
           <TouchableOpacity
-            disabled={participationStatus === "valid"}
-            style={[styles.buttonValidation, { backgroundColor: buttonColor }]}
-            onPress={handleParticipation}
+              disabled={!(participationStatus === "participate" || participationStatus === "validate")}
+              style={[styles.buttonValidation, { backgroundColor: buttonColor }]}
+              onPress={handleParticipation}
           >
             <Text style={[styles.buttonText, { color: buttonTextColor }]}>
               {buttonText}
