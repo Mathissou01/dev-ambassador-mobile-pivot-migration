@@ -5,10 +5,10 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { Text, View } from "@/components/Themed";
+import { Text, View, ScrollView } from "@/components/Themed";
 import PastEventBlock from "@/components/CommonArchives/PastEventBlock";
 import ActualEventBlock from "@/components/CommonArchives/ActualEventBlock";
-import { Animated, ScrollView, useWindowDimensions } from "react-native";
+import { Animated, useWindowDimensions } from "react-native";
 import { ThemeContext } from "@/hooks/useColorScheme";
 import { getColorForEvent } from "@/utils/colorsByEvent";
 import { type Archive } from "@/hooks/API/ObjectTypes/Archive";

@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Alert, Modal, ScrollView, TouchableOpacity, Appearance } from "react-native";
+import {
+  Alert,
+  Modal,
+  ScrollView,
+  TouchableOpacity,
+  Appearance,
+} from "react-native";
 import { Audio } from "expo-av";
 import { Text, View } from "@/components/Themed";
 import { type Modaltype, type UserState } from "@/types";
@@ -12,8 +18,15 @@ import LoadingDot from "./LoadingDot";
 import BackgroundRobotModal from "@/components/SvgIllustration/BackgroundRobotModal";
 import styles from "./CalendarStyle";
 
-const ModalCalendar = ({ open, onClose, data, hourOptions }: Modaltype): React.JSX.Element => {
-  const userInfos: UserState = useAppSelector((state: RootState) => state.userInfos);
+const ModalCalendar = ({
+  open,
+  onClose,
+  data,
+  hourOptions,
+}: Modaltype): React.JSX.Element => {
+  const userInfos: UserState = useAppSelector(
+    (state: RootState) => state.userInfos
+  );
 
   // participationStatus
   // 0 : ASKED
@@ -26,16 +39,19 @@ const ModalCalendar = ({ open, onClose, data, hourOptions }: Modaltype): React.J
   const colorScheme = Appearance.getColorScheme();
   const isDark = colorScheme === "dark";
 
-
   useEffect(() => {
-    const isSchoolRepresented = data?.represented_school?.includes(userInfos.school._id);
+    const isSchoolRepresented = data?.represented_school?.includes(
+      userInfos.school._id
+    );
 
     const status: number = parseInt(
       data.participationStatus
         .filter((participant) => participant[0] === userInfos._id)
         .map((part) => part[1])?.[0]
     );
-    const isEventFull = data?.actual_seat >= data?.max_seat && !listStatus[isNaN(status) ? 3 : status];
+    const isEventFull =
+      data?.actual_seat >= data?.max_seat &&
+      !listStatus[isNaN(status) ? 3 : status];
     const statusStr =
       status === 1
         ? "valid"
@@ -52,16 +68,7 @@ const ModalCalendar = ({ open, onClose, data, hourOptions }: Modaltype): React.J
     } else if (isEventFull) {
       setParticipationStatus("event_full");
     }
-  }, [data]);
-
-  console.log("Ouverture evenement", data.title)
-  console.log("data?.actual_seat", data?.actual_seat)
-  console.log("data?.represented_school?.includes(userInfos.school._id)", data?.represented_school?.includes(userInfos.school._id))
-  console.log("data.participationStatus", parseInt(
-      data.participationStatus
-          .filter((participant) => participant[0] === userInfos._id)
-          .map((part) => part[1])?.[0]
-  ));
+  }, [data, listStatus, userInfos._id, userInfos.school._id]);
 
   const handleParticipation = async (): Promise<void> => {
     if (participationStatus === "participate") {
@@ -88,7 +95,6 @@ const ModalCalendar = ({ open, onClose, data, hourOptions }: Modaltype): React.J
   };
 
   let buttonTextColor, buttonColor, renderIcon, buttonText;
-
 
   if (participationStatus === "school_not_represented") {
     buttonTextColor = "grey";
@@ -129,7 +135,9 @@ const ModalCalendar = ({ open, onClose, data, hourOptions }: Modaltype): React.J
   // SOUND PLAYER
   const playSound = async (): Promise<void> => {
     try {
-      const { sound } = await Audio.Sound.createAsync(require("../../assets/sounds/SUCESS.mp3"));
+      const { sound } = await Audio.Sound.createAsync(
+        require("../../assets/sounds/SUCESS.mp3")
+      );
       await sound.playAsync(); // Play the sound
     } catch (error) {
       console.error("Error playing sound:", error);
@@ -138,7 +146,11 @@ const ModalCalendar = ({ open, onClose, data, hourOptions }: Modaltype): React.J
   return (
     <Modal visible={open} onRequestClose={onClose} transparent>
       <View style={[styles.modalContainer]}>
-        <View lightColor={colors.white} darkColor={colors.gray800} style={styles.modalContent}>
+        <View
+          lightColor={colors.white}
+          darkColor={colors.gray800}
+          style={styles.modalContent}
+        >
           <BackgroundRobotModal />
           <View style={styles.header}>
             <Text style={styles.title} bold>
@@ -149,7 +161,10 @@ const ModalCalendar = ({ open, onClose, data, hourOptions }: Modaltype): React.J
               onPress={onClose}
               hitSlop={{ left: 25, right: 25, top: 25, bottom: 25 }}
             >
-              <CloseIcon size={15} color={isDark ? colors.textDark : colors.textLight} />
+              <CloseIcon
+                size={15}
+                color={isDark ? colors.textDark : colors.textLight}
+              />
             </TouchableOpacity>
           </View>
           <View
@@ -166,29 +181,45 @@ const ModalCalendar = ({ open, onClose, data, hourOptions }: Modaltype): React.J
             </>
           )}
           <Text>
-            De {data.debut_hour?.toLocaleTimeString([], hourOptions).replace(":", "h")} à{" "}
-            {data.end_hour?.toLocaleTimeString([], hourOptions).replace(":", "h")} au{" "}
-            {data.localisation}
+            De{" "}
+            {data.debut_hour
+              ?.toLocaleTimeString([], hourOptions)
+              .replace(":", "h")}{" "}
+            à{" "}
+            {data.end_hour
+              ?.toLocaleTimeString([], hourOptions)
+              .replace(":", "h")}{" "}
+            au {data.localisation}
           </Text>
           <View style={styles.trait_body}></View>
           <Text style={styles.bodyText}>
-            Rendez-vous : {data.rdv_hour?.toLocaleTimeString([], hourOptions).replace(":", "h")} au{" "}
-            {data.rdv_localisation}
+            Rendez-vous :{" "}
+            {data.rdv_hour
+              ?.toLocaleTimeString([], hourOptions)
+              .replace(":", "h")}{" "}
+            au {data.rdv_localisation}
           </Text>
           <View style={styles.trait_body}></View>
           <Text>
             Places prises : {data.actual_seat} / {data.max_seat}
           </Text>
           <TouchableOpacity
-              disabled={!(participationStatus === "participate" || participationStatus === "validate")}
-              style={[styles.buttonValidation, { backgroundColor: buttonColor }]}
-              onPress={handleParticipation}
+            disabled={
+              !(
+                participationStatus === "participate" ||
+                participationStatus === "validate"
+              )
+            }
+            style={[styles.buttonValidation, { backgroundColor: buttonColor }]}
+            onPress={handleParticipation}
           >
             <Text style={[styles.buttonText, { color: buttonTextColor }]}>
               {buttonText}
               {participationStatus === "pending" && <LoadingDot />}
             </Text>
-            {(renderIcon ?? false) && <CheckCircleIcon size={20} color="white" />}
+            {(renderIcon ?? false) && (
+              <CheckCircleIcon size={20} color="white" />
+            )}
           </TouchableOpacity>
         </View>
         {/* </ScrollView> */}
