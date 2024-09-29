@@ -1,81 +1,56 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Dimensions, Platform, ScrollView, TouchableOpacity } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Text, View } from "@/components/Themed";
+import React, {useContext, useEffect, useState} from "react";
+import {Dimensions, ScrollView, TouchableOpacity} from "react-native";
+import {SafeAreaView} from "react-native-safe-area-context";
+import {Text, View} from "@/components/Themed";
 import InputTemplate from "@/components/FormTemplate/InputTemplate";
-import { ChevronUpIcon, ChevronDownIcon } from "@/components/IconComponent";
-import { colors } from "@/config/styles/01-settings/_colors";
-import { ThemeContext } from "@/hooks/useColorScheme";
-import { type ArticlePolicyData } from "@/types";
+import {ChevronDownIcon, ChevronUpIcon} from "@/components/IconComponent";
+import {colors} from "@/config/styles/01-settings/_colors";
+import {ThemeContext} from "@/hooks/useColorScheme";
 import styles from "@/styles/form/InfoSchoolStyle";
+import HtmlToReactNative from "@/utils/HtmlToReactNative";
 
 export default function InfoSchool(): React.JSX.Element | null {
-    // TEMPORAIRE
     const articleData = [
         {
             title: "Introduction",
-            content: [
-                "Ceci est le premier paragraphe d'introduction.",
-                "Et voici le deuxième paragraphe.",
-            ],
+            content: "<p>Ceci est <a href='https://google.com '>le premier paragraphe</a> d'introduction.</p><p>Et voici le deuxième paragraphe.</p>",
         },
         {
             title: "Notre Mission et Nos Valeurs",
-            content: [
-                "Notre mission est de fournir un environnement éducatif de qualité.",
-                "Nos valeurs incluent l'excellence académique, le respect, la diversité et l'innovation.",
-            ],
+            content: "<p>Notre mission est de fournir un environnement éducatif de qualité.</p><p>Nos valeurs incluent l'excellence académique, le respect, la diversité et l'innovation.</p>"
         },
         {
             title: "Programmes Académiques",
-            content: [
-                "Découvrez nos programmes variés qui stimulent la curiosité intellectuelle.",
-                "De la maternelle au lycée, nos cours encouragent le développement des compétences essentielles.",
-            ],
+            content: "<p>Découvrez nos programmes variés qui stimulent la curiosité intellectuelle.</p><p>De la maternelle au lycée, nos cours encouragent le développement des compétences essentielles.</p>"
         },
         {
             title: "Infrastructures et Ressources",
-            content: [
-                "Explorez nos installations modernes, des laboratoires scientifiques aux espaces artistiques.",
-                "Nous investissons dans des infrastructures de qualité pour soutenir l'apprentissage.",
-            ],
+            content: "<p>Explorez nos installations modernes, des laboratoires scientifiques aux espaces artistiques.</p><p>Nous investissons dans des infrastructures de qualité pour soutenir l'apprentissage.</p>"
         },
         {
             title: "Engagement Communautaire",
-            content: [
-                "Nous croyons en l'importance de l'engagement communautaire.",
-                "Découvrez nos initiatives sociales, clubs étudiants et activités parascolaires.",
-            ],
+            content: "<p>Nous croyons en l'importance de l'engagement communautaire.</p><p>Découvrez nos initiatives sociales, clubs étudiants et activités parascolaires.</p>"
         },
         {
             title: "Témoignages d'Étudiants",
-            content: [
-                "Écoutez ce que nos étudiants ont à dire sur leur expérience à notre école.",
-                "Découvrez comment notre établissement les a préparés pour l'avenir.",
-            ],
+            content: "<p>Écoutez ce que nos étudiants ont à dire sur leur expérience à notre école.</p><p>Découvrez comment notre établissement les a préparés pour l'avenir.</p>"
         },
     ];
-    // TEMPORAIRE
 
     const themeColor = useContext(ThemeContext);
-
-    const contentData: ArticlePolicyData[] = articleData;
-
     const width = Dimensions.get("window").width;
 
     const [displayArticles, setDisplayArticles] = useState(
-        Array.from({ length: contentData.length }, () => false)
+        Array.from({length: articleData.length}, () => false)
     );
-
     const [searchValue, setSearchValue] = useState("");
     const [selectedArticleIndex, setSelectedArticleIndex] = useState(-1);
 
     useEffect(() => {
-        const matchingArticleIndex = contentData.findIndex((article) => {
+        const matchingArticleIndex = articleData.findIndex((article) => {
             return (
-                article.content.some((paragraph) =>
-                    paragraph.toLowerCase().includes(searchValue.toLowerCase())
-                ) || article.title.toLowerCase().includes(searchValue.toLowerCase())
+                article.content.toLowerCase().includes(searchValue.toLowerCase()) ||
+                article.title.toLowerCase().includes(searchValue.toLowerCase())
             );
         });
 
@@ -94,7 +69,11 @@ export default function InfoSchool(): React.JSX.Element | null {
         }
     };
 
-    const indentation = Platform.OS === "ios" ? "\t".repeat(1) : "\t".repeat(5);
+    const highlightSearch = (htmlContent: string, search: string): string => {
+        if (search.trim() === "") return htmlContent;
+        const regex = new RegExp(`(${search})`, "gi");
+        return htmlContent.replace(regex, `<mark style="background-color: yellow;">$1</mark>`);
+    };
 
     return (
         <SafeAreaView
@@ -107,13 +86,11 @@ export default function InfoSchool(): React.JSX.Element | null {
                 },
             ]}
         >
-            <View style={{ marginVertical: 15, marginHorizontal: width * 0.04 }}>
+            <View style={{marginVertical: 15, marginHorizontal: width * 0.04}}>
                 <InputTemplate
                     value={searchValue}
                     placeholder="Rechercher..."
-                    onChangeText={(text) => {
-                        setSearchValue(text);
-                    }}
+                    onChangeText={(text) => setSearchValue(text)}
                     secureTextEntry={false}
                     multiline={false}
                     hasToBeChecked={false}
@@ -121,12 +98,10 @@ export default function InfoSchool(): React.JSX.Element | null {
                 />
             </View>
             <ScrollView style={styles.secureDisplay}>
-                {contentData.map((article, index) => (
-                    <View style={{ backgroundColor: "transparent" }} key={index?.toString()}>
+                {articleData.map((article, index) => (
+                    <View style={{backgroundColor: "transparent"}} key={index.toString()}>
                         <TouchableOpacity
-                            onPress={() => {
-                                headerArticlePress(index);
-                            }}
+                            onPress={() => headerArticlePress(index)}
                         >
                             <View style={styles.header}>
                                 <Text
@@ -151,36 +126,10 @@ export default function InfoSchool(): React.JSX.Element | null {
                             </View>
                         </TouchableOpacity>
                         {selectedArticleIndex === index && (
-                            <View style={{ backgroundColor: "transparent" }}>
-                                {Array.isArray(article.content) &&
-                                    article.content.length > 0 &&
-                                    article.content.map((paragraph, paraIndex) => {
-                                        const lowerCasedParagraph = paragraph.toLowerCase();
-                                        const lowerCasedSearchValue = searchValue.toLowerCase();
-                                        const startIndex = lowerCasedParagraph.indexOf(lowerCasedSearchValue);
-
-                                        return (
-                                            <Text
-                                                key={paraIndex}
-                                                style={[styles.textContent, styles.paragraphStyle]}
-                                                lightColor={colors.textLight}
-                                                darkColor={colors.textDark}
-                                            >
-                                                {indentation}
-                                                {startIndex !== -1 ? (
-                                                    <>
-                                                        {paragraph.substring(0, startIndex)}
-                                                        <Text style={{ backgroundColor: "yellow" }}>
-                                                            {paragraph.substr(startIndex, searchValue.length)}
-                                                        </Text>
-                                                        {paragraph.substring(startIndex + searchValue.length)}
-                                                    </>
-                                                ) : (
-                                                    paragraph
-                                                )}
-                                            </Text>
-                                        );
-                                    })}
+                            <View style={{backgroundColor: "transparent", marginTop: 10}}>
+                                {HtmlToReactNative(
+                                    highlightSearch(article.content, searchValue)
+                                )}
                             </View>
                         )}
                     </View>
