@@ -40,7 +40,7 @@ export default function TabLayout() {
     return (
         <Tabs
             screenOptions={{}}
-            tabBar={TabBar}
+            tabBar={props => <TabBar {...props} isDark={isDark} />}
         >
             <Tabs.Screen
                 name="home"
