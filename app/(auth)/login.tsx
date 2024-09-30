@@ -51,11 +51,9 @@ export default function LogInScreen(): React.JSX.Element {
             if (isLoggedIn?.currentUser?._id)
                 await updateDeviceToken(isLoggedIn?.currentUser?._id, pushToken.token);
             if (isLoggedIn?.currentUser?.isValid) {
-                // TODO - Change route
-                router.navigate("(app)/(tabs)/home");
+                router.navigate("/(app)/(tabs)/home");
             } else {
-                // TODO - Change route
-                router.navigate("(app)/first-login/step-1");
+                router.navigate("/(app)/first-login/step-1");
             }
         } else {
             Alert.alert(
@@ -74,13 +72,11 @@ export default function LogInScreen(): React.JSX.Element {
     };
 
     const forgotPassword = (): void => {
-        // TODO - Change route
-        router.navigate("ForgotPassword");
+        router.navigate("/(auth)/forgot-password");
     };
 
     const onBoard = (): void => {
-        // TODO - Change route
-        router.navigate("OnBoard");
+        router.navigate("/(auth)/onboard");
     };
 
     return (

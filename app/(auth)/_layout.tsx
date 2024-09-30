@@ -16,6 +16,18 @@ export default function StacksLayout() {
                     headerShown: false
                 }}
             />
+            <Stack.Screen
+                name="forgot-password"
+                options={{
+                    headerShown: false
+                }}
+            />
+            <Stack.Screen
+                name="onboard"
+                options={{
+                    headerShown: false
+                }}
+            />
         </Stack>
     );
 }
