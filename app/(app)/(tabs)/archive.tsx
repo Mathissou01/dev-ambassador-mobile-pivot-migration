@@ -26,6 +26,7 @@ import { useCameraPermissions } from "expo-camera";
 import styles from "@/styles/tabs/ArchiveStyle";
 import { router } from "expo-router";
 import { setStories } from "@/redux/Archive/ArchiveSlice";
+import LottieView from "lottie-react-native";
 
 const EVENEMENTS_ACTUELS_LABEL = "Événements actuels";
 const EVENEMENTS_PASSES_LABEL = "Événements passés";
@@ -177,7 +178,7 @@ export default function ArchiveScreen(): ReactNode {
             ))}
           </ScrollView>
         </View>
-        {currentArchive !== null && currentArchive?.evenement !== null && (
+        {currentArchive !== null && currentArchive?.evenement !== null ? (
           <>
             <Text bold style={styles.infoLabel}>
               {EVENEMENTS_ACTUELS_LABEL}
@@ -200,6 +201,18 @@ export default function ArchiveScreen(): ReactNode {
               eventAmbassadors={currentArchive.users ?? []}
             />
           </>
+        ) : (
+          <View style={styles.noEventContainer}>
+            <Text bold style={styles.noEventText}>
+              Vous ne participez à aucun évènement{"\n"}à l'heure actuelle.
+            </Text>
+            <LottieView
+              source={require("@/assets/json/acces-robot/noEventArchive.json")}
+              autoPlay
+              loop
+              style={styles.lottieImage}
+            />
+          </View>
         )}
         <Text bold style={styles.infoLabel}>
           {EVENEMENTS_PASSES_LABEL}
