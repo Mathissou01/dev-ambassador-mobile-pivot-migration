@@ -73,7 +73,6 @@ const ModalCalendar = ({
         if (participationStatus === RegistrationStatus.PARTICIPATE) {
             setParticipationStatus(RegistrationStatus.VALIDATE);
         } else if (participationStatus === RegistrationStatus.VALIDATE) {
-            void playSound(); // Play the sound
             // SEND TO API PARTICIPATION
             const res = await putAPI({
                 objectType: "events",
@@ -81,6 +80,7 @@ const ModalCalendar = ({
                 dataToTransfert: {},
             });
             if (res) {
+                void playSound(); // Play the sound
                 setParticipationStatus(RegistrationStatus.PENDING);
             } else {
                 Alert.alert(
