@@ -13,11 +13,11 @@ const styles = EStyleSheet.create({
     width: "100%",
   },
   modalContent: {
-    padding: 20,
+    padding: 30,
     borderRadius: 10,
     alignItems: "center",
     display: "flex",
-    height: 300,
+    height: 350,
   },
   messageText: {
     fontSize: 18,
@@ -47,13 +47,14 @@ const styles = EStyleSheet.create({
     backgroundColor: "rgba(0, 0, 0, 0.9)",
   },
   lottieContainer: {
-    margin: 0,
+    padding: 10,
     flex: 1,
     display: "flex",
     justifyContent: "center",
+    backgroundColor: "transparent",
   },
   lottieImage: {
-    width: () => EStyleSheet.value("$contentWidth"),
+    width: () => EStyleSheet.value("$contentWidth") / 2.5,
     height: () => (EStyleSheet.value("$contentWidth") * 3) / 4,
     backgroundColor: "transparent",
     margin: 0,

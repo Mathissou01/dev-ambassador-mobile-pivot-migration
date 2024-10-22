@@ -91,8 +91,8 @@ const PopupConfirm: React.FC<PopupConfirmProps> = ({
                 <LottieView
                   source={
                     !isError
-                      ? require("@/assets/json/acces-robot/noError.json")
-                      : require("@/assets/json/acces-robot/yesValidate.json")
+                      ? require("@/assets/json/acces-robot/yesValidate.json")
+                      : require("@/assets/json/acces-robot/noError.json")
                   }
                   autoPlay
                   loop
@@ -133,17 +133,26 @@ const PopupConfirm: React.FC<PopupConfirmProps> = ({
                     colorFilters={[
                       {
                         keypath: "circle",
-                        color: themeColor?.colors?.primaryLight,
+                        color:
+                          themeColor?.isDark === false
+                            ? colors.errorDark
+                            : colors.error,
                       },
                       {
                         keypath: "circle 2",
-                        color: themeColor?.colors?.primaryLight,
+                        color:
+                          themeColor?.isDark === false
+                            ? colors.errorDark
+                            : colors.error,
                       },
                       { keypath: "1", color: "white" },
                       { keypath: "2", color: "white" },
                       {
                         keypath: "line1",
-                        color: themeColor?.colors?.primaryLight,
+                        color:
+                          themeColor?.isDark === false
+                            ? colors.errorDark
+                            : colors.error,
                       },
                     ]}
                   />
