@@ -87,6 +87,18 @@ const PopupConfirm: React.FC<PopupConfirmProps> = ({
               >
                 {message}
               </Text>
+              <View style={styles.lottieContainer}>
+                <LottieView
+                  source={
+                    !isError
+                      ? require("@/assets/json/acces-robot/noError.json")
+                      : require("@/assets/json/acces-robot/yesValidate.json")
+                  }
+                  autoPlay
+                  loop
+                  style={styles.lottieImage}
+                />
+              </View>
               <TouchableOpacity onPress={handleClose} style={[styles.okButton]}>
                 {!isError ? (
                   <LottieView

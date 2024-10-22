@@ -46,6 +46,19 @@ const styles = EStyleSheet.create({
     alignItems: "center",
     backgroundColor: "rgba(0, 0, 0, 0.9)",
   },
+  lottieContainer: {
+    margin: 0,
+    flex: 1,
+    display: "flex",
+    justifyContent: "center",
+  },
+  lottieImage: {
+    width: () => EStyleSheet.value("$contentWidth"),
+    height: () => (EStyleSheet.value("$contentWidth") * 3) / 4,
+    backgroundColor: "transparent",
+    margin: 0,
+    zIndex: 2,
+  },
 });
 
 export default styles;

@@ -1,6 +1,6 @@
 import React, { type ReactNode, useContext } from "react";
 import { Text, View } from "../.@/components/Themed";
-import styles from "./CardStyle.js";
+import styles from "./CardStyle";
 import { colors } from "@/config/styles/01-settings/_colors";
 import { ThemeContext } from "../../hooks/useColorScheme";
 
@@ -11,7 +11,9 @@ export default function Card(): React.JSX.Element {
     const isBlue = (row + col) % 2 === 0;
     return (
       <View
-        lightColor={isBlue ? colorTheme.colors.primaryExtraLight : colors.gray800}
+        lightColor={
+          isBlue ? colorTheme.colors.primaryExtraLight : colors.gray800
+        }
         darkColor={isBlue ? colorTheme.colors.primaryDark : colors.gray200}
         key={`${row}-${col}`}
         style={[styles.square]}
