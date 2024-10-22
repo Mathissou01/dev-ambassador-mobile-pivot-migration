@@ -8,34 +8,12 @@ import {colors} from "@/config/styles/01-settings/_colors";
 import {ThemeContext} from "@/hooks/useColorScheme";
 import styles from "@/styles/form/InfoSchoolStyle";
 import HtmlToReactNative from "@/utils/HtmlToReactNative";
+import {useGetDocumentationsQuery} from "@/services/documentations";
+import {convertHTMLEntity} from "@/utils/convertHtmlEntity";
 
 export default function InfoSchool(): React.JSX.Element | null {
-    const articleData = [
-        {
-            title: "Introduction",
-            content: "<p>Ceci est <a href='https://google.com '>le premier paragraphe</a> d'introduction.</p><p>Et voici le deuxième paragraphe.</p>",
-        },
-        {
-            title: "Notre Mission et Nos Valeurs",
-            content: "<p>Notre mission est de fournir un environnement éducatif de qualité.</p><p>Nos valeurs incluent l'excellence académique, le respect, la diversité et l'innovation.</p>"
-        },
-        {
-            title: "Programmes Académiques",
-            content: "<p>Découvrez nos programmes variés qui stimulent la curiosité intellectuelle.</p><p>De la maternelle au lycée, nos cours encouragent le développement des compétences essentielles.</p>"
-        },
-        {
-            title: "Infrastructures et Ressources",
-            content: "<p>Explorez nos installations modernes, des laboratoires scientifiques aux espaces artistiques.</p><p>Nous investissons dans des infrastructures de qualité pour soutenir l'apprentissage.</p>"
-        },
-        {
-            title: "Engagement Communautaire",
-            content: "<p>Nous croyons en l'importance de l'engagement communautaire.</p><p>Découvrez nos initiatives sociales, clubs étudiants et activités parascolaires.</p>"
-        },
-        {
-            title: "Témoignages d'Étudiants",
-            content: "<p>Écoutez ce que nos étudiants ont à dire sur leur expérience à notre école.</p><p>Découvrez comment notre établissement les a préparés pour l'avenir.</p>"
-        },
-    ];
+    const {data: docs} = useGetDocumentationsQuery();
+    const articleData = docs?.map(doc => doc.viewable) ?? [];
 
     const themeColor = useContext(ThemeContext);
     const width = Dimensions.get("window").width;
@@ -70,7 +48,8 @@ export default function InfoSchool(): React.JSX.Element | null {
     };
 
     const highlightSearch = (htmlContent: string, search: string): string => {
-        if (search.trim() === "") return htmlContent;
+        if (search.trim() === "" || search.trim().length < 5 || search.trim() === "strong") return htmlContent;
+
         const regex = new RegExp(`(${search})`, "gi");
         return htmlContent.replace(regex, `<mark style="background-color: yellow;">$1</mark>`);
     };
@@ -127,9 +106,7 @@ export default function InfoSchool(): React.JSX.Element | null {
                         </TouchableOpacity>
                         {selectedArticleIndex === index && (
                             <View style={{backgroundColor: "transparent", marginTop: 10}}>
-                                {HtmlToReactNative(
-                                    highlightSearch(article.content, searchValue)
-                                )}
+                                {HtmlToReactNative(highlightSearch(convertHTMLEntity(article.content), searchValue))}
                             </View>
                         )}
                     </View>

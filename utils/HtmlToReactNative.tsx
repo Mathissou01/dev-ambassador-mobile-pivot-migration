@@ -19,13 +19,13 @@ export default function HtmlToReactNative(htmlString: string): React.ReactNode[]
         ),
         'strong': (children, key) => (
             // Bold text in TinyMCE
-            <Text key={key} style={{fontWeight: 'bold'}}>
+            <Text key={key} bold>
                 {children}
             </Text>
         ),
         'em': (children, key) => (
             // Italic text in TinyMCE
-            <Text key={key} style={{fontStyle: 'italic'}}>
+            <Text key={key} italic>
                 {children}
             </Text>
         ),

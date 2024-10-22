@@ -15,6 +15,6 @@ export const ambassadorApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ["Story", "Archive", 'School'],
+  tagTypes: ["Story", "Archive", 'School', 'Documentation'],
   endpoints: () => ({}),
 });

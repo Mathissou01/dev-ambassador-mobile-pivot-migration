@@ -22,6 +22,7 @@ import {type RootStackParamList} from "@/types";
 import styles from "@/styles/auth/OnBoardStyle";
 import {ThemeContext} from "@/hooks/useColorScheme";
 import {colors} from "@/config/styles/01-settings/_colors";
+import {router} from "expo-router";
 
 const slides = [
     // Définition des diapositives pour l'introduction
@@ -261,7 +262,7 @@ export default function OnBoard({
                                     key={i}
                                     onPress={() => {
                                         if (last) {
-                                            navigation.navigate("(auth)/login");
+                                            router.navigate("/(auth)/login");
                                         } else {
                                             scrollRef.current?.scrollTo({
                                                 x: width * (i + 1),

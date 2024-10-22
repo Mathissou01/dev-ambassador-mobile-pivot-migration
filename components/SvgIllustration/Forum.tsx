@@ -1,7 +1,7 @@
 import * as React from "react";
-import Svg, { Path } from "react-native-svg";
+import Svg, {Path, SvgProps} from "react-native-svg";
 
-const Forum = ({ color }: SvgProps & Props): React.JSX.Element => (
+const Forum = ({ color }: SvgProps): React.JSX.Element => (
   <Svg fill={color} height={220} width={220} viewBox="0 0 16 16">
     <Path
       fill={color}
