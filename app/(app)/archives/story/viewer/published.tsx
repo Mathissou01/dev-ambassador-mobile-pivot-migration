@@ -153,13 +153,11 @@ export default function StoryViewerScreen(): ReactNode {
         }
     }
 
-    const { height, width } = Dimensions.get("window");
+    const {height, width} = Dimensions.get("screen");
     const {top, bottom} = useSafeAreaInsets();
-    const maxHeight = height - bottom - top - 50;
+    const maxHeight = height - bottom * 1.4 - top - 20;
     const maxControlsHeight = maxHeight - 70;
-
     const aspectRatio = width / maxHeight;
-
 
     return (
         <SafeAreaView style={[styles.safeArea]}>
@@ -179,8 +177,8 @@ export default function StoryViewerScreen(): ReactNode {
                 source={{uri: stories[currentIndex]?.image}}
                 style={[styles.image, {aspectRatio}]}
             />
-            <Pressable style={[styles.backButton, {top: top + 70, height:maxControlsHeight}]} onPress={goBack}/>
-            <Pressable style={[styles.forwardButton, {top: top + 70, height:maxControlsHeight}]} onPress={goForward}/>
+            <Pressable style={[styles.backButton, {top: top + 70, height: maxControlsHeight}]} onPress={goBack}/>
+            <Pressable style={[styles.forwardButton, {top: top + 70, height: maxControlsHeight}]} onPress={goForward}/>
             <View style={styles.bottomTab}>
                 <TouchableOpacity
                     style={styles.socialBtn}

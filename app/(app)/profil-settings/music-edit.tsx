@@ -264,7 +264,7 @@ export default function MusicEditScreen(): React.JSX.Element {
         thirdColor: colorTheme?.colors?.primaryLight,
         fourthColor: colorTheme?.colors?.primaryExtraLight,
     };
-
+    
     // Modal Infos
 
     useLayoutEffect(() => {

@@ -12,7 +12,7 @@ const styles = EStyleSheet.create({
         alignSelf: "center",
         borderRadius: 8,
         zIndex: 1,
-        marginTop: 2,
+        marginTop: 0,
     },
     header: {
         flexDirection: "row",
