@@ -30,7 +30,7 @@ export default function ArchiveScreen(): ReactNode {
     const dispatch = useAppDispatch();
 
     // Camera things
-    const [permission, requestPermission] = useCameraPermissions();
+    const [permission] = useCameraPermissions();
 
     // État pour stocker la liste d'événements
     const {data: archives, refetch} = useGetArchivesByUserQuery("");
@@ -42,11 +42,7 @@ export default function ArchiveScreen(): ReactNode {
     const {width} = useWindowDimensions();
     const scrollX = useRef(new Animated.Value(0)).current;
     const scrollOffset = useRef(new Animated.Value(0)).current;
-    const [activeIndex, setActiveIndex] = useState(0);
     const flatListRef = useRef(null);
-    const onViewRef = useRef(({viewableItems}: any) => {
-        setActiveIndex(viewableItems[0].index);
-    });
     const viewConfigRef = useRef({viewAreaCoveragePercentThreshold: 50});
     // Story Mock
     const {openStory} = useHomeScreen();
@@ -212,53 +208,54 @@ export default function ArchiveScreen(): ReactNode {
                         />
                     </View>
                 )}
-                <Text bold style={styles.infoLabel}>
-                    {EVENEMENTS_PASSES_LABEL}
-                </Text>
-                {/* Afficher les EventBlocks en grille */}
-                <View style={styles.flatlistContainer}>
-                    <Animated.FlatList
-                        ref={flatListRef}
-                        onViewableItemsChanged={onViewRef.current}
-                        viewabilityConfig={viewConfigRef.current}
-                        data={formatted}
-                        renderItem={renderItem}
-                        contentContainerStyle={styles.flatListContentContainer}
-                        decelerationRate={"normal"}
-                        scrollEventThrottle={16}
-                        showsHorizontalScrollIndicator={false}
-                        pagingEnabled
-                        horizontal
-                        onScroll={Animated.event(
-                            [{nativeEvent: {contentOffset: {x: scrollX}}}],
-                            {
-                                useNativeDriver: false,
-                            }
-                        )}
-                        onMomentumScrollEnd={Animated.event(
-                            [{nativeEvent: {contentOffset: {x: scrollOffset}}}],
-                            {
-                                useNativeDriver: false,
-                            }
-                        )}
-                    />
-                </View>
+                {formatted.length > 0 && (<>
+                    <Text bold style={styles.infoLabel}>
+                        {EVENEMENTS_PASSES_LABEL}
+                    </Text>
+                    {/* Afficher les EventBlocks en grille */}
+                    <View style={styles.flatlistContainer}>
+                        <Animated.FlatList
+                            ref={flatListRef}
+                            viewabilityConfig={viewConfigRef.current}
+                            data={formatted}
+                            renderItem={renderItem}
+                            contentContainerStyle={styles.flatListContentContainer}
+                            decelerationRate={"normal"}
+                            scrollEventThrottle={16}
+                            showsHorizontalScrollIndicator={false}
+                            pagingEnabled
+                            horizontal
+                            onScroll={Animated.event(
+                                [{nativeEvent: {contentOffset: {x: scrollX}}}],
+                                {
+                                    useNativeDriver: false,
+                                }
+                            )}
+                            onMomentumScrollEnd={Animated.event(
+                                [{nativeEvent: {contentOffset: {x: scrollOffset}}}],
+                                {
+                                    useNativeDriver: false,
+                                }
+                            )}
+                        />
+                    </View>
                 {/* Génener une pagination pour naviguer entre les grilles */}
-                <View style={styles.paginationContainer}>
-                    <LiquidPaginationDot
-                        data={formatted}
-                        scrollX={scrollX}
-                        scrollOffset={scrollOffset}
-                        strokeWidth={10}
-                        dotSize={16}
-                        marginHorizontal={8}
-                        activeDotColor={"#fff"}
-                        containerStyle={styles.containerStyles}
-                        bigHead={true}
-                        bigHeadScale={1.2}
-                        inActiveDotOpacity={0.3}
-                    />
-                </View>
+                    <View style={styles.paginationContainer}>
+                        <LiquidPaginationDot
+                            data={formatted}
+                            scrollX={scrollX}
+                            scrollOffset={scrollOffset}
+                            strokeWidth={10}
+                            dotSize={16}
+                            marginHorizontal={8}
+                            activeDotColor={"#fff"}
+                            containerStyle={styles.containerStyles}
+                            bigHead={true}
+                            bigHeadScale={1.2}
+                            inActiveDotOpacity={0.3}
+                        />
+                    </View>
+                </>)}
             </View>
         </ScrollView>
     );

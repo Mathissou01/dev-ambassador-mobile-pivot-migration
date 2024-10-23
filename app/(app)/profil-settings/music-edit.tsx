@@ -135,7 +135,7 @@ export default function MusicEditScreen(): React.JSX.Element {
     const selectedIndex = componentsWithMusic.findIndex(
         (m) => m.title === userMusic?.name
     );
-    const [currentIndex, setCurrentIndex] = useState(selectedIndex ?? 0);
+    const [currentIndex, setCurrentIndex] = useState((selectedIndex && selectedIndex > 0) ? selectedIndex : 0);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [opacity] = useState(
         componentsWithMusic.map(() => new Animated.Value(0))
@@ -264,7 +264,7 @@ export default function MusicEditScreen(): React.JSX.Element {
         thirdColor: colorTheme?.colors?.primaryLight,
         fourthColor: colorTheme?.colors?.primaryExtraLight,
     };
-    
+
     // Modal Infos
 
     useLayoutEffect(() => {
