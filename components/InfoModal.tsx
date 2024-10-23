@@ -1,4 +1,4 @@
-import {Text, View} from "@/components/Themed";
+import {ScrollView, Text, View} from "@/components/Themed";
 import React, {useContext} from "react";
 import {Dimensions, Modal, TouchableOpacity} from "react-native";
 import {BlurView} from "expo-blur";
@@ -63,8 +63,8 @@ export default function InfoModal({
                                 />
                             </TouchableOpacity>
                         </View>
-                        <View
-                            style={{flex: 1, paddingHorizontal: 20, flexDirection: 'column', gap: 5}}
+                        <ScrollView
+                            contentContainerStyle={styles.modalScrollContent}
                             lightColor={colors.white}
                             darkColor={colors.backgroundNavDark}
                         >
@@ -92,7 +92,7 @@ export default function InfoModal({
                                         ))}
                                     </React.Fragment>
                                 ))}
-                        </View>
+                        </ScrollView>
                     </View>
                 </BlurView>
             </View>

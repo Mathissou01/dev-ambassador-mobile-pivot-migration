@@ -17,6 +17,7 @@ export default function StacksLayout() {
     return (
         <Stack screenOptions={{
             headerShown: true,
+            headerTitleAlign: "center",
             headerLeft: () => {
                 return <TouchableOpacity
                     onPress={() => router.back()}

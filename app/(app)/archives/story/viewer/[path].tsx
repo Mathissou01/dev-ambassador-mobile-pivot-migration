@@ -26,7 +26,7 @@ export default function MediaPage(): React.JSX.Element {
         setSubmitState("saving");
 
         try {
-            const url = `file://${path}`;
+            const url = `file://${path.replace('file://', "")}`;
 
             const image = await FileSystem.readAsStringAsync(url, {
                 encoding: "base64",
@@ -68,7 +68,7 @@ export default function MediaPage(): React.JSX.Element {
         }, 5000);
     }, [path]);
 
-    const source = useMemo(() => ({uri: `file://${path}`}), [path]);
+    const source = useMemo(() => ({uri: `file://${path.replace("file://", "")}`}), [path]);
 
     return (
         <View style={[styles.container]}>

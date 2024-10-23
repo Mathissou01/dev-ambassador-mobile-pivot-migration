@@ -15,6 +15,7 @@ export default function StacksLayout() {
                 name="leaderboard"
                 options={{
                     title: "Classement",
+                    headerTitleAlign: "center",
                     headerShown: true,
                     headerLeft: () => {
                         return <TouchableOpacity
@@ -45,6 +46,7 @@ export default function StacksLayout() {
                 options={{
                     title: "Notifications",
                     headerShown: true,
+                    headerTitleAlign: "center",
                     headerLeft: () => {
                         return <TouchableOpacity
                             onPress={() => router.back()}
@@ -72,6 +74,7 @@ export default function StacksLayout() {
             <Stack.Screen
                 name="parameters"
                 options={{
+                    headerTitleAlign: "center",
                     title: "Paramètres",
                     headerShown: true,
                     headerLeft: () => {

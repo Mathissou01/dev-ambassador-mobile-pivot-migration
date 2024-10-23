@@ -1,4 +1,4 @@
-import React, {ReactNode, useContext} from "react";
+import React, {ReactNode, useContext, useEffect, useState} from "react";
 import {ImageSourcePropType, StyleSheet, View} from "react-native";
 import Svg, {ClipPath, Defs, Image, LinearGradient, Path, RadialGradient, Stop, Use} from "react-native-svg";
 import {ThemeContext} from "@/hooks/useColorScheme";
@@ -11,6 +11,42 @@ export default function Vinyle({
     dimension: number;
 }): ReactNode {
     const themeColor = useContext(ThemeContext);
+    const [dataUrl, setDataUrl] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (typeof centerImage === "object") {
+            if ("uri" in centerImage && centerImage.uri && centerImage.headers && "Authorization" in centerImage.headers) {
+                const token = centerImage.headers.Authorization;
+                const url = centerImage.uri;
+
+                const fetchAvatar = async () => {
+                    try {
+                        const response = await fetch(url, {
+                            headers: {
+                                Authorization: `${token}`, // Utilisation du token dans le header
+                            }
+                        });
+
+                        if (!response.ok) {
+                            throw new Error('Avatar not found');
+                        }
+
+                        const blob = await response.blob(); // Récupère l'image sous forme de Blob
+                        const fileReaderInstance = new FileReader();
+                        fileReaderInstance.readAsDataURL(blob);
+                        fileReaderInstance.onload = () => {
+                            if (typeof fileReaderInstance.result === "string")
+                                setDataUrl(fileReaderInstance.result)
+                        }
+                    } catch (err) {
+                        console.error("Error fetching avatar:", err);
+                    }
+                };
+
+                void fetchAvatar();
+            }
+        }
+    }, []);
 
     return (
         <View style={styles.container}>
@@ -110,7 +146,8 @@ export default function Vinyle({
                     y="35%"
                     width="30%"
                     height="30%"
-                    href={centerImage}
+                    // href={centerImage}
+                    href={dataUrl ?? ""}
                     preserveAspectRatio="xMidYMid slice"
                     clipPath="url(#clipPath)"
                 />

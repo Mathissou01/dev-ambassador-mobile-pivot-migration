@@ -67,7 +67,7 @@ const ImageItem = ({
     ({ nativeEvent }: NativeSyntheticEvent<NativeScrollEvent>) => {
       const velocityY = nativeEvent?.velocity?.y ?? 0;
       const scaled = nativeEvent?.zoomScale > 1;
-      
+
       onZoom(scaled);
       setScaled(scaled);
 
@@ -127,6 +127,7 @@ const ImageItem = ({
             style={[imageStylesWithOpacity]}
             onLoad={() => setLoaded(true)}
           />
+          {/*<Text>TEST</Text>*/}
         </TouchableWithoutFeedback>
       </ScrollView>
     </View>

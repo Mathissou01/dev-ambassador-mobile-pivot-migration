@@ -178,6 +178,9 @@ export default function ArchiveScreen(): ReactNode {
                         <Text bold style={styles.infoLabel}>
                             {EVENEMENTS_ACTUELS_LABEL}
                         </Text>
+                        <Text>
+                            {/*{currentArchive.evenement.credits}*/}
+                        </Text>
                         <ActualEventBlock
                             key={currentArchive?.evenement._id}
                             eventForms={(1).toString()}

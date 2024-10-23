@@ -29,7 +29,11 @@ const styles = EStyleSheet.create({
     modalContent: {
         paddingVertical: 20,
         borderRadius: 10,
-        height: () => EStyleSheet.value("$contentWidth") / 1,
+    },
+    modalScrollContent: {
+        paddingHorizontal: 20,
+        flexDirection: 'column',
+        gap: 10
     },
     blurContainer: {
         flex: 1,

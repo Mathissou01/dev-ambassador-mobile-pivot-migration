@@ -615,7 +615,7 @@ export interface IconProps {
 }
 
 export interface AudioControllerProp {
-    mp3File: AVPlaybackSource;
+    mp3File: AVPlaybackSource | string;
     musicTitle: string;
     musicSubtitle: string;
     musicTheme: string;
