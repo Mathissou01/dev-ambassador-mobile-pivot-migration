@@ -4,6 +4,7 @@ import {BlurView} from "expo-blur";
 import {ThemeContext} from "@/hooks/useColorScheme";
 import MusicCard from "./MusicCard";
 import styles from "./BottomCollapsedMenuStyle";
+import {useSafeAreaInsets} from "react-native-safe-area-context";
 
 interface BottomCollapsedMenuProps {
     componentsWithMusic: any[];
@@ -26,6 +27,7 @@ export default function BottomCollapsedMenu({
     const [isToolbarOpen, setIsToolbarOpen] = useState(false);
     const {width, height} = Dimensions.get("window");
     const menuBottomPosition = useRef(new Animated.Value(-height * 0.5)).current;
+    const {bottom} = useSafeAreaInsets();
 
     const panResponder = useRef(
         PanResponder.create({
@@ -71,7 +73,7 @@ export default function BottomCollapsedMenu({
     const toggleToolbar = (): void => {
         setIsToolbarOpen(!isToolbarOpen);
         Animated.timing(menuBottomPosition, {
-            toValue: isToolbarOpen ? -height * 0.5 : -50,
+            toValue: isToolbarOpen ? -height * 0.5 : 0,
             duration: 200,
             useNativeDriver: false,
         }).start();
@@ -137,7 +139,7 @@ export default function BottomCollapsedMenu({
                         <ScrollView
                             contentContainerStyle={{
                                 paddingTop: 25,
-                                paddingBottom: 25,
+                                paddingBottom: 25 + bottom
                             }}
                             showsVerticalScrollIndicator={false}
                         >
