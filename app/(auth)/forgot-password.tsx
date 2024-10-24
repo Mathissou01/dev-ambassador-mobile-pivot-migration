@@ -9,10 +9,9 @@ import InputTemplate from "@/components/FormTemplate/InputTemplate";
 import {useAPI} from "@/hooks/useAPI";
 import {colors} from "@/config/styles/01-settings/_colors";
 import styles from "@/styles/auth/PasswordForgetStyle";
+import {router} from "expo-router";
 
-export default function PasswordForgetScreen({
-                                                 navigation,
-                                             }: RootTabScreenProps<"ForgotPassword">): React.JSX.Element {
+export default function PasswordForgetScreen({}: RootTabScreenProps<"ForgotPassword">): React.JSX.Element {
     const colorSchema = useColorScheme();
 
     const placeholder = {
@@ -38,7 +37,7 @@ export default function PasswordForgetScreen({
                                 {
                                     text: "OK",
                                     onPress: () => {
-                                        navigation.navigate("LogIn");
+                                        router.navigate("/(auth)/login");
                                     },
                                 },
                             ]
@@ -53,7 +52,7 @@ export default function PasswordForgetScreen({
         }
     };
     const cancel = (): void => {
-        navigation.navigate("(auth)/login");
+        router.navigate("/(auth)/login");
     };
 
     return (
