@@ -1,6 +1,6 @@
 import React from "react";
 import { View, ScrollView, TouchableOpacity, Image } from "react-native";
-import { styles, CommonStyle } from "./SliderPartStyle.js";
+import { styles, CommonStyle } from "./SliderPartStyle";
 import { type resourceMappingSkin } from "../CharacterPart/ressourceMappingSkin";
 
 interface SliderSkinProps {
@@ -10,7 +10,11 @@ interface SliderSkinProps {
   onSelect12: (item: keyof typeof resourceMappingSkin) => void;
 }
 
-export default function SliderSkin({ data, selectedItem12, onSelect12 }: SliderSkinProps) {
+export default function SliderSkin({
+  data,
+  selectedItem12,
+  onSelect12,
+}: SliderSkinProps) {
   const handleSelect12 = (item: keyof typeof resourceMappingSkin) => {
     onSelect12(item);
   };
@@ -51,7 +55,10 @@ export default function SliderSkin({ data, selectedItem12, onSelect12 }: SliderS
               handleSelect12(x.name);
             }}
           >
-            <Image style={styles.tinyLogo} source={resourceMapping[x.name].image} />
+            <Image
+              style={styles.tinyLogo}
+              source={resourceMapping[x.name].image}
+            />
           </TouchableOpacity>
         </View>
       ))}
