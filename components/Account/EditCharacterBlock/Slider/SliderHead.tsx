@@ -1,6 +1,6 @@
 import React from "react";
 import { View, ScrollView, TouchableOpacity, Image } from "react-native";
-import { styles, CommonStyle } from "./SliderPartStyle.js";
+import { styles, CommonStyle } from "./SliderPartStyle";
 import { type resourceMappingHead } from "../CharacterPart/ressourceMappingHead";
 
 interface SliderHeadProps {
@@ -9,7 +9,11 @@ interface SliderHeadProps {
   onSelect2: (item: keyof typeof resourceMappingHead) => void;
 }
 
-export default function SliderHead({ data, selectedItem2, onSelect2 }: SliderHeadProps) {
+export default function SliderHead({
+  data,
+  selectedItem2,
+  onSelect2,
+}: SliderHeadProps) {
   const handleSelect2 = (item: keyof typeof resourceMappingHead) => {
     onSelect2(item);
   };
@@ -73,7 +77,10 @@ export default function SliderHead({ data, selectedItem2, onSelect2 }: SliderHea
               handleSelect2(x.name);
             }}
           >
-            <Image style={styles.tinyLogo} source={resourceMapping[x.name].image } />
+            <Image
+              style={styles.tinyLogo}
+              source={resourceMapping[x.name].image}
+            />
           </TouchableOpacity>
         </View>
       ))}

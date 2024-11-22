@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { View, ScrollView, TouchableOpacity, Image } from "react-native";
-import { styles, CommonStyle } from "./SliderPartStyle.js";
+import { styles, CommonStyle } from "./SliderPartStyle";
 import { ThemeContext } from "../../../../hooks/useColorScheme";
 import { type resourceMappingNecklace } from "../CharacterPart/ressourceMappingNecklace";
 import { CloseIcon } from "../../../IconComponent/index";
@@ -11,7 +11,11 @@ interface SliderNecklaceProps {
   onSelect6: (item: keyof typeof resourceMappingNecklace) => void;
 }
 
-export default function SliderNecklace({ data, selectedItem6, onSelect6 }: SliderNecklaceProps) {
+export default function SliderNecklace({
+  data,
+  selectedItem6,
+  onSelect6,
+}: SliderNecklaceProps) {
   const handleSelect6 = (item: keyof typeof resourceMappingNecklace) => {
     onSelect6(item);
   };
@@ -81,7 +85,10 @@ export default function SliderNecklace({ data, selectedItem6, onSelect6 }: Slide
             }}
           >
             {resourceMapping[x.name].image ? (
-              <Image style={styles.tinyLogo} source={resourceMapping[x.name].image} />
+              <Image
+                style={styles.tinyLogo}
+                source={resourceMapping[x.name].image}
+              />
             ) : (
               <View style={{ padding: 20 }}>
                 <CloseIcon size={60} color={themeColor?.colors.primaryDark} />

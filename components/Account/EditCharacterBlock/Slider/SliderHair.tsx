@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { View, ScrollView, TouchableOpacity, Image } from "react-native";
-import { styles, CommonStyle } from "./SliderPartStyle.js";
+import { styles, CommonStyle } from "./SliderPartStyle";
 import { ThemeContext } from "../../../../hooks/useColorScheme";
 import { type resourceMappingHair } from "../CharacterPart/ressourceMappingHair";
 import { CloseIcon } from "../../../IconComponent/index";
@@ -11,7 +11,11 @@ interface SliderHairProps {
   onSelect: (item: keyof typeof resourceMappingHair) => void;
 }
 
-export default function SliderHair({ data, selectedItem, onSelect }: SliderHairProps) {
+export default function SliderHair({
+  data,
+  selectedItem,
+  onSelect,
+}: SliderHairProps) {
   const handleSelect = (item: keyof typeof resourceMappingHair) => {
     onSelect(item);
   };
@@ -80,7 +84,10 @@ export default function SliderHair({ data, selectedItem, onSelect }: SliderHairP
             }}
           >
             {resourceMapping[x.name].image ? (
-              <Image style={styles.tinyLogo} source={resourceMapping[x.name].image} />
+              <Image
+                style={styles.tinyLogo}
+                source={resourceMapping[x.name].image}
+              />
             ) : (
               <View style={{ padding: 20 }}>
                 <CloseIcon size={60} color={themeColor?.colors.primaryDark} />

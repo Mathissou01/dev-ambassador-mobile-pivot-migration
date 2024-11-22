@@ -17,8 +17,12 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { autoAuth } from "@/hooks/useDatabase";
 import { generateColors } from "@/utils/generateColors";
 import { Provider } from "react-redux";
-import {SafeAreaProvider, useSafeAreaInsets} from "react-native-safe-area-context";
+import {
+  SafeAreaProvider,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 import Slot = Navigator.Slot;
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 // ===== NOTIFICATION PARAMETERS ===== //
 Notifications.setNotificationHandler({
@@ -146,38 +150,42 @@ export default function RootLayout() {
   }, []);
 
   return (
-    <Provider store={store}>
-      <SafeAreaProvider>
-        <SplashScreenComponent onComplete={setSplashComplete} />
-        {/* Splashscreen avant le login */}
-        {isAuth === null ||
-        !isStorageLoaded ||
-        (!isLoadingComplete && !fontsLoaded) ? (
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <Provider store={store}>
+        <SafeAreaProvider>
           <SplashScreenComponent onComplete={setSplashComplete} />
-        ) : splashComplete ? (
-          <>
-            <ThemeContext.Provider
-              value={{
-                colors: schoolColorsDynamic,
-                setColors: setSchoolColorsDynamic,
-                isDark: theme,
-                setIsDark: setTheme,
-              }}
-            >
-              <Slot />
-              <StatusBar
-                animated={true}
-                hidden={false}
-                networkActivityIndicatorVisible={false}
-                backgroundColor={schoolColorsDynamic.primaryLight ?? "#21a5ff"}
-                translucent={true}
-              />
-            </ThemeContext.Provider>
-          </>
-        ) : (
-          <SplashScreenComponent onComplete={setSplashComplete} />
-        )}
-      </SafeAreaProvider>
-    </Provider>
+          {/* Splashscreen avant le login */}
+          {isAuth === null ||
+          !isStorageLoaded ||
+          (!isLoadingComplete && !fontsLoaded) ? (
+            <SplashScreenComponent onComplete={setSplashComplete} />
+          ) : splashComplete ? (
+            <>
+              <ThemeContext.Provider
+                value={{
+                  colors: schoolColorsDynamic,
+                  setColors: setSchoolColorsDynamic,
+                  isDark: theme,
+                  setIsDark: setTheme,
+                }}
+              >
+                <Slot />
+                <StatusBar
+                  animated={true}
+                  hidden={false}
+                  networkActivityIndicatorVisible={false}
+                  backgroundColor={
+                    schoolColorsDynamic.primaryLight ?? "#21a5ff"
+                  }
+                  translucent={true}
+                />
+              </ThemeContext.Provider>
+            </>
+          ) : (
+            <SplashScreenComponent onComplete={setSplashComplete} />
+          )}
+        </SafeAreaProvider>
+      </Provider>
+    </GestureHandlerRootView>
   );
 }

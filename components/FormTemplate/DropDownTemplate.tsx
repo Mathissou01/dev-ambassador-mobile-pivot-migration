@@ -25,9 +25,12 @@ const DropDownTemplate = ({
     itemValue: SetStateAction<string[] | null>
   ) => {
     if (multiple) {
-      const selectedValue = typeof itemValue === "function" ? itemValue() : itemValue;
+      const selectedValue =
+        typeof itemValue === "function" ? itemValue() : itemValue;
 
-      const formattedValue = Array.isArray(selectedValue) ? selectedValue : [selectedValue];
+      const formattedValue = Array.isArray(selectedValue)
+        ? selectedValue
+        : [selectedValue];
 
       let updatedValue;
 
@@ -48,7 +51,8 @@ const DropDownTemplate = ({
 
       setValue(updatedValue);
     } else {
-      const selectedValue = typeof itemValue === "function" ? itemValue() : itemValue;
+      const selectedValue =
+        typeof itemValue === "function" ? itemValue() : itemValue;
       setValue(selectedValue);
       if (selectedValue && selectedValue.length > 0) {
         setIsValid(true);
@@ -88,7 +92,8 @@ const DropDownTemplate = ({
           fontFamily: "Raleway-Regular",
           ...(isValid === false && { borderColor: "red" }),
           ...((isValueSelected ?? false) && {
-            borderColor: colorTheme?.isDark ?? false ? colors.successDark : colors.success,
+            borderColor:
+              colorTheme?.isDark ?? false ? colors.successDark : colors.success,
           }),
         },
       ]}
@@ -108,6 +113,7 @@ const DropDownTemplate = ({
         animationType: "slide",
       }}
       listMode={isModal ? "MODAL" : "SCROLLVIEW"}
+      containerStyle={open ? { height: 260 } : { height: 60 }}
       placeholderStyle={{
         ...(isValid === false && { color: "red" }),
       }}

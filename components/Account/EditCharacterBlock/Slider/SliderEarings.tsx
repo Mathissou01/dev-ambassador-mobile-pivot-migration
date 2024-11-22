@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Image, ScrollView, TouchableOpacity, View } from "react-native";
-import { CommonStyle, styles } from "./SliderPartStyle.js";
+import { CommonStyle, styles } from "./SliderPartStyle";
 import { type resourceMappingEarings } from "../CharacterPart/ressourceMappingEarings";
 import { ThemeContext } from "../../../../hooks/useColorScheme";
 import { CloseIcon } from "../../../IconComponent/index";
@@ -11,7 +11,11 @@ interface SliderEaringsProps {
   onSelect4: (item: keyof typeof resourceMappingEarings) => void;
 }
 
-export default function SliderEarings({ data, selectedItem4, onSelect4 }: SliderEaringsProps) {
+export default function SliderEarings({
+  data,
+  selectedItem4,
+  onSelect4,
+}: SliderEaringsProps) {
   const handleSelect4 = (item: keyof typeof resourceMappingEarings) => {
     onSelect4(item);
   };
@@ -81,7 +85,10 @@ export default function SliderEarings({ data, selectedItem4, onSelect4 }: Slider
             }}
           >
             {resourceMapping[x.name].image ? (
-              <Image style={styles.tinyLogo} source={resourceMapping[x.name].image} />
+              <Image
+                style={styles.tinyLogo}
+                source={resourceMapping[x.name].image}
+              />
             ) : (
               <View style={{ padding: 20 }}>
                 <CloseIcon size={60} color={themeColor?.colors.primaryDark} />

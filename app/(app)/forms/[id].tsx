@@ -5,12 +5,12 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import { Alert, ScrollView, TouchableOpacity } from "react-native";
+import { Alert, TouchableOpacity } from "react-native";
 import { Controller, useForm } from "react-hook-form";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Checkbox } from "expo-checkbox";
 import { decodeHTML } from "entities";
-import { Text, View } from "@/components/Themed";
+import { ScrollView, Text, View } from "@/components/Themed";
 import InputTemplate from "@/components/FormTemplate/InputTemplate";
 import LabelTemplate from "@/components/FormTemplate/LabelTemplate";
 import DropDownTemplate from "@/components/FormTemplate/DropDownTemplate";
@@ -81,7 +81,6 @@ export default function FormScreen(): ReactNode {
   const colorTheme = useContext(ThemeContext);
 
   // FONCTION DE DONNÉES
-  // Pop up states
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
   const [popupCallback, setPopupCallback] = useState<() => void>(() => {});
@@ -485,6 +484,7 @@ export default function FormScreen(): ReactNode {
                 : colors.backgroundDefault,
           },
         ]}
+        nestedScrollEnabled={true}
       >
         {generateForm()}
         {fields.length > 0 && (

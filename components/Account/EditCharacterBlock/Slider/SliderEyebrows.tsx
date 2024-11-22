@@ -1,6 +1,6 @@
 import React from "react";
 import { View, ScrollView, TouchableOpacity, Image } from "react-native";
-import { styles, CommonStyle } from "./SliderPartStyle.js";
+import { styles, CommonStyle } from "./SliderPartStyle";
 import { type resourceMappingEyebrows } from "../CharacterPart/ressourceMappingEyebrows";
 
 interface SliderEyebrowsProps {
@@ -9,7 +9,11 @@ interface SliderEyebrowsProps {
   onSelect3: (item: keyof typeof resourceMappingEyebrows) => void;
 }
 
-export default function SliderEyebrows({ data, selectedItem3, onSelect3 }: SliderEyebrowsProps) {
+export default function SliderEyebrows({
+  data,
+  selectedItem3,
+  onSelect3,
+}: SliderEyebrowsProps) {
   const handleSelect3 = (item: keyof typeof resourceMappingEyebrows) => {
     onSelect3(item);
   };
@@ -55,14 +59,20 @@ export default function SliderEyebrows({ data, selectedItem3, onSelect3 }: Slide
       }}
     >
       {data.map((x) => (
-        <View key={`${x.name}-${x.type}`} style={[styles.container, styles.shadowProp]}>
+        <View
+          key={`${x.name}-${x.type}`}
+          style={[styles.container, styles.shadowProp]}
+        >
           <TouchableOpacity
             style={CommonStyle({ selectedItem: selectedItem3 === x.name })}
             onPress={() => {
               handleSelect3(x.name);
             }}
           >
-            <Image style={styles.tinyLogo} source={resourceMapping[x.name].image } />
+            <Image
+              style={styles.tinyLogo}
+              source={resourceMapping[x.name].image}
+            />
           </TouchableOpacity>
         </View>
       ))}

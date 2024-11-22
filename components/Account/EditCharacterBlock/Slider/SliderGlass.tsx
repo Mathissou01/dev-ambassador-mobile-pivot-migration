@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { View, ScrollView, TouchableOpacity, Image } from "react-native";
-import { styles, CommonStyle } from "./SliderPartStyle.js";
+import { styles, CommonStyle } from "./SliderPartStyle";
 import { ThemeContext } from "../../../../hooks/useColorScheme";
 import { type resourceMappingGlass } from "../CharacterPart/ressourceMappingGlass";
 import { CloseIcon } from "../../../IconComponent/index";
@@ -11,7 +11,11 @@ interface SliderGlassProps {
   onSelect5: (item: keyof typeof resourceMappingGlass) => void;
 }
 
-export default function SliderGlass({ data, selectedItem5, onSelect5 }: SliderGlassProps) {
+export default function SliderGlass({
+  data,
+  selectedItem5,
+  onSelect5,
+}: SliderGlassProps) {
   const handleSelect5 = (item: keyof typeof resourceMappingGlass) => {
     onSelect5(item);
   };
@@ -81,7 +85,10 @@ export default function SliderGlass({ data, selectedItem5, onSelect5 }: SliderGl
             }}
           >
             {resourceMapping[x.name].image ? (
-              <Image style={styles.tinyLogo} source={resourceMapping[x.name].image} />
+              <Image
+                style={styles.tinyLogo}
+                source={resourceMapping[x.name].image}
+              />
             ) : (
               <View style={{ padding: 20 }}>
                 <CloseIcon size={60} color={themeColor?.colors.primaryDark} />
