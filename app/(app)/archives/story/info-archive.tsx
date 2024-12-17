@@ -8,7 +8,7 @@ import {router} from "expo-router";
 
 export default function InfoArchiveScreen(): React.JSX.Element {
     const nextPage = (): void => {
-        router.navigate("/(app)/archives/story/maker");
+        router.push("/(app)/archives/story/maker");
     };
 
     return (

@@ -116,7 +116,7 @@ export default function ArchiveScreen(): ReactNode {
             router.navigate("/(app)/archives/permission");
         } else {
             // Sinon, accédez à la page de création d'histoire
-            router.navigate("/(app)/archives/story/info-archive");
+            router.push("/(app)/archives/story/info-archive");
         }
     };
 

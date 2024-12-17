@@ -50,7 +50,6 @@ export default function TabBarItem({
                                        descriptors,
                                        navigation,
                                    }: Pick<BottomTabBarProps, "navigation"> & Pick<BottomTabBarProps, "descriptors"> & Pick<BottomTabBarProps, "state"> & TabBarItemProps): React.JSX.Element {
-    const [isFirstLoaded, setIsFirstLoaded] = useState<boolean>(false);
     const themeContext = useContext(ThemeContext);
     const [currentFocusedTab, setCurrentFocusedTab] = useState(0);
     const viewRef = useRef<any>(null);
@@ -83,16 +82,13 @@ export default function TabBarItem({
             lottieRef.current.play();
             viewRef.current.animate(animateShow);
             circleRef.current.animate(circleShow);
-            textRef.current.transitionTo({scale: 1});
+            textRef.current.transitionTo({scale: 1}, 1000);
+        } else {
+            lottieRef.current.reset();
+            viewRef.current.animate(animateHiding);
+            circleRef.current.animate(circleHiding);
+            textRef.current.transitionTo({scale: 0}, 1000);
         }
-        if (isFirstLoaded) {
-            if (!isFocused) {
-                lottieRef.current.reset();
-                viewRef.current.animate(animateHiding);
-                circleRef.current.animate(circleHiding);
-                textRef.current.transitionTo({scale: 0});
-            }
-        } else setIsFirstLoaded(true);
     }, [isFocused]);
 
     const onPress = () => {

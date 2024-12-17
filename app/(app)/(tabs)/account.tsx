@@ -156,11 +156,7 @@ export default function Account(): React.JSX.Element {
                         >
                             <PencilIcon
                                 size={18}
-                                color={
-                                    themeColor?.isDark ?? false
-                                        ? colors.textDark
-                                        : colors.textLight
-                                }
+                                color={colors.textLight}
                             />
                         </TouchableOpacity>
                         {/* Button avatar editor */}
@@ -178,11 +174,7 @@ export default function Account(): React.JSX.Element {
                         >
                             <MusicNoteIcon
                                 size={18}
-                                color={
-                                    themeColor?.isDark ?? false
-                                        ? colors.textDark
-                                        : colors.textLight
-                                }
+                                color={colors.textLight}
                             />
                         </TouchableOpacity>
                         {/* Button music */}

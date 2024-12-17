@@ -40,6 +40,7 @@ export interface UserType extends BaseType {
     tShirtSize: string;
     computerPorts: Array<string>;
     isValid: boolean;
+    credits: number;
 }
 
 export interface UserParamsType {
@@ -75,9 +76,10 @@ export class User extends Base {
     tShirtSize: string;
     computerPorts: string[];
     isValid: boolean | undefined;
+    credits: number;
 
     constructor(parameters?: UserType) {
-        super(parameters);
+        super(parameters!);
         const {
             email,
             firstname,
@@ -94,6 +96,7 @@ export class User extends Base {
             computerPorts,
             isValid,
             music,
+            credits
         } = parameters ?? {};
         this.email = email;
         this.firstname = firstname;
@@ -109,7 +112,8 @@ export class User extends Base {
         this.isValid = isValid ?? false;
         this.tShirtSize = tShirtSize || "";
         this.computerPorts = computerPorts || [];
-        this.music = music;
+        this.music = music ?? null;
+        this.credits = credits ?? 0;
     }
 
     get avatarUri(): string {

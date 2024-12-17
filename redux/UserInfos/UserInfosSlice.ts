@@ -28,6 +28,7 @@ const initialState: UserState = {
     accessToken: null,
     refreshToken: null,
     permanentToken: null,
+    credits: 0,
 };
 
 export const userInfosSlice = createSlice({

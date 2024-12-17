@@ -62,7 +62,7 @@ const styles = EStyleSheet.create({
     infoText: {
         color: colors.gray700,
         fontSize: 14,
-        textAlign: "left",
+        textAlign: "center",
     },
     infoTextCenter: {
         textAlign: "center",

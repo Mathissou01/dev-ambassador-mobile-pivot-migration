@@ -44,8 +44,15 @@ export default function StoriesMaker(): ReactNode {
 
     return (
         <View style={styles.container}>
-            <CameraView onCameraReady={cameraLoaded} style={{flex: 1}} flash={flash} animateShutter={true} zoom={0}
-                        mode={"picture"} facing={cameraPosition} ref={camera}>
+            <CameraView onCameraReady={cameraLoaded} style={{flex: 1}}
+                        flash={flash}
+                        enableTorch={flash === "on"}
+                        animateShutter={true}
+                        zoom={0}
+                        mode={"picture"}
+                        facing={cameraPosition}
+                        ref={camera}
+            >
                 <View style={styles.controls}>
                     <View>
                         <TouchableOpacity disabled={!cameraReady}

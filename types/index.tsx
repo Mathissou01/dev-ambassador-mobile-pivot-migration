@@ -235,6 +235,7 @@ export interface UserStatistics {
     nb_events: number | null;
     nb_forms: number | null;
     level: number | null;
+    credits: number | null;
 }
 
 export interface ListSchool {
@@ -291,6 +292,7 @@ export interface UserState {
     accessToken: string | null;
     refreshToken: string | null;
     permanentToken: string | null;
+    credits: number;
 }
 
 export interface Category {

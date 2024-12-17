@@ -60,6 +60,9 @@ const styles = EStyleSheet.create({
     fontSize: 100,
     opacity: 0.2,
   },
+  statsTitle: {
+    fontSize: 16
+  }
 });
 
 export default styles;
