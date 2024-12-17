@@ -123,7 +123,7 @@ export default function ArchiveScreen(): ReactNode {
     const formatted = useMemo((): Archive[][] => {
         const tmp: Archive[][] = [];
         let currentPage = 0;
-        [...events, ...events].map((evt): void => {
+        events.map((evt): void => {
             if (!tmp[currentPage]) {
                 tmp[currentPage] = [evt];
             } else {
@@ -239,7 +239,7 @@ export default function ArchiveScreen(): ReactNode {
                             )}
                         />
                     </View>
-                {/* Génener une pagination pour naviguer entre les grilles */}
+                    {/* Génener une pagination pour naviguer entre les grilles */}
                     <View style={styles.paginationContainer}>
                         <LiquidPaginationDot
                             data={formatted}
