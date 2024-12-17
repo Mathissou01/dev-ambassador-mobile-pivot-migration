@@ -1,6 +1,12 @@
+import Constants from "expo-constants";
 import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 import {Platform} from "react-native";
+
+function handleRegistrationError(errorMessage: string) {
+    alert(errorMessage);
+    throw new Error(errorMessage);
+}
 
 export async function registerForPushNotificationsAsync() {
     let token;
@@ -16,8 +22,20 @@ export async function registerForPushNotificationsAsync() {
             return;
         }
         try {
-            const deviceToken = await Notifications.getDevicePushTokenAsync();
-            token = {type: deviceToken?.type ?? "", data: deviceToken?.data ?? ""};
+            const projectId =
+                Constants?.expoConfig?.extra?.eas?.projectId ?? Constants?.easConfig?.projectId;
+
+            if (!projectId) {
+                handleRegistrationError('Project ID not found');
+            }
+
+            const pushTokenString = (
+                await Notifications.getExpoPushTokenAsync({
+                    projectId,
+                })
+            ).data;
+
+            token = {type: Platform.OS, data: pushTokenString}
         } catch (err) {
             console.error(err);
         }

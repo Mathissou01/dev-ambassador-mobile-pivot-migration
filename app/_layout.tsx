@@ -81,10 +81,7 @@ export default function RootLayout() {
         if (isAuth === true) {
             void registerForPushNotificationsAsync()
                 .then(
-                    (token?: {
-                        type: "ios" | "android" | "web" | "windows" | "macos";
-                        data: string;
-                    }) => {
+                    (token?: { type: "ios" | "android" | "web" | "windows" | "macos"; data: string; }) => {
                         store.dispatch(updatePushToken(token ?? {data: "", type: ""}));
                     }
                 )
