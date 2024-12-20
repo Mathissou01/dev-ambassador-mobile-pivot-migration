@@ -56,6 +56,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     versionCode: 1,
     userInterfaceStyle: "automatic",
   },
+  "newArchEnabled": true,
   web: {
     favicon: "./assets/images/App_Logo_Ios.png",
     bundler: "metro",
