@@ -391,11 +391,13 @@ export interface InputData {
     editable?: boolean;
     isVerify?: boolean;
     searchInput?: boolean;
+    numeric?: boolean;
 }
 
 export interface DateTimePickerType {
     date: Date | string;
     setDate: (newVal: Date) => void;
+    title?: string;
 }
 
 export interface DropDownData<T> {
@@ -411,6 +413,15 @@ export interface DropDownData<T> {
     translation?: Record<string, string>;
     multiple?: boolean;
     isModal?: boolean;
+    texts?: {
+        empty?: string;
+        selectedItems?: {
+            1?: string;
+            n?: string;
+        }
+        searchPlaceholder?: string;
+        placeholder?: string;
+    }
 }
 
 export interface LabelData {

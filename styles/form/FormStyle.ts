@@ -56,7 +56,6 @@ const styles = EStyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingRight: 45,
   },
   checkbox: {
     margin: 8,

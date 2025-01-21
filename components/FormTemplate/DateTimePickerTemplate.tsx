@@ -11,6 +11,7 @@ import styles from "./DateTimePickerTemplateStyle";
 export default function DateTimePickerTemplate({
                                                    date,
                                                    setDate,
+                                                   title = "Date de naissance"
                                                }: DateTimePickerType): React.JSX.Element {
     const placeholder = "Choisissez une date";
     const [open, setOpen] = useState(false);
@@ -31,7 +32,7 @@ export default function DateTimePickerTemplate({
                 date={date instanceof Date ? date : new Date(date)}
                 mode="date"
                 locale={"fr"}
-                title={"Date de naissance"}
+                title={title}
                 cancelText="Annuler"
                 confirmText="Confirmer"
                 onConfirm={(date) => {

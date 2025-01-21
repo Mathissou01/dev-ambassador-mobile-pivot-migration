@@ -42,13 +42,24 @@ export class Answer extends Base {
     generateHubspotAnswer(formAnswer: any, formFields?: any) {
         const provAnswers = this.answers;
         Object.entries(formAnswer).forEach(([inputName, inputValue]: [inputName: string, inputValue: any]) => {
-            provAnswers.fields.push({
-                objectTypeId: formFields?.filter((inInField: {
-                    name: string
-                }) => inInField.name === inputName)?.[0]?.objectTypeId ?? "0-1",
-                name: inputName,
-                value: inputValue
-            });
+            if (Array.isArray(inputValue)) {
+                for (let inputValueKey = 0; inputValueKey < inputValue.length; inputValueKey++) {
+                    provAnswers.fields.push({
+                        objectTypeId: formFields?.filter((inInField: {
+                            name: string
+                        }) => inInField.name === inputName)?.[0]?.objectTypeId ?? "0-1",
+                        name: inputName,
+                        value: inputValue[inputValueKey]
+                    });
+                }
+            } else
+                provAnswers.fields.push({
+                    objectTypeId: formFields?.filter((inInField: {
+                        name: string
+                    }) => inInField.name === inputName)?.[0]?.objectTypeId ?? "0-1",
+                    name: inputName,
+                    value: inputValue
+                });
         });
 
         this.answers = provAnswers;

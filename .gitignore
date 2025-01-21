@@ -1,7 +1,7 @@
 # Ignore les fichiers de configuration
 /app.config.ts
 /app.config.js
-/app.config.ts
+app.config.ts
 .env
 
 # Ignore les fichiers générés
