@@ -32,7 +32,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   ios: {
     supportsTablet: false,
     bundleIdentifier: "ambassador.nextu.next-u-form",
-    icon: "./assets/images/App_Logo_Ios.png",
+    icon: "./assets/images/applestore-icon.png",
     userInterfaceStyle: "automatic",
     splash: {
       image: "./assets/images/light_splash.png",
@@ -46,9 +46,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     },
   },
   android: {
-    icon: "./assets/images/App_Logo_Android.png",
+    icon: "./assets/images/playstore-icon.png",
     adaptiveIcon: {
-      foregroundImage: "./assets/images/App_Logo_Android.png",
+      foregroundImage: "./assets/images/playstore-icon.png",
       backgroundColor: "#ffffff",
     },
     googleServicesFile: process.env.GOOGLE_SERVICES_JSON,
