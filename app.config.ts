@@ -9,7 +9,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   owner: "mathissou",
   version: "0.0.2",
   orientation: "portrait",
-  icon: "./assets/images/App_Logo_Ios.png",
+  icon: "./assets/images/applestore-icon.png", // Default app icon
   scheme: "myapp",
   userInterfaceStyle: "automatic",
   updates: {
@@ -20,11 +20,11 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     policy: "appVersion",
   },
   splash: {
-    image: "./assets/images/light_splash.png",
+    image: "./assets/images/light_splash.png", // Splash screen image
     resizeMode: "contain",
     backgroundColor: "#FEF5EA",
     dark: {
-      image: "./assets/images/dark_splash.png",
+      image: "./assets/images/dark_splash.png", // Dark mode splash screen image
       resizeMode: "contain",
       backgroundColor: "#0b1623",
     },
@@ -32,57 +32,55 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   ios: {
     supportsTablet: false,
     bundleIdentifier: "ambassador.nextu.next-u-form",
-    icon: "./assets/images/applestore-icon.png",
+    icon: "./assets/images/applestore-icon.png", // iOS app icon
     userInterfaceStyle: "automatic",
     splash: {
-      image: "./assets/images/light_splash.png",
+      image: "./assets/images/light_splash.png", // iOS splash screen image
       resizeMode: "contain",
       backgroundColor: "#FEF5EA",
       dark: {
-        image: "./assets/images/dark_splash.png",
+        image: "./assets/images/dark_splash.png", // iOS dark mode splash screen image
         resizeMode: "contain",
         backgroundColor: "#0b1623",
       },
     },
   },
   android: {
-    icon: "./assets/images/playstore-icon.png",
+    icon: "./assets/images/playstore-icon.png", // Android app icon
     adaptiveIcon: {
-      foregroundImage: "./assets/images/playstore-icon.png",
+      foregroundImage: "./assets/images/playstore-icon.png", // Android adaptive icon
       backgroundColor: "#ffffff",
     },
     googleServicesFile: process.env.GOOGLE_SERVICES_JSON,
     package: "ambassador.nextu.app",
     versionCode: 1,
     userInterfaceStyle: "automatic",
-  },
-  "newArchEnabled": true,
-  web: {
-    favicon: "./assets/images/App_Logo_Ios.png",
-    bundler: "metro",
+    splash: {
+      image: "./assets/images/light_splash.png", // Android splash screen image
+      resizeMode: "contain",
+      backgroundColor: "#FEF5EA",
+      dark: {
+        image: "./assets/images/dark_splash.png", // Android dark mode splash screen image
+        resizeMode: "contain",
+        backgroundColor: "#0b1623",
+      },
+    },
   },
   plugins: [
     [
       "expo-notifications",
       {
-        icon: "./assets/images/App_Logo_Android.png",
+        icon: "./assets/images/App_Logo_Android.png", // Notification icon
         color: "#ffffff",
       },
     ],
     "expo-router",
-    // [
-    //     "expo-calendar",
-    //     {
-    //         "calendarPermission": "The app needs to access your calendar."
-    //     }
-    // ]
     [
       "expo-camera",
       {
-        "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera",
-        "microphonePermission":
-          "Allow $(PRODUCT_NAME) to access your microphone",
-        "recordAudioAndroid": true,
+        cameraPermission: "Allow $(PRODUCT_NAME) to access your camera",
+        microphonePermission: "Allow $(PRODUCT_NAME) to access your microphone",
+        recordAudioAndroid: true,
       },
     ],
   ],
@@ -92,6 +90,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     },
   },
   experiments: {
-    "typedRoutes": true,
+    typedRoutes: true,
   },
 });

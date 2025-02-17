@@ -582,8 +582,9 @@ export default function CharacterEdit(): ReactNode {
               />
             </View>
             {/* Scene */}
-            <Suspense>
-              <Canvas ref={glViewRef}>
+
+            <Canvas ref={glViewRef} events={null}>
+              <Suspense>
                 {/* Light */}
                 {/* Lumière ambient */}
                 <ambientLight color="#E5E5E5" intensity={0.3} />
@@ -705,8 +706,8 @@ export default function CharacterEdit(): ReactNode {
                     />
                   )}
                 </CustomGroup>
-              </Canvas>
-            </Suspense>
+              </Suspense>
+            </Canvas>
             <View
               style={styles.bottomscenephoto}
               lightColor={colors.white}
